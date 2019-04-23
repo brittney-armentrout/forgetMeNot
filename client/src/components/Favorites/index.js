@@ -1,13 +1,24 @@
 //Favorite Friend List 
-import React from 'react';
-//import image files 
 
 //Populate with pictures of favorites/friends
 //FAB to add new friend
 //pictures link to each friend's page
 
-function Friend() {
-    return <img src={friend} alt="Friend" />
+import React from 'react';
+import "./style.css"
+//import image files 
+
+
+
+export function FavBox({ children }) {
+    return (
+        <div className="flex-box">
+            <ul className="list-group">{children}</ul>
+        </div>
+    ); 
 }
 
-export default Friend;
+//will likely need to change this to accommodate picture list
+export function FavFriend({ children }) {
+    return <li className="list-group-item">{children}</li>
+}
