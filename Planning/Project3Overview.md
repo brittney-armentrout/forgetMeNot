@@ -9,4 +9,14 @@ ForgetmeNot is a beautifully simple web app that quickly stores a note or photo 
 Through a simple interface, you can quickly add a photo, note, or idea to a friend or family member.  If you have time, add a date so ForgetMeNot can remind you.  In a hurry?  Add the date later!
 
 
-![Wireframe](wireframe.png)
+## Trello
+![Trello Screenshot](Trello_screenshot.png) 
+
+## Wireframe
+![Wireframe](Wireframe.png) 
+
+## Project Schedule 
+*Google Calendar for April and May 
+https://calendar.google.com/calendar?cid=czhuajZyZmJtbzNhbDdzZmRzdjNwcmFxN2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ 
+
+
