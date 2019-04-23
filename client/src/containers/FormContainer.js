@@ -15,16 +15,15 @@ class FormContainer extends Component {
 
         this.state = {
             newUser: {
-                name: " ",
-                email: " ",
-                username: " ",
-                password: " "
-            },
-
-            genderOptions: ["Male", "Female", "Other", "Prefer Not to Say"],
+                name: "",
+                email: "",
+                username: "",
+                password: ""
+            }
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     handleFormSubmit(event) {
@@ -59,7 +58,7 @@ class FormContainer extends Component {
                         ...prevState.newUser, [name]: value
                     }
             }
-        }, () => console.log(this.state.newUser))
+        }, () => console.log(this.state.newUser));
     }
 
     render() {
@@ -71,7 +70,6 @@ class FormContainer extends Component {
                     title = {"Name"}
                     name = {"name"}
                     value = {this.state.newUser.name}
-                    placeholder = {"Enter your name"}
                     handleChange = {this.handleInput}
                 /> 
                 {/* Email Input */}
@@ -80,7 +78,6 @@ class FormContainer extends Component {
                     title = {"Email"}
                     name = {"email"}
                     value = {this.state.newUser.email}
-                    placeholder = {"Enter your email"}
                     handleChange = {this.handleInput}
                 /> 
                 {/* Username */}
@@ -89,7 +86,6 @@ class FormContainer extends Component {
                      title = {"Username"}
                      name = {"username"}
                      value = {this.state.newUser.username}
-                     placeholder = {"Enter your desired username"}
                      handleChange = {this.handleInput}
                 /> 
                 {/* Password */}
@@ -98,7 +94,6 @@ class FormContainer extends Component {
                     title = {"Password"}
                     name = {"password"}
                     value = {this.state.newUser.password}
-                    placeholder = {"Enter your desired password"}
                     handleChange = {this.handleInput}
                 /> 
                 {/* Submit */}
