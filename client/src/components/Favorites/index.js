@@ -13,12 +13,17 @@ import "./style.css"
 export function FavBox({ children }) {
     return (
         <div className="flex-box">
-            <ul className="list-group">{children}</ul>
+            <ul className="collection">{children}</ul>
         </div>
     ); 
 }
 
 //will likely need to change this to accommodate picture list
 export function FavFriend({ children }) {
-    return <li className="list-group-item">{children}</li>
+    return (
+        <div className="row">
+            <li className="list-group-item">{children}</li>
+        </div>
+    )
+    
 }
