@@ -4,7 +4,8 @@ const friendsController = require("../../controllers/friendsController");
 //Get friends and post friends to DB
 router.route("/")
     //route to get all saved friends
-    .get(friendsController.findAll)
+    .get(friendsController.findAll, console.log("hitting friends controller"))
+        
 
 //Server route to add new friend to DB
 router.route("/")
