@@ -7,7 +7,7 @@ class FriendDetail extends Component {
     render() {
       return (
           <div className="container">
-            <h3>Friend Name Here</h3>
+            <h3>Details for "Friend"</h3>
             <FriendDetailContainer />
           </div>
           )
