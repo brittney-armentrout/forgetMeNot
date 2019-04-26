@@ -58,13 +58,6 @@ class GiftAddContainer extends Component {
                     handleChange = {this.handleGiftInput}
                 />
                 {/* Select Friend */}  
-                <Input 
-                    inputType = {"text"}
-                    title = {"Password"}
-                    name = {"password"}
-                    value = {this.state.User.password}
-                    handleChange = {this.handleLoginInput}
-                />  
                 {/* Submit */}
                 <Button 
                     action = {this.handleGiftSubmit}  
