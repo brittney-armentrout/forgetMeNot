@@ -1,13 +1,21 @@
 const router = require("express").Router();
+const passport = require('passport');
+require('dotenv').config()
 
+//auth logout
 router.get("/logout", (req, res) => {
   //handle with passport
   console.log("logout route hit")
 })
 
-router.get("/google", (req, res) => {
-  //handle with passport
-  console.log("google route hit")
+// auth with google
+router.get("/google", passport.authenticate('google', {
+  scope: ['profile']
+}))
+
+//callback for google to redirect to
+router.get("/google/redirect", passport.authenticate('google'), (req, res) => {
+  res.send("You reached the callback URI")
 })
 
 module.exports = router;
