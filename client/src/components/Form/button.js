@@ -5,7 +5,6 @@ import React from "react";
 //style = style objects can be passed as props
 
 const Button = (props) => {
-    console.log(props.style);
     return (
         <button 
             style = {props.style}
