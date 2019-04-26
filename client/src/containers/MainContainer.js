@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-import { FavBox, FavFriend } from "../components/Favorites";
-// import { UpcomingBox, UpcomingItem } from "../components/Upcoming";
-// import CheckBox from "../components/Form/checkbox";
+import { FeatureBox } from "../components/FeatureBox";
+import { Thumbnail } from "../components/Thumbnail";
 
 class MainContainer extends Component {
     // constructor(props) {
@@ -13,7 +12,9 @@ class MainContainer extends Component {
             friends: [],
             name: "",
             address: "",
-            img: ""
+            img: "",
+            gifts: [],
+            occasions: []
         }
         // this.populateFavorites = this.populateFavorites.bind(this);
     // }
@@ -32,58 +33,43 @@ class MainContainer extends Component {
 
     handleFriendClick = () => {
         //when someone clicks on a fav picture, should go to friend detail page
-        // API.getFriendDetail()
-        //     .then(res => this.setState
- 
-
     }
 
     handleUpcomingClick = () => {
-        //when someone clicks on an occasion, should go to friend detail page
-        //API.getOccasionDetail
-        //or friend detail
-        //can probably combine this function with handlefavclick to just handleclick
+        //when someone clicks on an occasion, should go to friend detail page 
     }
 
     render() {
         return (
             <div className="flex-container" id="favoritesFlex">
-                    <h2>Favorites</h2>
+                    <h2>Friends</h2>
                         {this.state.friends.length ? (
-                            <FavBox>
+                            <FeatureBox>
                                 {this.state.friends.map(friend => {
                                     return (
-                                        <FavFriend key={friend._id}>
-                                            <span className="name">{friend.name}</span>
-                                        </FavFriend>
-                                            // key = {friend._id}
-                                            // id = {friend.id}
-                                            // img = {friend.img}
-                                            // handleClick = {this.handleFriendClick}
-                                        // />
+                                        <Thumbnail key={friend._id} />
                                     );
                                 })}
-                            </FavBox>
+                            </FeatureBox>
                         ) : (
-                            <h3>No Favorites Yet!</h3> 
+                            <h3>No Friends Yet!</h3> 
                         )}
                     
-                    {/* <h2>Upcoming Occasions</h2>
-                        {this.state.occasions.length ? (
-                            <UpcomingBox>
+                    <h2>Upcoming Occasions</h2>
+                        {/* {this.state.occasions.length ? (
+                            <FeatureBox>
                                 {this.state.upcoming.map(upcoming => (
-                                    <UpcomingItem   
+                                    <UpcomingItem  
                                         key = {upcoming.id}
                                         id = {upcoming.id}
                                         date = {upcoming.date}
                                         handleClick = {this.handleUpcomingClick}
                                     >
-                                    <CheckBox />
                                     </UpcomingItem>
                                 ))}
-                            </UpcomingBox>
+                            </FeatureBox>
                         ) : (
-                            // {/* <h3>No Upcoming Occasions Yet!</h3> */}
+                            <h3>No Upcoming Occasions Yet!</h3>
                         )} */}
             </div>
         )
