@@ -7,7 +7,6 @@ const friendRoutes = require("./friends");
 //User Routes
 // router.use("/users", userRoutes);
 
-
 //Friend routes
 router.use("/friends", friendRoutes);
 console.log("hitting friends route");
