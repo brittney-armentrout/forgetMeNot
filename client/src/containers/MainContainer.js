@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { FeatureBox } from "../components/FeatureBox";
 import { Thumbnail } from "../components/Thumbnail";
+import { ListItem } from "../components/List";
 
 class MainContainer extends Component {
     // constructor(props) {
@@ -9,18 +10,27 @@ class MainContainer extends Component {
         //this state is definitely not correct, needs to be fixed but no energy tonight
         // this.state = {
         state = {
-            friends: [],
-            name: "",
-            address: "",
-            img: "",
-            gifts: [],
-            occasions: []
+            friends: [
+                {
+                    name: "",  
+                    address: "",
+                    img: "",
+                    gifts: [],
+                    occasions: []
+                }
+            ]
+            // name: "",
+            // address: "",
+            // img: "",
+            // gifts: [],
+            // occasions: []
         }
         // this.populateFavorites = this.populateFavorites.bind(this);
     // }
 
     componentDidMount() {
-        this.loadFriends()
+        console.log(this.state);
+        // this.loadFriends()
     }
 
     //not sure if this is functional or not
@@ -47,7 +57,11 @@ class MainContainer extends Component {
                             <FeatureBox>
                                 {this.state.friends.map(friend => {
                                     return (
-                                        <Thumbnail key={friend._id} />
+                                        // <Thumbnail key={friend._id} />
+                                        <ListItem key={friend._id}>
+                                        <span className="name">{friend.name}</span>
+                                        {/* <img className="img">{friend.img}</img> */}
+                                    </ListItem>
                                     );
                                 })}
                             </FeatureBox>
