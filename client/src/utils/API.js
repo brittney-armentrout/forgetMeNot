@@ -8,6 +8,10 @@ export default {
     //Gets friend detail
     getFriendDetail: function() {
         return axios.get("/api/detail")
-    }
+    },
+    // Saves a book to the database
+    saveFriend: function(friendData) {
+    return axios.post("/api/friends", friendData);
+  }
     
 }
