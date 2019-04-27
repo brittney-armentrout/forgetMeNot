@@ -7,7 +7,7 @@ const friendSchema = new Schema({
   name: { type: String, required: true },
   address: { type: String, required: true },
   img: { data: Buffer, contentType: String},
-  date: { type: Date, default: Date.now },
+  date: { type: Date, default: Date.now }, //need this?
   isFavorite: { type: Boolean, default: false },
   gifts: [{ type: Schema.Types.ObjectId, ref: 'Gift' }],
   occasions: [{ type: Schema.Types.ObjectId, ref: 'Occasion' }]
