@@ -3,6 +3,7 @@ const db = require("../models");
 //Define controller methods for Friend
 module.exports = {
     findAll: function(req, res) {
+        console.log("grabbing friends for the user with the id: " + req.params.id);
         db.Friend
             .find(req.query)
             .sort({ date: -1 })
