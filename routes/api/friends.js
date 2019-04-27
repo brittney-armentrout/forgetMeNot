@@ -2,7 +2,7 @@ const router = require("express").Router();
 const friendsController = require("../../controllers/friendsController");
 
 //Get friends and post friends to DB
-router.route("/friends")
+router.route("/api/users/:id")
     //route to get all saved friends
     .get(friendsController.findAll);
     console.log("hitting friends route");
