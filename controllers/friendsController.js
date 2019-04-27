@@ -6,7 +6,7 @@ module.exports = {
         console.log("grabbing friends for the user with the id: " + req.params.id);
         db.Friend
             .find(req.query)
-            .sort({ date: -1 })
+            .populate("friends")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
