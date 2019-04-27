@@ -96,7 +96,7 @@ class AddFriendContainer extends Component {
                     <Input  
                         inputType = {"text"}
                         title = {"Address"}
-                        name = {"Address"}
+                        name = {"address"}
                         value = {this.state.Friend.address}
                         handleChange = {this.handleFriendInput}
                     />
