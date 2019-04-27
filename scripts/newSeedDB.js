@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
+// This file empties the Users collection and inserts the users below
 
 mongoose.connect(
   process.env.MONGODB_URI ||
@@ -11,8 +11,8 @@ mongoose.connect(
 const userSeed = [
   {
     name: "Katie",
-    username: "katie12345"
-    friends : [
+    username: "katie12345",
+    friends: [
         {
         name: "Jane",
         address: "123 Front St, Bath, England",
@@ -40,36 +40,10 @@ const userSeed = [
                 date: 05/05/1982
             }
             ]
-        },
-        {
-            name: "George",
-            address: "345 Curious St, Detroit, MI",
-            img: "https://upload.wikimedia.org/wikipedia/en/d/d8/Curious_George.png",
-            isFavorite: true,
-            gifts: [
-                {
-                    gift: "banana",
-                    img: "https://article.images.consumerreports.org/prod/content/dam/CRO%20Images%202018/Health/April/CR-Health-Inlinehero-bananas-good-for-you-0418",
-                    isStar: true
-                },
-                {
-                    gift: "tricycle",
-                    img: "https://images-na.ssl-images-amazon.com/images/I/81Xy1ArTyUL._SX425_.jpg",
-                    isStar: false
-                }
-                ],
-            occasions: [
-                {
-                    type: "birthday",
-                    date: 04/05/2016
-                },
-                {
-                    type: "adoption anniversary",
-                    date: 08/09/2017
-                }
-                ] 
-        }
-    ]
+        }, 
+    ]  
+    }
+];
 
 
 db.User
@@ -83,3 +57,33 @@ db.User
     console.error(err);
     process.exit(1);
   });
+
+
+//   {
+//     name: "George",
+//     address: "345 Curious St, Detroit, MI",
+//     img: "https://upload.wikimedia.org/wikipedia/en/d/d8/Curious_George.png",
+//     isFavorite: true,
+//     gifts: [
+//         {
+//             gift: "banana",
+//             img: "https://article.images.consumerreports.org/prod/content/dam/CRO%20Images%202018/Health/April/CR-Health-Inlinehero-bananas-good-for-you-0418",
+//             isStar: true
+//         },
+//         {
+//             gift: "tricycle",
+//             img: "https://images-na.ssl-images-amazon.com/images/I/81Xy1ArTyUL._SX425_.jpg",
+//             isStar: false
+//         }
+//         ],
+//     occasions: [
+//         {
+//             type: "birthday",
+//             date: 04/05/2016
+//         },
+//         {
+//             type: "adoption anniversary",
+//             date: 08/09/2017
+//         }
+//     ] 
+// }
