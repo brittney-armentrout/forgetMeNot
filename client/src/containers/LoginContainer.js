@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../components/Form/button";
 import Input from "../components/Form/input";
+import firebase, {auth, provider} from '../firebase';
 
 const googleImg = require("./google_signin_buttons/web/1x/btn_google_signin_light_pressed_web.png");
     
@@ -9,14 +10,20 @@ class LoginContainer extends Component {
         super(props);
 
         this.state = {
-            User: {
-                username: "",
-                password: ""
-            }
+            user: null
         }
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.handleClearLogin = this.handleClearLogin.bind(this);
-        this.handleLoginInput = this.handleLoginInput.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    componentDidMount() {
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            this.setState({ user });
+          } 
+        });
     }
 
     handleLoginSubmit(event) {
@@ -41,25 +48,33 @@ class LoginContainer extends Component {
         })
     }
 
-    handleLoginInput(event) {
-        let value = event.target.value;
-        let name = event.target.name;
-        this.setState ( prevState => {
-            return {
-                User : {
-                    ...prevState.User, [name]: value 
-                }
-            }
-          }, () => console.log(this.state.User));     
-    }
+    handleLogout() {
+        auth.signOut()
+        .then(() => {
+          this.setState({
+            user: null
+          });
+        });
+      }
+      handleLogin() {
+        auth.signInWithPopup(provider) 
+          .then((result) => {
+            const user = result.user;
+            this.setState({
+              user
+            });
+          });
+      }
 
     
     render() {
         return (
             <div className="container center" style={{ marginTop: 60 }}>
-                <btn className="loginBtn" onClick={() => this.handleLoginSubmit}>
-                    <img src={googleImg}></img>
-                </btn>
+                {this.state.user ?
+                  <button onClick={this.handleLogout}>Log Out</button>                
+                  :
+                  <button onClick={this.handleLogin}><img src={googleImg}></img></button>              
+                }
             {/* <form className="card col s6 z-depth-3" onSubmit={this.handleLoginSubmit}> */}
                 {/* Username Input */}
                 {/* <Input 
