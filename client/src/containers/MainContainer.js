@@ -4,6 +4,8 @@ import { FeatureBox } from "../components/FeatureBox";
 import { Thumbnail } from "../components/Thumbnail";
 import { ListItem } from "../components/List";
 
+//Matt & Brit - npm install @material-ui/core INSIDE client 
+
 class MainContainer extends Component {
     constructor(props) {
     super(props);
@@ -11,9 +13,12 @@ class MainContainer extends Component {
                 friends: [{
                     name: "",  
                     address: "",
-                    img: ""
-                    // gifts: [],
-                    // occasions: []
+                    img: "",
+                    gifts: [],
+                    occasions: [{
+                        type: "",
+                        date: ""
+                    }]
                 }],
             
             }
@@ -52,7 +57,7 @@ class MainContainer extends Component {
                                         <ListItem key={friend._id}>
                                         <span className="name">{friend.name}</span>
                                         {/* <img className="img">{friend.img}</img> */}
-                                    </ListItem>
+                                        </ListItem>
                                     );
                                 })}
                             </FeatureBox>
@@ -60,22 +65,18 @@ class MainContainer extends Component {
                             <h3>No Friends Yet!</h3> 
                         )}
                     
-                    <h2>Upcoming Occasions</h2>
-                        {/* {this.state.occasions.length ? (
+                    {/* <h2>Upcoming Occasions</h2>
+                         {this.state.friends[0].occasions.length ? (
                             <FeatureBox>
-                                {this.state.upcoming.map(upcoming => (
-                                    <UpcomingItem  
-                                        key = {upcoming.id}
-                                        id = {upcoming.id}
-                                        date = {upcoming.date}
-                                        handleClick = {this.handleUpcomingClick}
-                                    >
-                                    </UpcomingItem>
+                                {this.state.friends[0].occasions.map(occasion => (
+                                  <ListItem key={occasion._id}>
+                                    <span className="occasion">{occasion.type}</span>
+                                  </ListItem>
                                 ))}
                             </FeatureBox>
                         ) : (
                             <h3>No Upcoming Occasions Yet!</h3>
-                        )} */}
+                        )}  */}
             </div>
         )
     }
