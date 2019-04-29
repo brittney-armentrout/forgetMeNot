@@ -5,32 +5,23 @@ import { Thumbnail } from "../components/Thumbnail";
 import { ListItem } from "../components/List";
 
 class MainContainer extends Component {
-    // constructor(props) {
-    //     super(props);
-        //this state is definitely not correct, needs to be fixed but no energy tonight
-        // this.state = {
-        state = {
-            friends: [
-                {
+    constructor(props) {
+    super(props);
+        this.state = {
+                friends: [{
                     name: "",  
                     address: "",
-                    img: "",
-                    gifts: [],
-                    occasions: []
-                }
-            ]
-            // name: "",
-            // address: "",
-            // img: "",
-            // gifts: [],
-            // occasions: []
+                    img: ""
+                    // gifts: [],
+                    // occasions: []
+                }],
+            
+            }
+        
         }
-        // this.populateFavorites = this.populateFavorites.bind(this);
-    // }
 
     componentDidMount() {
-        console.log(this.state);
-        // this.loadFriends()
+        this.loadFriends()
     }
 
     //not sure if this is functional or not
