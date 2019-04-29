@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Button from "../components/Form/button";
-import Input from "../components/Form/input";
+// import Button from "../components/Form/button";
+// import Input from "../components/Form/input";
 import firebase, {auth, provider} from '../firebase';
 
 const googleImg = require("./google_signin_buttons/web/1x/btn_google_signin_light_pressed_web.png");
@@ -73,7 +73,7 @@ class LoginContainer extends Component {
                 {this.state.user ?
                   <button onClick={this.handleLogout}>Log Out</button>                
                   :
-                  <button onClick={this.handleLogin}><img src={googleImg}></img></button>              
+                  <button onClick={this.handleLogin}><img src={googleImg} alt="Google Login Button"></img></button>              
                 }
             {/* <form className="card col s6 z-depth-3" onSubmit={this.handleLoginSubmit}> */}
                 {/* Username Input */}

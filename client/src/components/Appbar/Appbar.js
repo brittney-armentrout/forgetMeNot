@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+// import Typography from "@material-ui/core/Typography";
+// import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/core/Menu";
 
@@ -35,7 +35,7 @@ function ButtonAppBar(props) {
                     {/* <Typography variant="title" color="inherit" className={classes.flex}>
                         forgetMeNot
                     </Typography> */}
-                    <img src={logoImg} className="logo" />
+                    <img src={logoImg} className="logo" alt="forgetMeNot Logo" />
                     {/* <Button color="inherit">ADD GIFT</Button> */}
                 </Toolbar>
             </AppBar>

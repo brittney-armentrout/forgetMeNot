@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 // import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
+// import ListSubheader from "@material-ui/core/ListSubheader";
 // import IconButton from "@material-ui/core/IconButton";
 // import { Hidden } from "@material-ui/core";
 // import InfoIcon from "@material-ui/icons/Info";
@@ -18,11 +18,11 @@ const styles = theme => ({
         justifyContent: "space-around",
         overflow: "hidden",
         backgroundColor: theme.palette.background.paper
-    },
-    gridList: {
-        width: "60%",
-        height: "80%"
     }
+    // gridList: {
+    //     width: "60%",
+    //     height: "80%"
+    // }
 });
 
 //this will get filled with friend images from the DB

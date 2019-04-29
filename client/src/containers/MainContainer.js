@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { FeatureBox } from "../components/FeatureBox";
-import { Thumbnail } from "../components/Thumbnail";
+// import { Thumbnail } from "../components/Thumbnail";
 import { ListItem } from "../components/List";
 
 //Matt & Brit - npm install @material-ui/core INSIDE client 
