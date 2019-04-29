@@ -18,6 +18,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
+import Grid from "@material-ui/core/Grid";
 
 let counter = 0;
 function createData(occasion, date) {
@@ -28,8 +29,10 @@ function createData(occasion, date) {
 const columnData = [
     { id: "occasion", numeric: false, disablePadding: false, label: "Occasion" },
     { id: "date", numeric: false, disablePadding: false, label: "Date" },
-    { id: "gift", numeric: false, disablePadding: false, label: "Have you gotten the gift?" }
+    { id: "gift", numeric: false, disablePadding: false, label: "Gift?" }
 ];
+
+const listFont = "'Roboto', sans-serif";
 
 class CheckboxTableHead extends React.Component {
     createSortHandler = property => event => {
@@ -136,7 +139,7 @@ let CheckboxTableToolbar = props => {
                 </Typography>
             ) : (
                 <Typography variant="title" id="tableTitle">
-                Gift Purchasing Tracker
+                {/* Gift Purchasing Tracker */}
                 </Typography>
             )}
         </div>
@@ -151,7 +154,7 @@ let CheckboxTableToolbar = props => {
                 ) : (
                     <Tooltip title="Filter List">
                         <IconButton aria-label="Filter List">
-                            <FilterListIcon />
+                            {/* <FilterListIcon /> */}
                         </IconButton>
                     </Tooltip>
                 )}
@@ -169,11 +172,11 @@ CheckboxTableToolbar = withStyles(toolbarStyles)(CheckboxTableToolbar);
 
 const styles = theme => ({
     root: {
-        width: "100%",
         marginTop: theme.spacing.unit * 3
     },
     table: {
-        midWidth: 1020
+        minWidth: 1020,
+        textAlign: 'center'
     },
     tableWrapper: {
         overflowX: "auto"
@@ -259,66 +262,81 @@ class CheckboxTable extends React.Component {
             rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
         
         return (
-            <Paper className={classes.root}>
-                <CheckboxTableToolbar numSelected={selected.length} />
-                <div className={classes.tableWrapper}>
-                    <Table className={classes.table} aria-labelledby="tableTitle">
-                        <CheckboxTableHead 
-                            numSelected={selected.length}
-                            order={order}
-                            orderBy={orderBy}
-                            onSelectAllClick={this.handleSelectAllClick}
-                            onRequestSort={this.handleRequestSort}
-                            rowCount={data.length}
-                        />
-                        <TableBody>
-                            {data
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map(n => {
-                                const isSelected = this.isSelected(n.id);
-                                return (
-                                    <TableRow
-                                        hover
-                                        onClick={event => this.handleClick(event, n.id)}
-                                        role="checkbox"
-                                        aria-checked={isSelected}
-                                        tabIndex={-1}
-                                        key={n.id}
-                                        selected={isSelected}
-                                    >
-                                    <TableCell component="th" scope="row" padding="none">
-                                        {n.occasion}
-                                    </TableCell>
-                                    <TableCell number>{n.date}</TableCell>
-                                    <TableCell padding="checkbox">
-                                        <Checkbox checked={isSelected} />
-                                    </TableCell>
-                                    </TableRow>
-                                );
-                            })}
-                            {emptyRows > 0 && (
-                                <TableRow style={{ height: 49 * emptyRows }}>
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
-                <TablePagination 
-                    component="div"
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    backIconButtonProps={{
-                        "aria-label": "Previous Page"
-                    }}
-                    nextIconButtonProps={{
-                        "aria-label": "Next Page"
-                    }}
-                    onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                />
-            </Paper>
+            <Grid 
+                container 
+                spacing={24}
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
+                <Grid item xs={8}>
+                    <Paper className={classes.root}>
+                        <CheckboxTableToolbar numSelected={selected.length} />
+                        <div className={classes.tableWrapper}>
+                            <Table className={classes.table} aria-labelledby="tableTitle">
+                                <CheckboxTableHead 
+                                    numSelected={selected.length}
+                                    order={order}
+                                    orderBy={orderBy}
+                                    onSelectAllClick={this.handleSelectAllClick}
+                                    onRequestSort={this.handleRequestSort}
+                                    rowCount={data.length}
+                                />
+                                <TableBody>
+                                    {data
+                                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                        .map(n => {
+                                            const isSelected = this.isSelected(n.id);
+                                            return (
+                                                <TableRow
+                                                    hover
+                                                    onClick={event => this.handleClick(event, n.id)}
+                                                    role="checkbox"
+                                                    aria-checked={isSelected}
+                                                    tabIndex={-1}
+                                                    key={n.id}
+                                                    selected={isSelected}
+                                                >
+                                                    <TableCell 
+                                                        component="th" 
+                                                        scope="row" 
+                                                        padding="20px"
+                                                        style={{ fontFamily: listFont }}
+                                                    >
+                                                    {n.occasion}
+                                                    </TableCell>
+                                                    <TableCell number style={{ fontFamily: listFont }}>{n.date}</TableCell>
+                                                    <TableCell padding="checkbox">
+                                                        <Checkbox checked={isSelected} />
+                                                    </TableCell>
+                                                </TableRow>
+                                            );
+                                    })}
+                                    {emptyRows > 0 && (
+                                        <TableRow style={{ height: 49 * emptyRows }}>
+                                            <TableCell colSpan={6} />
+                                        </TableRow>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </div>
+                    <TablePagination 
+                        component="div"
+                        count={data.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        backIconButtonProps={{
+                            "aria-label": "Previous Page"
+                        }}
+                        nextIconButtonProps={{
+                            "aria-label": "Next Page"
+                        }}
+                        onChangePage={this.handleChangePage}
+                        onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                    />
+                </Paper>
+            </Grid>
+        </Grid>
         );
     }
 }

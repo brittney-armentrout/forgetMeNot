@@ -8,6 +8,8 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
 
+const gridFont = "'Roboto', sans-serif";
+
 const styles = theme => ({
     root: {
         display: "flex",
@@ -15,6 +17,7 @@ const styles = theme => ({
         justifyContent: "space-around",
         overflow: "hidden",
         backgroundColor: theme.palette.background.paper
+        
     },
     gridList: {
         width: "60%",
@@ -109,10 +112,11 @@ function TitlebarGridList(props) {
                         <img src={tile.img} alt={tile.title} />
                         <GridListTileBar
                             title={tile.title}
-                            subtitle={<span>by: {tile.author}</span>}
+                            // subtitle={<span>by: {tile.author}</span>}
+                            style={{ fontFamily: gridFont }}
                             actionIcon={
                                 <IconButton className={classes.icon}>
-                                <InfoIcon />
+                                    <InfoIcon /> 
                                 </IconButton>
                             }
                          />
