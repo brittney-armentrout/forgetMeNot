@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Nav from "./components/Nav";
+import { render } from "react-dom";
+
+//Material UI:
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Main from "./pages/Main";
@@ -8,24 +10,63 @@ import GiftAdd from "./pages/GiftQuickAdd";
 import FriendDetail from "./pages/FriendDetail";
 import AddFriend from "./pages/AddFriend";
 import NoMatch from "./pages/NoMatch";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Appbar from "./components/Appbar/Appbar.js";
+import Grid from "@material-ui/core/Grid";
 
+//Colors:
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+//Setting Color Palette
+const blueTheme = createMuiTheme({
+  palette: {
+    primary: {
+      //light: will be calculated from palette.primary.main
+      main: "#13c7ff",
+      //dark: will be calculated from palette.primary.main
+      //contrastText: will ve calculated to contrast with palette.primary.main
+    },
+    secondary: {
+      light: "#53ca92",
+      main: "#28bd77",
+      dark: "#1c8453"
+    },
+    accent: {
+      main: "#fdd940"
+    }
+    //error: will use the default color
+  },
+  typography: {
+    fontFamily: [
+      'Fresca',
+      'Roboto',
+      'sans-serif',
+    ].join(','),
+    fontSize: 20,
+  },
+});
 
 function App() {
   return (
-    <Router>
-    <div>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/main" component={Main} />
-          <Route exact path="/frienddetail" component={FriendDetail} />
-          <Route exact path="/giftadd" component={GiftAdd} />
-          <Route exact path="/addfriend" component={AddFriend} />
-          <Route component={NoMatch} />
-        </Switch>
-    </div>
+    <MuiThemeProvider theme={blueTheme}>
+    <React.Fragment>
+      <CssBaseline />
+      <Appbar />
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/main" component={Main} />
+            <Route exact path="/frienddetail" component={FriendDetail} />
+            <Route exact path="/giftadd" component={GiftAdd} />
+            <Route exact path="/addfriend" component={AddFriend} />
+            <Route component={NoMatch} />
+          </Switch>
+      </div>
     </Router>
+    </React.Fragment>
+    </MuiThemeProvider>
   );
 }
 
