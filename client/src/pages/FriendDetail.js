@@ -14,6 +14,8 @@ import FriendGrid from "./FriendGrid";
 // import FavoriteIcon from "@material-ui/core/Favorite";
 // import PersonPinIcon from "@material-ui/core/PersonPin";
 
+
+// !!!  NEED TO CONVERT FRIEND DETAIL FROM GRID OF FRIENDS TO ONE FRIEND & THEIR INFO !!!
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {
