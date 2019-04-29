@@ -6,8 +6,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import TitlebarGridList from "./GiftGridList";
-import CheckboxTable from "./OccasionsTable";
+import GiftGridList from "./GiftGridList";
+import OccasionsTable from "./OccasionsTable";
+import FriendGrid from "./FriendGrid";
+
 // import PhoneIcon from "@material-ui/core/Phone";
 // import FavoriteIcon from "@material-ui/core/Favorite";
 // import PersonPinIcon from "@material-ui/core/PersonPin";
@@ -64,12 +66,14 @@ class SimpleTabs extends Component {
                         <Tab label="Gift Ideas" />               
                     </Tabs>
                 </AppBar>
-                    {value === 0 && <TabContainer>Friend Detail</TabContainer>}
+                    {value === 0 && <TabContainer>
+                                        <FriendGrid />
+                                    </TabContainer>}
                     {value === 1 && <TabContainer>
-                                        <CheckboxTable />
+                                        <OccasionsTable />
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <TitlebarGridList />
+                                        <GiftGridList />
                                  </TabContainer>}
 
             

@@ -34,7 +34,7 @@ const columnData = [
 
 const listFont = "'Roboto', sans-serif";
 
-class CheckboxTableHead extends React.Component {
+class OccasionsTableHead extends React.Component {
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property)
     };
@@ -89,7 +89,7 @@ class CheckboxTableHead extends React.Component {
     }
 }
 
-CheckboxTableHead.propTypes = {
+OccasionsTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
@@ -123,7 +123,7 @@ const toolbarStyles = theme => ({
     }
 });
 
-let CheckboxTableToolbar = props => {
+let OccasionsTableToolbar = props => {
     const { numSelected, classes } = props;
 
     return (
@@ -163,12 +163,12 @@ let CheckboxTableToolbar = props => {
     );
 };
 
-CheckboxTableToolbar.propTypes = {
+OccasionsTableToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired
 };
 
-CheckboxTableToolbar = withStyles(toolbarStyles)(CheckboxTableToolbar);
+OccasionsTableToolbar = withStyles(toolbarStyles)(OccasionsTableToolbar);
 
 const styles = theme => ({
     root: {
@@ -183,7 +183,7 @@ const styles = theme => ({
     }
 });
 
-class CheckboxTable extends React.Component {
+class OccasionsTable extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -271,10 +271,10 @@ class CheckboxTable extends React.Component {
             >
                 <Grid item xs={8}>
                     <Paper className={classes.root}>
-                        <CheckboxTableToolbar numSelected={selected.length} />
+                        <OccasionsTableToolbar numSelected={selected.length} />
                         <div className={classes.tableWrapper}>
                             <Table className={classes.table} aria-labelledby="tableTitle">
-                                <CheckboxTableHead 
+                                <OccasionsTableHead 
                                     numSelected={selected.length}
                                     order={order}
                                     orderBy={orderBy}
@@ -341,8 +341,8 @@ class CheckboxTable extends React.Component {
     }
 }
 
-CheckboxTable.propTypes = {
+OccasionsTable.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CheckboxTable);
+export default withStyles(styles)(OccasionsTable);

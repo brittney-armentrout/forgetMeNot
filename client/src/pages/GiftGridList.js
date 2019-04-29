@@ -16,8 +16,7 @@ const styles = theme => ({
         flexWrap: "wrap",
         justifyContent: "space-around",
         overflow: "hidden",
-        backgroundColor: theme.palette.background.paper
-        
+        backgroundColor: theme.palette.background.paper   
     },
     gridList: {
         width: "60%",
@@ -29,6 +28,7 @@ const styles = theme => ({
     }
 });
 
+//this will get filled with gift images from the DB
 const tileData = [
     {
         img: "https://images.unsplash.com/photo-1534474174078-24c09f689d06?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1378&q=80",
@@ -98,7 +98,7 @@ const tileData = [
 
 ];
 
-function TitlebarGridList(props) {
+function GiftGridList(props) {
     const { classes } = props;
 
     return (
@@ -127,8 +127,8 @@ function TitlebarGridList(props) {
     );
 } 
 
-TitlebarGridList.propTypes = {
+GiftGridList.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TitlebarGridList);
+export default withStyles(styles)(GiftGridList);
