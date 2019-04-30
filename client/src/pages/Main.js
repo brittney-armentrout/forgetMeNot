@@ -9,6 +9,7 @@ import GiftGridList from "./GiftGridList";
 import MainOccasionsTable from "./MainOccasionsTable";
 import FriendGrid from "./FriendGrid";
 import { Grid, GridList } from "@material-ui/core";
+import AddFriend from './AddFriend';
 
 // import PhoneIcon from "@material-ui/core/Phone";
 // import FavoriteIcon from "@material-ui/core/Favorite";
@@ -85,7 +86,7 @@ class SimpleTabs extends Component {
                     {value === 1 && <TabContainer>
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <GiftGridList />
+                                        <AddFriend />
                                  </TabContainer>}
 
             
