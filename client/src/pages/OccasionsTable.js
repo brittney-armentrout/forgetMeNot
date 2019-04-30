@@ -34,7 +34,7 @@ const columnData = [
 
 const listFont = "'Roboto', sans-serif";
 
-class OccasionsTableHead extends React.Component {
+class FriendOccasionHead extends React.Component {
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property)
     };
@@ -89,7 +89,7 @@ class OccasionsTableHead extends React.Component {
     }
 }
 
-OccasionsTableHead.propTypes = {
+FriendOccasionHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
@@ -123,7 +123,7 @@ const toolbarStyles = theme => ({
     }
 });
 
-let OccasionsTableToolbar = props => {
+let FriendOccasionToolbar = props => {
     const { numSelected, classes } = props;
 
     return (
@@ -163,12 +163,12 @@ let OccasionsTableToolbar = props => {
     );
 };
 
-OccasionsTableToolbar.propTypes = {
+FriendOccasionToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired
 };
 
-OccasionsTableToolbar = withStyles(toolbarStyles)(OccasionsTableToolbar);
+FriendOccasionToolbar = withStyles(toolbarStyles)(FriendOccasionToolbar);
 
 const styles = theme => ({
     root: {
@@ -183,7 +183,7 @@ const styles = theme => ({
     }
 });
 
-class OccasionsTable extends React.Component {
+class FriendOccasionTable extends React.Component {
     constructor(props, context) {
         super(props, context);
 
@@ -271,10 +271,10 @@ class OccasionsTable extends React.Component {
             >
                 <Grid item xs={8}>
                     <Paper className={classes.root}>
-                        <OccasionsTableToolbar numSelected={selected.length} />
+                        <FriendOccasionToolbar numSelected={selected.length} />
                         <div className={classes.tableWrapper}>
                             <Table className={classes.table} aria-labelledby="tableTitle">
-                                <OccasionsTableHead 
+                                <FriendOccasionHead 
                                     numSelected={selected.length}
                                     order={order}
                                     orderBy={orderBy}
@@ -341,8 +341,8 @@ class OccasionsTable extends React.Component {
     }
 }
 
-OccasionsTable.propTypes = {
+FriendOccasionTable.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(OccasionsTable);
+export default withStyles(styles)(FriendOccasionTable);

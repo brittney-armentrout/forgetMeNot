@@ -1,13 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-// import GridListTileBar from "@material-ui/core/GridListTileBar";
-// import ListSubheader from "@material-ui/core/ListSubheader";
-// import IconButton from "@material-ui/core/IconButton";
-// import { Hidden } from "@material-ui/core";
-// import InfoIcon from "@material-ui/icons/Info";
+import { Grid, GridList, GridListTile } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
 
 const gridFont = "'Roboto', sans-serif";
 
@@ -18,11 +13,11 @@ const styles = theme => ({
         justifyContent: "space-around",
         overflow: "hidden",
         backgroundColor: theme.palette.background.paper
+    },
+    gridList: {
+        width: "100%",
+        height: "100%"
     }
-    // gridList: {
-    //     width: "60%",
-    //     height: "80%"
-    // }
 });
 
 //this will get filled with friend images from the DB
@@ -57,15 +52,17 @@ function FriendGrid(props) {
     const { classes } = props;
 
     return (
-        <div className={classes.root}>
-            <GridList cellHeight={320} className={classes.gridList} cols={3}>
-                {tileData.map(tile => (
-                    <GridListTile key={tile.img} cols={tile.cols || 1}>
-                        <img src={tile.img} alt={tile.title} />
-                    </GridListTile>
-                ))}
-            </GridList>
-        </div>
+        <Grid item xs={12} md={6}>
+            <Paper className={classes.root} elevation={10}>
+                <GridList  className={classes.gridList} cols={3}>
+                    {tileData.map(tile => (
+                        <GridListTile key={tile.img} cols={tile.cols || 1}>
+                            <img src={tile.img} alt={tile.title} />
+                        </GridListTile>
+                    ))}
+                </GridList>
+            </Paper>
+        </Grid>
     );
 }
 

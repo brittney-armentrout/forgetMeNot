@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Tabs, Tab } from "@material-ui/core";
 // import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import GiftGridList from "./GiftGridList";
 import MainOccasionsTable from "./MainOccasionsTable";
 import FriendGrid from "./FriendGrid";
+import { Grid, GridList } from "@material-ui/core";
 
 // import PhoneIcon from "@material-ui/core/Phone";
 // import FavoriteIcon from "@material-ui/core/Favorite";
 // import PersonPinIcon from "@material-ui/core/PersonPin";
 
 
-// !!!  NEED TO CONVERT FRIEND DETAIL FROM GRID OF FRIENDS TO ONE FRIEND & THEIR INFO !!!
+// !! add in "Hi, {name}!"
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {
@@ -69,8 +69,18 @@ class SimpleTabs extends Component {
                     </Tabs>
                 </AppBar>
                     {value === 0 && <TabContainer>
-                                        <FriendGrid />
-                                        <MainOccasionsTable />
+                                        <Grid
+                                            direction="row"
+                                            item xs={12}
+                                            alignItems="center"
+                                            justify="center"
+                                        >
+                                            <GridList>
+                                            <FriendGrid /> 
+                                            <MainOccasionsTable />
+                                            </GridList> 
+                                        </Grid>
+                          
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
                                     </TabContainer>}

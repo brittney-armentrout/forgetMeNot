@@ -2,17 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
-import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
+import { Table, TableBody, TableCell, TableHead } from "@material-ui/core";
+import { TablePagination, TableRow, TableSortLabel } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -21,15 +15,15 @@ import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
 
 let counter = 0;
-function createData(occasion, date) {
+function createData(friend, occasion, date) {
     counter += 1;
-    return { id: counter, occasion, date};
+    return { id: counter, friend, occasion, date};
 }
 
 const columnData = [
+    { id: "friend", numeric: false, disablePadding: false, label: "Friend" },
     { id: "occasion", numeric: false, disablePadding: false, label: "Occasion" },
-    { id: "date", numeric: false, disablePadding: false, label: "Date" },
-    { id: "gift", numeric: false, disablePadding: false, label: "Gift?" }
+    { id: "date", numeric: false, disablePadding: false, label: "Date" }
 ];
 
 const listFont = "'Roboto', sans-serif";
@@ -100,7 +94,7 @@ OccasionsTableHead.propTypes = {
 
 const toolbarStyles = theme => ({
     root: {
-        paddingRight: theme.spacing.unit
+        // paddingRight: theme.spacing.unit
     },
     highlight:
         theme.palette.type === "light"
@@ -123,60 +117,58 @@ const toolbarStyles = theme => ({
     }
 });
 
-let OccasionsTableToolbar = props => {
-    const { numSelected, classes } = props;
+// let OccasionsTableToolbar = props => {
+//     const { numSelected, classes } = props;
 
-    return (
-        <Toolbar
-            className={classNames(classes.root, {
-                [classes.highlight]: numSelected > 0
-            })}
-        >
-        <div className={classes.title}>
-            {numSelected > 0 ? (
-                <Typography color="inherit" variant="subheading">
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography variant="title" id="tableTitle">
-                {/* Gift Purchasing Tracker */}
-                </Typography>
-            )}
-        </div>
-        <div className={classes.spacer} />
-        <div className={classes.actions}>
-                {numSelected > 0 ? (
-                    <Tooltip title="Delete">
-                        <IconButton aria-label="Delete">
-                            <DeleteIcon />
-                        </IconButton>
-                    </Tooltip>
-                ) : (
-                    <Tooltip title="Filter List">
-                        <IconButton aria-label="Filter List">
-                            {/* <FilterListIcon /> */}
-                        </IconButton>
-                    </Tooltip>
-                )}
-        </div>
-    </Toolbar>
-    );
-};
+//     return (
+//         <Toolbar
+//             className={classNames(classes.root, {
+//                 [classes.highlight]: numSelected > 0
+//             })}
+//         >
+//         <div className={classes.title}>
+//             {numSelected > 0 ? (
+//                 <Typography color="inherit" variant="subheading">
+//                     {numSelected} selected
+//                 </Typography>
+//             ) : (
+//                 <Typography></Typography>
+//             )}
+//         </div>
+//         <div className={classes.spacer} />
+//         <div className={classes.actions}>
+//                 {numSelected > 0 ? (
+//                     <Tooltip title="Delete">
+//                         <IconButton aria-label="Delete">
+//                             <DeleteIcon />
+//                         </IconButton>
+//                     </Tooltip>
+//                 ) : (
+//                     <Tooltip title="Filter List">
+//                         <IconButton aria-label="Filter List">
+//                             {/* <FilterListIcon /> */}
+//                         </IconButton>
+//                     </Tooltip>
+//                 )}
+//         </div>
+//     </Toolbar>
+//     );
+// };
 
-OccasionsTableToolbar.propTypes = {
-    classes: PropTypes.object.isRequired,
-    numSelected: PropTypes.number.isRequired
-};
+// OccasionsTableToolbar.propTypes = {
+//     classes: PropTypes.object.isRequired,
+//     numSelected: PropTypes.number.isRequired
+// };
 
-OccasionsTableToolbar = withStyles(toolbarStyles)(OccasionsTableToolbar);
+// OccasionsTableToolbar = withStyles(toolbarStyles)(OccasionsTableToolbar);
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing.unit * 3
+        // marginTop: theme.spacing.unit * 3
     },
     table: {
-        minWidth: 1020,
-        textAlign: 'center'
+        // minWidth: 1020,
+        textAlign: "center",
     },
     tableWrapper: {
         overflowX: "auto"
@@ -186,15 +178,18 @@ const styles = theme => ({
 class OccasionsTable extends React.Component {
     constructor(props, context) {
         super(props, context);
-
+        //add in code to only do most recent ones
+        //this will become DB data
         this.state = {
             order: "asc",
             orderBy: "date",
             selected: [],
             data: [
-                createData("Wedding", "01/10/2020"),
-                createData("Birthday", "10/10/1982"),
-                createData("Graduation", "05/10/2019")
+                createData("Lisa", "Birthday", "01/10"),
+                createData("George", "Birthday", "10/10"),
+                createData("Elaine", "Graduation", "05/10"),
+                createData("Frank", "Anniversary", "06/15"),
+                createData("Liam", "Kindergarten Graduation", "05/25")
             ].sort((a, b) => (a.date < b.date ? -1 : 1)),
             page: 0,
             rowsPerPage: 5
@@ -263,15 +258,16 @@ class OccasionsTable extends React.Component {
         
         return (
             <Grid 
-                container 
-                spacing={24}
+                // container 
+                // spacing={24}
                 direction="row"
                 justify="center"
                 alignItems="center"
+                item xs={12} md={6}
             >
-                <Grid item xs={8}>
-                    <Paper className={classes.root}>
-                        <OccasionsTableToolbar numSelected={selected.length} />
+                
+                    <Paper className={classes.root} style={{ height: 360 }}>
+                        {/* <OccasionsTableToolbar numSelected={selected.length} /> */}
                         <div className={classes.tableWrapper}>
                             <Table className={classes.table} aria-labelledby="tableTitle">
                                 <OccasionsTableHead 
@@ -297,24 +293,24 @@ class OccasionsTable extends React.Component {
                                                     key={n.id}
                                                     selected={isSelected}
                                                 >
-                                                    <TableCell 
-                                                        component="th" 
-                                                        scope="row" 
-                                                        padding="20px"
-                                                        style={{ fontFamily: listFont }}
-                                                    >
-                                                    {n.occasion}
-                                                    </TableCell>
+                                                <TableCell 
+                                                    component="th" 
+                                                    scope="row" 
+                                                    style={{ fontFamily: listFont }}
+                                                >
+                                                    {n.friend}
+                                                </TableCell>
+                                                    <TableCell>{n.occasion}</TableCell>
                                                     <TableCell number style={{ fontFamily: listFont }}>{n.date}</TableCell>
-                                                    <TableCell padding="checkbox">
+                                                    {/* <TableCell padding="checkbox">
                                                         <Checkbox checked={isSelected} />
-                                                    </TableCell>
+                                                    </TableCell> */}
                                                 </TableRow>
                                             );
                                     })}
                                     {emptyRows > 0 && (
                                         <TableRow style={{ height: 49 * emptyRows }}>
-                                            <TableCell colSpan={6} />
+                                            <TableCell colSpan={12} />
                                         </TableRow>
                                     )}
                                 </TableBody>
@@ -335,7 +331,6 @@ class OccasionsTable extends React.Component {
                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                     />
                 </Paper>
-            </Grid>
         </Grid>
         );
     }
