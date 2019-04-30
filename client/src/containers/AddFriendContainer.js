@@ -24,18 +24,18 @@ class AddFriendContainer extends Component {
     handleFriendSubmit(event) {
         //send new friend data to DB
         event.preventDefault();
-
+        console.log('Submit button hit!');
         API.saveFriend({
-            name: this.state.name,
-            address: this.state.address,
-            // img: this.state.img,
+            name: this.state.Friend.name,
+            address: this.state.Friend.address,
+            // // img: this.state.img,
             date: new Date(Date.now()),
-            isFavorite: true,
+            // isFavorite: true,
             //!! need to figure out how to enter and save an array here !!
             // gifts: 
             // occasions:
         })
-        .then(console.log("new friend saved to DB"))
+        .then(this.handleClearForm(), console.log("new friend saved to DB"))
         .catch(err => console.log(err));
     }
 
@@ -55,8 +55,7 @@ class AddFriendContainer extends Component {
     //             .catch(err => console.log(err));
     // } 
 
-    handleClearForm(event) {
-        event.preventDefault();
+    handleClearForm() {
         this.setState({
             Friend: {
                 name: "",
@@ -87,7 +86,7 @@ class AddFriendContainer extends Component {
                     {/* Friend Name  */}
                     <Input 
                         inputType = {"text"}
-                        title = {"Name"}
+                        placeholder = {"Name"}
                         name = {"name"}
                         value = {this.state.Friend.name}
                         handleChange = {this.handleFriendInput}
@@ -95,7 +94,7 @@ class AddFriendContainer extends Component {
                     {/* Friend Address  */}
                     <Input  
                         inputType = {"text"}
-                        title = {"Address"}
+                        placeholder = {"Address"}
                         name = {"address"}
                         value = {this.state.Friend.address}
                         handleChange = {this.handleFriendInput}

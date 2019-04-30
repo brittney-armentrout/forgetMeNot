@@ -6,6 +6,11 @@ router.route("/")
     //route to get all saved friends
     .get(friendsController.findAll);
     console.log("hitting friends route");
+    
+    //route to add a new friend
+router.route("/")
+    .post(friendsController.create);
+    console.log('Save friend route hit!')
         
 
 //Server route to add new friend to DB
