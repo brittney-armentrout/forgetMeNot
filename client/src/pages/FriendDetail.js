@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { Tabs, Tab } from "@material-ui/core";
 // import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import GiftGridList from "./GiftGridList";
@@ -14,6 +13,8 @@ import FriendGrid from "./FriendGrid";
 // import FavoriteIcon from "@material-ui/core/Favorite";
 // import PersonPinIcon from "@material-ui/core/PersonPin";
 
+
+// !!!  NEED TO CONVERT FRIEND DETAIL FROM GRID OF FRIENDS TO ONE FRIEND & THEIR INFO !!!
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {

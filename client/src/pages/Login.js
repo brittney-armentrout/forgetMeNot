@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import LoginContainer from "../containers/LoginContainer";
 // import FullLogo from "../components/Logo"
 
-const fullLogo = require("./Artboard5.png");
+const fullLogo = require("../img/Artboard5.png");
 
 class Login extends Component {
     render() {
