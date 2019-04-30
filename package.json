@@ -1,7 +1,10 @@
 {
-  "name": "forgetMeNot",
+  "name": "forgetmenot",
   "version": "1.0.0",
   "description": "Never forget a gift again!",
+  "engines": {
+    "node": "10.x"
+    },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

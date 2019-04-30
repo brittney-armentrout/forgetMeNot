@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { render } from "react-dom";
+// import { render } from "react-dom";
 
 //Material UI:
 import Login from "./pages/Login";
@@ -12,7 +12,7 @@ import AddFriend from "./pages/AddFriend";
 import NoMatch from "./pages/NoMatch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Appbar from "./components/Appbar/Appbar.js";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 
 //Colors:
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";

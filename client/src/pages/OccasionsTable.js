@@ -16,7 +16,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
-import FilterListIcon from "@material-ui/icons/FilterList";
+// import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
 
@@ -41,11 +41,11 @@ class OccasionsTableHead extends React.Component {
 
     render() {
         const {
-            onSelectAllClick,
+            // onSelectAllClick,
             order,
             orderBy,
-            numSelected,
-            rowCount
+            // numSelected,
+            // rowCount
         } = this.props;
 
         return (
