@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../components/Form/button";
 import Input from "../components/Form/input";
+import API from "../utils/API";
 
 
 class GiftAddContainer extends Component {
@@ -12,7 +13,8 @@ class GiftAddContainer extends Component {
                 gift: "",
                 img: "",
                 isStar: ""
-            }
+            },
+            Friends : []
         }
         this.handleGiftSubmit = this.handleGiftSubmit.bind(this);
         this.handleClearGift = this.handleClearGift.bind(this);
@@ -20,11 +22,24 @@ class GiftAddContainer extends Component {
     }
 
     handleGiftSubmit(event) {
-        //event.preventDefault();
+        //send new gift data to DB
+        event.preventDefault();
+        console.log('Submit button hit!');
+        API.saveGift({
+            gift: this.state.Gift.gift,
+            // address: this.state.Gift.address,
+            // // img: this.state.img,
+            // date: new Date(Date.now()),
+            // isFavorite: true,
+            //!! need to figure out how to enter and save an array here !!
+            // gifts: 
+            // occasions:
+        })
+        .then(this.handleClearGift(), console.log("new gift saved to DB"))
+        .catch(err => console.log(err));
     }
 
-    handleClearGift(event) {
-        event.preventDefault();
+    handleClearGift() {
         this.setState({
             Gift: {
                 gift: "",
@@ -52,7 +67,7 @@ class GiftAddContainer extends Component {
                 {/* Gift Input */}
                 <Input 
                     inputType = {"text"}
-                    title = {"Gift"}
+                    placeholder = {"Gift"}
                     name = {"gift"}
                     value = {this.state.Gift.gift}
                     handleChange = {this.handleGiftInput}

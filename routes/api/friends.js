@@ -11,11 +11,6 @@ router.route("/")
 router.route("/")
     .post(friendsController.create);
     console.log('Save friend route hit!')
-        
-
-//Server route to add new friend to DB
-// router.route("/")
-//     .post(friendsController.create)
 
 // //Matches with "api/friends/:id"
 // router 
