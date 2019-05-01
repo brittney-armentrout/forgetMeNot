@@ -16,6 +16,8 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     create: function(req, res) {
+        console.log('Gift controller hit!')
+        console.log(req.body);
         db.Gift
             .create(req.body) 
             .then(dbModel => res.json(dbModel))

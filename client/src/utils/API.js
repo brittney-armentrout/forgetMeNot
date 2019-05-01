@@ -11,7 +11,11 @@ export default {
     },
     // Saves a book to the database
     saveFriend: function(friendData) {
-    return axios.post("/api/friends", friendData);
-  }
+        return axios.post("/api/friends", friendData);
+    },
+    saveGift: function(giftData) {
+        console.log('gift API Hit!')
+        return axios.post("/api/gift", giftData);
+    }
     
 }
