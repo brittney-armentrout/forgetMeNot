@@ -172,10 +172,12 @@ FriendOccasionToolbar = withStyles(toolbarStyles)(FriendOccasionToolbar);
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing.unit * 3
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
     },
     table: {
-        minWidth: 1020,
+        minWidth: 700,
         textAlign: 'center'
     },
     tableWrapper: {
