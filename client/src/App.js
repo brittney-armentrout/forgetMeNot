@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Main from "./pages/Main";
-import FriendDetail from "./pages/FriendDetail";
+import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Appbar from "./components/Appbar/Appbar.js";
@@ -56,7 +56,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/main" component={Main} />
-            <Route exact path="/frienddetail" component={FriendDetail} />
+            <Route exact path="/detail" component={Detail} />
             {/* <Route exact path="/giftadd" component={GiftAdd} /> */}
             <Route component={NoMatch} />
           </Switch>
