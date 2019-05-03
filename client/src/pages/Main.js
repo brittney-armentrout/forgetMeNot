@@ -5,11 +5,13 @@ import AppBar from "@material-ui/core/AppBar";
 import { Tabs, Tab } from "@material-ui/core";
 // import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import GiftGridList from "./GiftGridList";
-import MainOccasionsTable from "./MainOccasionsTable";
-import FriendGrid from "./FriendGrid";
+import GiftGridList from "../components/GiftGrid/GiftGridList";
+import MainOccasionsTable from "../components/OccasionsTable/MainOccasionsTable";
+import FriendGrid from "../components/FriendGrid/FriendGrid";
 import { Grid, GridList } from "@material-ui/core";
-import AddFriend from './AddFriend';
+import AddFriendContainer from "../containers/AddFriendContainer";
+import AddGiftContainer from "../containers/AddGiftContainer";
+import SimpleSelect from "../components/Select/SimpleSelect";
 
 // import PhoneIcon from "@material-ui/core/Phone";
 // import FavoriteIcon from "@material-ui/core/Favorite";
@@ -69,24 +71,18 @@ class SimpleTabs extends Component {
                         <Tab label="Add Friend" />               
                     </Tabs>
                 </AppBar>
-                    {value === 0 && <TabContainer>
-                                        <Grid
-                                            direction="row"
-                                            item xs={12}
-                                            alignItems="center"
-                                            justify="center"
-                                        >
-                                            <GridList>
-                                            <FriendGrid /> 
-                                            <MainOccasionsTable />
-                                            </GridList> 
-                                        </Grid>
-                          
+                    {value === 0 && <TabContainer> 
+                                        <Typography component="title">Your Favorites</Typography>
+                                        <FriendGrid /> 
+                                        <Typography component="title">Upcoming Occasions</Typography>
+                                        <MainOccasionsTable />        
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
+                                        <AddGiftContainer />
+                                        <SimpleSelect />
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <AddFriend />
+                                        <AddFriendContainer />
                                  </TabContainer>}
 
             

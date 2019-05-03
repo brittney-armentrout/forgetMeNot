@@ -6,9 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Main from "./pages/Main";
-import GiftAdd from "./pages/GiftQuickAdd";
 import FriendDetail from "./pages/FriendDetail";
-import AddFriend from "./pages/AddFriend";
 import NoMatch from "./pages/NoMatch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Appbar from "./components/Appbar/Appbar.js";
@@ -59,8 +57,7 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/main" component={Main} />
             <Route exact path="/frienddetail" component={FriendDetail} />
-            <Route exact path="/giftadd" component={GiftAdd} />
-            <Route exact path="/addfriend" component={AddFriend} />
+            {/* <Route exact path="/giftadd" component={GiftAdd} /> */}
             <Route component={NoMatch} />
           </Switch>
       </div>
