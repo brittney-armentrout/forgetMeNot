@@ -40,8 +40,8 @@ const styles = theme => ({
         fontFamily: displayFont,
     },
     appBar: {
-        backgroundColor: theme.palette.primary
-    }
+        backgroundColor: theme.palette.primary,
+    },
 });
 
 class SimpleTabs extends Component {
@@ -79,14 +79,11 @@ class SimpleTabs extends Component {
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
                                         <AddGiftContainer />
-                                        <SimpleSelect />
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
                                         <AddFriendContainer />
                                  </TabContainer>}
 
-            
-               
             </div>
         );
     }

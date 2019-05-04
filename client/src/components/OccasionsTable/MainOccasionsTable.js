@@ -2,8 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Table, TableBody, TableCell, TableHead } from "@material-ui/core";
-import { TablePagination, TableRow, TableSortLabel } from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -13,6 +11,15 @@ import DeleteIcon from "@material-ui/icons/Delete";
 // import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
+import { 
+    Table, 
+    TableBody, 
+    TableCell, 
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel
+} from "@material-ui/core";
 
 let counter = 0;
 function createData(friend, occasion, date) {
@@ -94,7 +101,7 @@ OccasionsTableHead.propTypes = {
 
 const toolbarStyles = theme => ({
     root: {
-        // paddingRight: theme.spacing.unit
+        // marginTop: theme.spacing.unit * 8,
     },
     highlight:
         theme.palette.type === "light"
@@ -164,10 +171,12 @@ const toolbarStyles = theme => ({
 
 const styles = theme => ({
     root: {
-        // marginTop: theme.spacing.unit * 3
+        width: '100%',
+        marginTop: theme.spacing.unit * 8,
+        overflowX: 'auto',
     },
     table: {
-        // minWidth: 1020,
+        midWidth: 700,
         textAlign: "center",
     },
     tableWrapper: {
@@ -258,14 +267,13 @@ class OccasionsTable extends React.Component {
         
         return (
             <Grid 
-                // container 
-                // spacing={24}
+                container 
+                spacing={24}
                 direction="row"
                 justify="center"
                 alignItems="center"
-                item xs={12} md={6}
             >
-                
+                <Grid item xs={12} md={6}>
                     <Paper className={classes.root} style={{ height: 360 }}>
                         {/* <OccasionsTableToolbar numSelected={selected.length} /> */}
                         <div className={classes.tableWrapper}>
@@ -300,7 +308,7 @@ class OccasionsTable extends React.Component {
                                                 >
                                                     {n.friend}
                                                 </TableCell>
-                                                    <TableCell>{n.occasion}</TableCell>
+                                                    <TableCell style={{ fontFamily: listFont }}>{n.occasion}</TableCell>
                                                     <TableCell number style={{ fontFamily: listFont }}>{n.date}</TableCell>
                                                     {/* <TableCell padding="checkbox">
                                                         <Checkbox checked={isSelected} />
@@ -331,6 +339,7 @@ class OccasionsTable extends React.Component {
                         onChangeRowsPerPage={this.handleChangeRowsPerPage}
                     />
                 </Paper>
+            </Grid>
         </Grid>
         );
     }

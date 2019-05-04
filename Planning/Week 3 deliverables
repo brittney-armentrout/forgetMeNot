@@ -1,0 +1,24 @@
+Significant issues:
+    - Authentication
+    - Select 
+    - Combining basic React with material UI while not really knowing either of them
+    - Integration of everything w/ React, tutorials aren't everything we need
+
+My contributions:
+    - I designed and implemented the UI/UX and user flow
+    - Redesigned UI/UX with material UI when materialize wasn't providing the functionality
+        I wanted.
+    - Got initial DB seeds and schemas up and going
+    - Designed logos
+
+
+Remaining efforts:
+    - need to wire up detail friend functionality
+    - need to integrate test form with add gift container
+    - need to re-work add friend container
+    - footer bar - figure out inset fab?
+
+Stretch features:
+    - finishing
+    - oauth
+    - CRON

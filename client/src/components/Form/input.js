@@ -1,9 +1,10 @@
 import React from "react";
+import classNames from "classnames";
 
 const Input = (props) => {
     return (
         <div className="row">
-            <div className="col s8 push-s2">
+            <div className="col s6 push-s3">
                 <div className="input-field">
                     <label htmlFor={props.name} className="form-label">{props.title}</label>
                     <input 
@@ -23,3 +24,14 @@ const Input = (props) => {
 }
 
 export default Input;
+
+
+
+{/* <Input 
+label = {"Gift"}
+id = {"gift"}
+inputType = {"text"}
+name = {"gift"}
+value = {this.state.Gift.gift}
+handleChange = {this.handleGiftInput}
+/> */}
