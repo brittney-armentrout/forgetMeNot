@@ -1,0 +1,12 @@
+Significant issues:
+    - Authentication
+    - Select 
+    - Combining basic React with material UI while not really knowing either of them
+
+My contributions:
+    - I designed and implemented the UI/UX
+    - Redesigned UI/UX with material UI when materialize wasn't providing the functionality
+        I wanted.
+    - Got initial DB seeds and schemas up and going
+    - Designed logos
+    - 

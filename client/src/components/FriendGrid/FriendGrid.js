@@ -52,17 +52,19 @@ function FriendGrid(props) {
     const { classes } = props;
 
     return (
-        <Grid item xs={12} md={6}>
-            <Paper className={classes.root} elevation={10}>
-                <GridList  className={classes.gridList} cols={3}>
-                    {tileData.map(tile => (
-                        <GridListTile key={tile.img} cols={tile.cols || 1}>
-                            <img src={tile.img} alt={tile.title} />
-                        </GridListTile>
-                    ))}
-                </GridList>
-            </Paper>
-        </Grid>
+        <div className={classes.root}>
+            <Grid item xs={12} md={6}>
+                <Paper className={classes.root} elevation={10}>
+                    <GridList className={classes.gridList} cols={3}>
+                        {tileData.map(tile => (
+                            <GridListTile key={tile.img} cols={tile.cols || 1}>
+                                <img src={tile.img} alt={tile.title} />
+                            </GridListTile>
+                        ))}
+                    </GridList>
+                </Paper>
+            </Grid>
+        </div>
     );
 }
 
