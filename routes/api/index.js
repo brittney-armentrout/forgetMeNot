@@ -2,6 +2,7 @@ const router = require("express").Router();
 // const userRoutes = require("./users");
 const friendRoutes = require("./friends");
 const giftRoutes = require("./gifts");
+const userRoutes = require("./users");
 // const occasionRoutes = require("./occasions");
 
 //User Routes
@@ -10,6 +11,7 @@ const giftRoutes = require("./gifts");
 //Friend routes
 router.use("/friends", friendRoutes);
 router.use("/gift", giftRoutes);
+router.use('/users', userRoutes);
 
 
 //!! do we need these or can we somehow roll them all up with the friends router? !!

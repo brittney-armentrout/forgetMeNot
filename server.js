@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const passportSetup = require('./config/passport-setup')
+// const passportSetup = require('./config/passport-setup')
 require('dotenv').config();
 const passport = require('passport');
 var cors = require('cors');
