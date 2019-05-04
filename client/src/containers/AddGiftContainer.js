@@ -1,22 +1,20 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
 // import Button from "../components/Form/button";
 import Button from "@material-ui/core/Button";
 import Input from "../components/Form/input";
 import API from "../utils/API";
-import AddGift from "../components/AddGift/AddGiftForm";
 // import { Select } from "@material-ui/core";
 // import SimpleSelect from "../components/Select/SimpleSelect";
-import FriendSelect from "../components/Select/NativeSelect";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { FormControl } from "@material-ui/core";
-import TextFields from "../components/Input/GiftInput";
 import TestSelect from "../components/FormTest/TestMaterialSelect";
 import TextInput from "../components/FormTest/TextInput";
 import validate from "../components/FormTest/Validate";
+// import { styled } from "@material-ui/styles";
+
+// const MyGrid = styled(Grid)({
+
+// })
 
 const giftImg = require("../components/Logo/img/GiftLg.png");
 
