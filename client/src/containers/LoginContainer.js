@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import Button from "../components/Form/button";
 // import Input from "../components/Form/input";
 
-const googleImg = require("./google_signin_buttons/web/1x/btn_google_signin_light_pressed_web.png");
+const googleImg = require("../components/GoogleBtns/google_signin_buttons/web/1x/btn_google_signin_light_pressed_web.png");
     
 class LoginContainer extends Component {
     constructor(props) {
