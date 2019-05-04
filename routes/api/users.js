@@ -83,7 +83,7 @@ router.post("/login", (req, res) => {
         // User matched
         // Create JWT Payload
         const payload = {
-          id: user.id,
+          id: user._id,
           name: user.name
         };
         // Sign token
@@ -95,7 +95,8 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: token
+              token: token,
+              userData: payload
             });
           }
         );
@@ -108,9 +109,6 @@ router.post("/login", (req, res) => {
       }
     });
   });
-  router.get("/login", (req, res) => {
-    res.send("Get route hit!");
-  })
 });
 
 module.exports = router;
