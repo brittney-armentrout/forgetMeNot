@@ -13,6 +13,9 @@ export default {
     saveFriend: function(friendData) {
         return axios.post("/api/friends", friendData);
     },
+    uploadImg: function(imgData) {
+        return axios.post("/api/upload", imgData)
+    },
     saveGift: function(giftData) {
         console.log('gift API Hit!')
         return axios.post("/api/gift", giftData);
