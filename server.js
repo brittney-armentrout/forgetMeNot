@@ -2,19 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const passportSetup = require('./config/passport-setup')
-const cookieSession = require('cookie-session')
 require('dotenv').config();
 const passport = require('passport');
 // const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-
-//Sets up Cookie Sessions
-app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: [process.env.cookieKey]
-}));
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
