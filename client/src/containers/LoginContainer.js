@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // import Button from "../components/Form/button";
 // import Input from "../components/Form/input";
-import firebase, {auth, provider} from '../firebase';
 
 const googleImg = require("../components/GoogleBtns/google_signin_buttons/web/1x/btn_google_signin_light_pressed_web.png");
     
@@ -19,11 +18,7 @@ class LoginContainer extends Component {
     }
 
     componentDidMount() {
-        auth.onAuthStateChanged((user) => {
-          if (user) {
-            this.setState({ user });
-          } 
-        });
+
     }
 
     handleLoginSubmit(event) {
@@ -49,21 +44,11 @@ class LoginContainer extends Component {
     }
 
     handleLogout() {
-        auth.signOut()
-        .then(() => {
-          this.setState({
-            user: null
-          });
-        });
+
       }
-      handleLogin() {
-        auth.signInWithPopup(provider) 
-          .then((result) => {
-            const user = result.user;
-            this.setState({
-              user
-            });
-          });
+      
+    handleLogin() {
+
       }
 
     
