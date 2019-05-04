@@ -20,6 +20,12 @@ class Login extends Component {
     };
   }
 
+  // componentDidMount = () => {
+  //   if(this.state.errors){
+
+  //   }
+  // }
+
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -32,12 +38,15 @@ class Login extends Component {
       password: this.state.password
      })
     .then((result) => {
+      const userID = result.data.userData.id;
       console.log("Post result: " + result.data.token);
       localStorage.setItem('jwtToken', result.data.token);
-      this.props.history.push('/')
+      this.props.history.push('/main')
+      // this.props.history.push('/')
     })
     .catch((error) => {
-      console.log(error.response.data);
+      this.setState({ errors: error.response.data });
+      // console.log(error.response.data);
     })
   };
 
@@ -56,7 +65,7 @@ class Login extends Component {
                 <b>Login</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
+                Don't have an account? <Link to="/signup">Register</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
