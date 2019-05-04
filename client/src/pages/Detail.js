@@ -5,9 +5,9 @@ import AppBar from "@material-ui/core/AppBar";
 import { Tabs, Tab } from "@material-ui/core";
 // import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import GiftGridList from "./GiftGridList";
-import OccasionsTable from "./OccasionsTable";
-import FriendGrid from "./FriendGrid";
+import GiftGridList from "../components/GiftGrid/GiftGridList";
+import OccasionsTable from "../components/OccasionsTable/OccasionsTable";
+import FriendGrid from "../components/FriendGrid/FriendGrid";
 
 // import PhoneIcon from "@material-ui/core/Phone";
 // import FavoriteIcon from "@material-ui/core/Favorite";
