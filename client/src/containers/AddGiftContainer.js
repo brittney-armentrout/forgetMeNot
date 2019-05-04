@@ -95,7 +95,17 @@ class AddGiftContainer extends Component {
         for (let formElementId in this.state.formControls) {
             formData[formElementId] = this.state.formControls[formElementId].value;
         }
-        console.dir(formData);
+        console.log(formData);
+        console.log(formData.friend);
+        console.log(formData.gift);
+        console.log(formData.file);
+        // API.saveGift({
+        //     gift: formData.gift,
+        //     friend: formData.friend,
+        //     img: formData.img
+        // })
+        //api saveGift
+        //api saveImg
     }
 
     handleChange = event => {
@@ -187,7 +197,7 @@ class AddGiftContainer extends Component {
     render() {
         return (
             <div className="addGiftForm">
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                     <Paper elevation={5}>
                         <TextInput 
                           name="gift"

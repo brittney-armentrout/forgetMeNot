@@ -22,7 +22,7 @@ const TestSelect = props => {
     return (
         <div>  
             <Grid item xs={12} md={6}>
-            <FormControl>
+            <FormControl style={{ minWidth: 200 }}>
                 <InputLabel htmlFor={props.name}>ChooseFriend</InputLabel>
                 <Select
                     native
