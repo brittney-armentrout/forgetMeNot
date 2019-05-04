@@ -69,8 +69,8 @@ class Signup extends Component {
                   error={errors.name}
                   id="name"
                   type="text"
+                  placeholder="Name"
                 />
-                <label htmlFor="name">Name</label>
               </div>
               <div className="input-field col s12">
                 <input
@@ -79,8 +79,8 @@ class Signup extends Component {
                   error={errors.email}
                   id="email"
                   type="email"
+                  placeholder="Email"
                 />
-                <label htmlFor="email">Email</label>
               </div>
               <div className="input-field col s12">
                 <input
@@ -89,8 +89,8 @@ class Signup extends Component {
                   error={errors.password}
                   id="password"
                   type="password"
+                  placeholder="Password"
                 />
-                <label htmlFor="password">Password</label>
               </div>
               <div className="input-field col s12">
                 <input
@@ -99,8 +99,8 @@ class Signup extends Component {
                   error={errors.password2}
                   id="password2"
                   type="password"
+                  placeholder="Confirm Password"
                 />
-                <label htmlFor="password2">Confirm Password</label>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
