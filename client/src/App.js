@@ -18,7 +18,7 @@ import Test from "./pages/Test";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 //Setting Color Palette
-const blueTheme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       //light: will be calculated from palette.primary.main
@@ -48,7 +48,7 @@ const blueTheme = createMuiTheme({
 
 function App() {
   return (
-    <MuiThemeProvider theme={blueTheme}>
+    <MuiThemeProvider theme={theme}>
     <React.Fragment>
       <CssBaseline />
       <Appbar />
@@ -65,7 +65,6 @@ function App() {
           </Switch>
       </div>
     </Router>
-    <Footer />
     </React.Fragment>
     </MuiThemeProvider>
   );

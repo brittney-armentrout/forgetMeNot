@@ -1,12 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
@@ -22,20 +15,20 @@ const TestSelect = props => {
     return (
         <div>  
             <Grid item xs={12} md={6}>
-            <FormControl style={{ minWidth: 200 }}>
-                <InputLabel htmlFor={props.name}>ChooseFriend</InputLabel>
-                <Select
-                    native
-                    name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
-                >
-                <option value="" />
-                {props.options.map(option => (
-                    <option value={option.value}>{option.value}</option>
-                ))}
-                </Select>
-            </FormControl>
+                <FormControl style={{ minWidth: 290 }}>
+                    <InputLabel htmlFor={props.name}>ChooseFriend</InputLabel>
+                    <Select
+                        native
+                        name={props.name}
+                        value={props.value}
+                        onChange={props.onChange}
+                    >
+                    <option value="" />
+                    {props.options.map(option => (
+                        <option value={option.value}>{option.value}</option>
+                    ))}
+                    </Select>
+                </FormControl>
             </Grid>
         </div>
     )

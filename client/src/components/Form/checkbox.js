@@ -1,9 +1,10 @@
 import React from "react";
 
 const CheckBox = (props) => {
-    return ( <div>
-    <label for={props.name} className="form-label">{props.title}</label>
-    <div className="checkbox-group">
+    return ( 
+    <div>
+        <label for={props.name} className="form-label">{props.title}</label>
+        <div className="checkbox-group">
         {props.options.map(option => {
             return (
                 <label key={option}>
@@ -24,4 +25,32 @@ const CheckBox = (props) => {
 </div>
 );
 
+}
+
+class CheckBox extends React.Component {
+    render() {
+        return (
+        <div>
+            <label for={this.props.name} className="form-label">{this.props.title}</label>
+            <div className="checkbox-group">
+                {this.props.options.map(option => {
+                return (
+                    <label key={option}>
+                        <input 
+                            className="form-checkbox"
+                            id = {this.props.name}
+                            name = {this.props.name}
+                            onChange = {this.props.handleChange}
+                            value = {this.option}
+                            checked = { this.props.selectedOptions.indexOf(option) > -1 }
+                            type = "checkbox" 
+                        /> 
+                        {option}
+                    </label>
+                );
+            })}
+            </div>
+        </div>
+        )
+    }
 }
