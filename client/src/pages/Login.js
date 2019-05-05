@@ -42,11 +42,11 @@ class Login extends Component {
       // console.log("Post result: " + result.data.token);
       localStorage.setItem('jwtToken', result.data.token);
       // this.props.history.push('/')
+
       this.props.history.push('/main')
     })
     .catch((error) => {
       this.setState({ errors: error.response.data });
-      // console.log(error.response.data);
     })
   };
 

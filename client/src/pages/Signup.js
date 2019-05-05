@@ -30,6 +30,7 @@ class Signup extends Component {
       //   password2: this.state.password2
       // };
       // console.log(newUser);
+
       axios.post('/api/users/register', {
         name: this.state.name,
         email: this.state.email,
