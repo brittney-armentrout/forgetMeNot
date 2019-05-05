@@ -8,8 +8,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/forgetmenot");
 const userSeed = [
 //first user
     {
-    username: "Katie1234@gmail.com",
-    userID: "113309600017687291851", 
+    name: "Katie",
+    email: "katie@mail.com",
     friends: [
         {
         name: "Jane",

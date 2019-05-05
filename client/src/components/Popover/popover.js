@@ -124,4 +124,6 @@ CustomizedSnackbars.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles2)(CustomizedSnackbars); 
+
+export default withStyles(styles2)(CustomizedSnackbars);
+

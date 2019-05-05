@@ -19,32 +19,33 @@ class Signup extends Component {
     };
   }
   onChange = e => {
-      this.setState({ [e.target.id]: e.target.value });
-    };
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
   onSubmit = e => {
-      e.preventDefault();
-      const newUser = {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-      };
-      console.log(newUser);
-      axios.post('/api/users/register', {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-       })
-      .then((result) => {
-        console.log("New User result: " + result.data.token);
-        // this.props.history.push('/')
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      })
+    e.preventDefault();
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
     };
+    console.log(newUser);
+    axios.post('/api/users/register', {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+      })
+    .then((result) => {
+      console.log("New User result: " + result.data._id);
+      this.props.history.push('/main')
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    })
+  };
+
   render() {
     const { errors } = this.state;
     return (
