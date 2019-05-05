@@ -1,20 +1,16 @@
 import React, { Component } from "react";
-// import Button from "../components/Form/button";
 import Button from "@material-ui/core/Button";
-import Input from "../components/Form/input";
 import API from "../utils/API";
-// import { Select } from "@material-ui/core";
-// import SimpleSelect from "../components/Select/SimpleSelect";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TestSelect from "../components/FormTest/TestMaterialSelect";
 import TextInput from "../components/FormTest/TextInput";
+import InputLabel from '@material-ui/core/InputLabel';
 import validate from "../components/FormTest/Validate";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Typography from "@material-ui/core/Typography";
-import { FormControl, InputLabel } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 
 
@@ -75,8 +71,8 @@ class AddGiftContainer extends Component {
                         isRequired: true,
                     },
                     options: [
-                        { value: "friend1", displayValue: "Friend1"},
-                        { value: "friend2", displayValue: "Friend2"}
+                        { value: "friend1", displayValue: "Friend1" },
+                        { value: "friend2", displayValue: "Friend2" }
                     ]
                 },
                 file: {
@@ -222,7 +218,7 @@ class AddGiftContainer extends Component {
                         <Paper style={{ paddingLeft: 25, paddingBottom: 25 }}>    
                             <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
                                 <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
-                                Add a Gift   
+                                Add New Gift   
                             </Typography>
                         
                             <TextInput 

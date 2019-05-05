@@ -13,24 +13,22 @@ const TestSelect = props => {
     }
 
     return (
-        <div>  
-            <Grid item xs={12} md={6}>
-                <FormControl style={{ minWidth: 290 }}>
-                    <InputLabel htmlFor={props.name}>ChooseFriend</InputLabel>
-                    <Select
-                        native
-                        name={props.name}
-                        value={props.value}
-                        onChange={props.onChange}
-                    >
-                    <option value="" />
-                    {props.options.map(option => (
-                        <option value={option.value}>{option.value}</option>
-                    ))}
-                    </Select>
-                </FormControl>
-            </Grid>
-        </div>
+        <FormControl>
+            <InputLabel htmlFor={props.label}>{props.label}</InputLabel>
+                <Select
+                    native
+                    name={props.name}
+                    value={props.value}
+                    label={props.label}
+                    onChange={props.onChange}
+                >
+                <option value="" />
+                {props.options.map(option => (
+                    <option value={option.value}>{option.value}</option>
+                ))}
+                </Select>
+        </FormControl>
+  
     )
 }
 

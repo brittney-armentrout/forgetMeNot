@@ -29,7 +29,7 @@ const TextInput = (props) => {
 
   return (
     <Grid item xs={12} md={6}>
-        <FormControl style={{ minWidth: 290 }}>
+        <FormControl style={{ maxWidth: 290 }}>
           <TextField 
             // id={props.id}
             label={props.label}
