@@ -19,32 +19,33 @@ class Signup extends Component {
     };
   }
   onChange = e => {
-      this.setState({ [e.target.id]: e.target.value });
-    };
-  onSubmit = e => {
-      e.preventDefault();
-      // const newUser = {
-      //   name: this.state.name,
-      //   email: this.state.email,
-      //   password: this.state.password,
-      //   password2: this.state.password2
-      // };
-      // console.log(newUser);
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
-      axios.post('/api/users/register', {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-       })
-      .then((result) => {
-        console.log("New User result: " + result.data.token);
-        // this.props.history.push('/')
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      })
+  onSubmit = e => {
+    e.preventDefault();
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
     };
+    console.log(newUser);
+    axios.post('/api/users/register', {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+      })
+    .then((result) => {
+      console.log("New User result: " + result.data._id);
+      // this.props.history.push('/')
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    })
+  };
+
   render() {
     const { errors } = this.state;
     return (
@@ -59,7 +60,7 @@ class Signup extends Component {
                 <b>Register</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+                Already have an account? <Link to="/">Log in</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
