@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // import "./styles.css";
 import FormContainer from "../containers/FormContainer";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 
 
@@ -22,6 +23,14 @@ class Signup extends Component {
     };
   onSubmit = e => {
       e.preventDefault();
+      // const newUser = {
+      //   name: this.state.name,
+      //   email: this.state.email,
+      //   password: this.state.password,
+      //   password2: this.state.password2
+      // };
+      // console.log(newUser);
+
       axios.post('/api/users/register', {
         name: this.state.name,
         email: this.state.email,
@@ -42,9 +51,8 @@ class Signup extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
+            <Link to="/" className="btn-flat waves-effect"><KeyboardBackspaceIcon /> 
+              Back to home
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
