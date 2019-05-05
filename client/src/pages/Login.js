@@ -20,11 +20,11 @@ class Login extends Component {
     };
   }
 
-  // componentDidMount = () => {
-  //   if(this.state.errors){
+  componentDidMount = () => {
+    if(this.state.errors){
 
-  //   }
-  // }
+    }
+  }
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -39,10 +39,10 @@ class Login extends Component {
      })
     .then((result) => {
       const userID = result.data.userData.id;
-      console.log("Post result: " + result.data.token);
+      // console.log("Post result: " + result.data.token);
       localStorage.setItem('jwtToken', result.data.token);
-      this.props.history.push('/main')
       // this.props.history.push('/')
+      this.props.history.push('/main')
     })
     .catch((error) => {
       this.setState({ errors: error.response.data });

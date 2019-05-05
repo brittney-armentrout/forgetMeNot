@@ -23,13 +23,13 @@ class Signup extends Component {
     };
   onSubmit = e => {
       e.preventDefault();
-      const newUser = {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-      };
-      console.log(newUser);
+      // const newUser = {
+      //   name: this.state.name,
+      //   email: this.state.email,
+      //   password: this.state.password,
+      //   password2: this.state.password2
+      // };
+      // console.log(newUser);
       axios.post('/api/users/register', {
         name: this.state.name,
         email: this.state.email,
