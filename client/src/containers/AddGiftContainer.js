@@ -10,35 +10,48 @@ import Grid from "@material-ui/core/Grid";
 import TestSelect from "../components/FormTest/TestMaterialSelect";
 import TextInput from "../components/FormTest/TextInput";
 import validate from "../components/FormTest/Validate";
-// import { styled } from "@material-ui/styles";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import Typography from "@material-ui/core/Typography";
+import { FormControl, InputLabel } from "@material-ui/core";
+import SaveIcon from '@material-ui/icons/Save';
 
-// const MyGrid = styled(Grid)({
-
-// })
 
 const giftImg = require("../components/Logo/img/GiftLg.png");
+const listFont = "'Roboto', sans-serif";
 
-// const styles = theme => ({
-//     root: {
-//         width: "100%",
-//         marginTop: theme.spacing.unit * 3,
-//         overflowX: "auto",
-//         textAlign: "center",
-//         alignItems: "center",
-//         color: theme.palette.primary.main,
-//     },
-//     image: {
-//         marginTop: theme.spacing.unit,
-//         marginLeft: theme.spacing.unit,
-//     },
-//     select: {
-//         marginLeft: theme.spacing.unit * 5,
-//     }
-// })
+const styles = theme => ({
+    root: {
+        width: "100%",
+        marginTop: theme.spacing.unit * 3,
+        overflowX: "auto",
+        color: theme.palette.primary,
+        fontFamily: listFont,
+       
+    },
+    image: {
+        marginTop: theme.spacing.unit * 2,
+        maxHeight: 60,
+    },
+    select: {
+        marginLeft: theme.spacing.unit * 5,
+    },
+    button: {
+        margin: theme.spacing.unit,
+        justify: "center",
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
+    },
+    iconSmall: {
+        fontSize: 20,
+    },
+})
 
 class AddGiftContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             formIsValid: false,
@@ -84,7 +97,7 @@ class AddGiftContainer extends Component {
 
     loadFriends = () => {
         API.getFriends()
-            .then(res => this.setState({ friends: res.data }))
+            .then(res => this.setState({ options: res.data }))
             .catch(err => console.log(err))
     }
 
@@ -193,42 +206,74 @@ class AddGiftContainer extends Component {
     // }
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div className="addGiftForm">
-                <Grid item xs={12} md={6}>
-                    <Paper elevation={5}>
-                        <TextInput 
-                          name="gift"
-                          placeholder={this.state.formControls.gift.placeholder}
-                          value={this.state.formControls.gift.value}
-                          onChange={this.handleChange}
-                          touched={this.state.formControls.gift.touched}
-                          valid={this.state.formControls.gift.valid}
-                        />
-                       <TestSelect 
-                            name="friend"
-                            value={this.state.formControls.friend.value}
-                            onChange={this.handleChange}
-                            options={this.state.formControls.friend.options}
-                            touched={this.state.formControls.friend.touched}
-                            valid={this.state.formControls.friend.valid}
-                        />
-                         <input name="img" type="file" ref={this.fileInput} />
-                        <Button 
-                            variant="contained" 
-                            color="primary"
-                            onClick={this.formSubmitHandler}
-                        >Submit
-                        </Button>
-                    </Paper>
-                </Grid>
+            <div>
+                <Grid 
+                    container
+                    spacing={0}
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    style={{ minHeight: 500 }}
+                >
+                    <Grid item xs={3}>  
+                        <Paper style={{ paddingLeft: 25, paddingBottom: 25 }}>    
+                            <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
+                                <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
+                                Add a Gift   
+                            </Typography>
+                        
+                            <TextInput 
+                                label={this.state.formControls.gift.placeholder}
+                                type="text"
+                                name="gift"
+                                value={this.state.formControls.gift.value}
+                                onChange={this.handleChange}
+                                touched={this.state.formControls.gift.touched}
+                                valid={this.state.formControls.gift.valid}
+                            />            
+                            <br />
+                            <TestSelect 
+                                name="friend"
+                                value={this.state.formControls.friend.value}
+                                onChange={this.handleChange}
+                                options={this.state.formControls.friend.options}
+                                touched={this.state.formControls.friend.touched}
+                                valid={this.state.formControls.friend.valid}
+                            />                    
+                            <br />
+                            <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
+                                Upload a picture:
+                                <input name="img" type="file" ref={this.fileInput} style={{ marginTop: 10 }} />
+                            </Typography>
+                            <br />
+                            <Button 
+                                variant="contained" 
+                                size="small"
+                                color="primary"
+                                className={classes.button}
+                                onClick={this.formSubmitHandler}
+                            >
+                            Save
+                            <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)} />                        
+                          </Button>
+                        </Paper> 
+                     </Grid>
+                </Grid>  
             </div>
-        )
-               
+        )              
     };
 }
 
-export default AddGiftContainer;
+AddGiftContainer.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(AddGiftContainer);
+
+// export default AddGiftContainer;
     
             // <Grid 
             //     container
@@ -278,8 +323,3 @@ export default AddGiftContainer;
 
 // }
 
-// AddGiftContainer.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
-
-// export default withStyles(styles)(AddGiftContainer);
