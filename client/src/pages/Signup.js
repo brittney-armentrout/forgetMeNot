@@ -39,7 +39,7 @@ class Signup extends Component {
       })
     .then((result) => {
       console.log("New User result: " + result.data._id);
-      // this.props.history.push('/')
+      this.props.history.push('/main')
     })
     .catch((error) => {
       console.log(error.response.data);
