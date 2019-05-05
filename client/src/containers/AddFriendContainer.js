@@ -57,54 +57,66 @@ class AddFriendContainer extends Component {
             formIsValid: false,
             formControls: {
                 friend: {
-                    value: "",
-                    placeholder: "Friend Name",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        isRequired: true,
+                    name: {
+                        value: "",
+                        valid: false,
+                        touched: false,
+                        validationRules: {
+                            isRequired: true,
+                        },
                     },
+                    address: {
+                        value: "",
+                        valid: false,
+                        touched: false,
+                        validationRules: {
+                            isRequired: false,
+                        },
+                    },
+                    occasions: 
+                        {
+                            value: "",
+                            placeholder: "Add an Occasion",
+                            valid: false,
+                            touched: false,
+                            validationRules: {
+                                isRequired: false,
+                            },
+                            options: [
+                                { value: "Birthday", displayValue: "Birthday" },
+                                { value: "Anniversary", displayValue: "Anniversary" },
+                                { value: "Graduation", displayValue: "Graduation" },
+                                { value: "Holiday", displayValue: "Holiday" },
+                                { value: "Other", displayValue: "Other" },
+                            ]
+                        },
+                    dates: {
+                        value: "",
+                        selectedDate: "",
+                    },
+                    img: {
+                        value: "",
+                        ref: "",
+                        valid: false,
+                        touched: false,
+                        validationRules: {
+                            isRequired: false,
+                        },
+                    },
+                    //consider adding Gifts as well
                 },
-                occasions: {
-                    value: "",
-                    placeholder: "Add an Occasion",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        isRequired: true,
-                    },
-                    options: [
-                        { value: "Birthday", displayValue: "Birthday" },
-                        { value: "Anniversary", displayValue: "Anniversary" },
-                        { value: "Graduation", displayValue: "Graduation" },
-                        { value: "Holiday", displayValue: "Holiday" },
-                        { value: "Other", displayValue: "Other" },
-                    ]
-                },
-                img: {
-                    value: "",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        isRequired: false,
-                    },
-                }
-                //consider adding Gifts as well
-            }
-        }
-    }
+            },
+        };
+    };
 
     formSubmitHandler = () => {
         const formData = {};
         for (let formElementId in this.state.formControls) {
             formData[formElementId] = this.state.formControls[formElementId].value;
-        }
-        
+        }  
         console.log(formData);
-        console.log(formData.friend);
-        console.log(formData.occasions);
-        console.log(formData.img);
-    }
+        console.log(this.state.selectedDate);
+    };
 
     handleChange = event => {
         const name = event.target.name;
@@ -131,11 +143,19 @@ class AddFriendContainer extends Component {
             formControls: updatedControls,
             FormIsValid: formIsValid
         });
-    }
+    };
 
+    handleSelectChange = (event, index, value) => {
+        this.setState({ selectedValue: value })
+    };
+
+    handleDateChange = date => {
+        this.setState({ selectedDate: date })
+    };
 
     render() {
         const { classes } = this.props;
+        const { selectedDate } = this.state;
         
         return (
             <main className={classes.layout}>
@@ -162,6 +182,7 @@ class AddFriendContainer extends Component {
                                 name="name"
                                 label="Friend Name"
                                 fullWidth
+                                onChange={this.handleChange}
                                 value={this.state.formControls.friend.value}
                                 touched={this.state.formControls.friend.touched}
                                 valid={this.state.formControls.friend.valid}
@@ -169,112 +190,113 @@ class AddFriendContainer extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12}>
                             <TextField
-                                id="address1"
-                                name="address1"
-                                label="Friend Address Line 1"
+                                id="address"
+                                name="address"
+                                label="Friend Address"
                                 fullWidth
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                onChange={this.handleChange}
+                                // value={this.state.formControls.friend.address.value}
+                                // touched={this.state.formControls.friend.address.touched}
+                                // valid={this.state.formControls.friend.address.valid}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12}>
-                            <TextField
-                                id="address2"
-                                name="address2"
-                                label="Friend Address Line 2"
-                                fullWidth
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
+                        {/* <Grid item xs={12} sm={6}>
                             <TextField
                                 id="city"
                                 name="city"
                                 label="City"
                                 fullWidth
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                onChange={this.handleChange}
+                                // value={this.state.formControls.friend.value}
+                                // touched={this.state.formControls.friend.touched}
+                                // valid={this.state.formControls.friend.valid}
                             />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
+                        </Grid> */}
+                        {/* <Grid item xs={12} sm={6}>
                             <TextField
                                 id="state"
                                 name="state"
                                 label="State/Province/Region"
                                 fullWidth
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                onChange={this.handleChange}
+                                // value={this.state.formControls.friend.value}
+                                // touched={this.state.formControls.friend.touched}
+                                // valid={this.state.formControls.friend.valid}
+                            />
+                        </Grid> */}
+                        <Grid item xs={12} sm={6}>
+                            <TestSelect 
+                                name="occasions1"
+                                label="Occasion"
+                                fullWidth
+                                onChange={this.handleSelectChange}
+                                value={this.state.selectedValue}
+                                onChange={this.handleChange}
+                                options={this.state.formControls.friend.occasions.options}
+                                // touched={this.state.formControls.friend.occasions.touched}
+                                // valid={this.state.formControls.friend.occasions.valid}
+                            ></TestSelect>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <DatePicker 
+                                id="date1"
+                                name="date1"
+                                label="Occasion Date"
+                                type="date"
+                                defaultValue=""
+                                value={this.state.selectedDate}
+                                onChange={this.handleDateChange}
+                                onChange={this.handleChange}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TestSelect 
-                                name="occasions"
+                                name="occasions2"
                                 label="Occasion"
                                 fullWidth
-                                value={this.state.formControls.occasions.value}
                                 onChange={this.handleChange}
-                                options={this.state.formControls.occasions.options}
-                                touched={this.state.formControls.occasions.touched}
-                                valid={this.state.formControls.occasions.valid}
+                                value={this.state.selectedValue}
+                                onChange={this.handleChange}
+                                options={this.state.formControls.friend.occasions.options}
+                                touched={this.state.formControls.friend.occasions.touched}
+                                valid={this.state.formControls.friend.occasions.valid}
                             /> 
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <DatePicker 
-                                id="date"
+                                id="date2"
                                 label="Occasion Date"
                                 type="date"
                                 defaultValue=""
+                                onChange={this.handleChange}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TestSelect 
-                                name="occasions"
+                                name="occasions3"
                                 label="Occasion"
                                 fullWidth
-                                value={this.state.formControls.occasions.value}
                                 onChange={this.handleChange}
-                                options={this.state.formControls.occasions.options}
-                                touched={this.state.formControls.occasions.touched}
-                                valid={this.state.formControls.occasions.valid}
+                                value={this.state.selectedValue}
+                                onChange={this.handleChange}
+                                options={this.state.formControls.friend.occasions.options}
+                                touched={this.state.formControls.friend.occasions.touched}
+                                valid={this.state.formControls.friend.occasions.valid}
                             /> 
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <DatePicker 
-                                id="date"
+                                id="date3"
                                 label="Occasion Date"
                                 type="date"
                                 defaultValue=""
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TestSelect 
-                                name="occasions"
-                                label="Occasion"
-                                fullWidth
-                                value={this.state.formControls.occasions.value}
                                 onChange={this.handleChange}
-                                options={this.state.formControls.occasions.options}
-                                touched={this.state.formControls.occasions.touched}
-                                valid={this.state.formControls.occasions.valid}
-                            /> 
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <DatePicker 
-                                id="date"
-                                label="Occasion Date"
-                                type="date"
-                                defaultValue=""
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
                                 Upload a picture:
-                                <input name="img" type="file" ref={this.fileInput} style={{ marginTop: 10 }} />
+                                <input name="img" type="file" ref={this.state.formControls.friend.img.fileInput} style={{ marginTop: 10 }} />
                             </Typography> 
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -293,7 +315,10 @@ class AddFriendContainer extends Component {
                 </Paper>
             </main>
 
+        );
+    };
 
+};
 
             // <div className={classes.root}>
               
@@ -403,10 +428,7 @@ class AddFriendContainer extends Component {
           
               
             // </div>
-        )
-    }
 
-};
 
 AddFriendContainer.propTypes = {
     classes: PropTypes.object.isRequired,
