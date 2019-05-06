@@ -47,7 +47,13 @@ const styles = theme => ({
 class SimpleTabs extends Component {
     state = {
         value: 0,
+        user: ""
     };
+
+    componentDidMount = () => {
+        this.setState({ user: this.props.location.state.user });
+        console.log(this.props.location.state.user);
+    }
 
     handleChange = (event, value) => {
         this.setState({ value });
