@@ -13,6 +13,7 @@ import Appbar from "./components/Appbar/Appbar.js";
 import Footer from "./components/Footer/Footer.js";
 import NewLogin from "./pages/NewLogin"
 import NewSignup from "./pages/NewSignup";
+import AddFriendContainer from "./containers/AddFriendContainer";
 
 //Colors:
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -59,7 +60,7 @@ function App() {
             <Route exact path="/signup" component={NewSignup} />
             <Route exact path="/main" component={Main} />
             <Route exact path="/detail" component={Detail} />
-            <Route exact path="/test" component={NewSignup} />
+            <Route exact path="/test" component={AddFriendContainer} />
             {/* <Route exact path="/giftadd" component={GiftAdd} /> */}
             <Route component={NoMatch} />
           </Switch>

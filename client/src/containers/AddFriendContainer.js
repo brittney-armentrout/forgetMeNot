@@ -60,31 +60,12 @@ class AddFriendContainer extends Component {
             formIsValid: false,
             formControls: {
                 friend: {
-                    name: {
-                        value: "",
-                        valid: false,
-                        touched: false,
-                        validationRules: {
-                            isRequired: true,
-                        },
-                    },
-                    address: {
-                        value: "",
-                        valid: false,
-                        touched: false,
-                        validationRules: {
-                            isRequired: false,
-                        },
-                    },
+                    name: { value: "" },
+                    address: { value: "" },
                     occasions: 
                         {
                             value: "",
                             placeholder: "Add an Occasion",
-                            valid: false,
-                            touched: false,
-                            validationRules: {
-                                isRequired: false,
-                            },
                             options: [
                                 { value: "Birthday", displayValue: "Birthday" },
                                 { value: "Anniversary", displayValue: "Anniversary" },
@@ -93,19 +74,8 @@ class AddFriendContainer extends Component {
                                 { value: "Other", displayValue: "Other" },
                             ]
                         },
-                    dates: {
-                        value: "",
-                        selectedDate: "",
-                    },
-                    img: {
-                        value: "",
-                        ref: "",
-                        valid: false,
-                        touched: false,
-                        validationRules: {
-                            isRequired: false,
-                        },
-                    },
+                    dates: [{ value: "", selectedDate: "" }],
+                    img: { value: "", ref: "" },
                     //consider adding Gifts as well
                 },
             },
@@ -157,11 +127,12 @@ class AddFriendContainer extends Component {
     };
 
     render() {
+        let {name, address, occasions, dates, img} = this.state;
         const { classes } = this.props;
         const { selectedDate } = this.state;
         
         return (
-            <main className={classes.layout}>
+            <main className={classes.layout} onSubmit={this.handleSubmit} onChange={this.handleChange}>
                 <Paper className={classes.paper}>
                     <Typography component="h1" variant="h5" color="primary" align="center">
                         Add New Friend
@@ -176,8 +147,6 @@ class AddFriendContainer extends Component {
                                 fullWidth
                                 onChange={this.handleChange}
                                 value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -187,9 +156,7 @@ class AddFriendContainer extends Component {
                                 label="Friend Address"
                                 fullWidth
                                 onChange={this.handleChange}
-                                // value={this.state.formControls.friend.address.value}
-                                // touched={this.state.formControls.friend.address.touched}
-                                // valid={this.state.formControls.friend.address.valid}
+                                value={this.state.formControls.friend.address}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -199,9 +166,7 @@ class AddFriendContainer extends Component {
                                 label="City"
                                 fullWidth
                                 onChange={this.handleChange}
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                value={this.state.formControls.city}
                             />
                         </Grid>
                         <Grid item xs={12} sm={3}>
@@ -211,9 +176,7 @@ class AddFriendContainer extends Component {
                                 label="State"
                                 fullWidth
                                 onChange={this.handleChange}
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                value={this.state.formControls.state}
                             />
                         </Grid>
                         <Grid item xs={12} sm={3}>
@@ -223,9 +186,7 @@ class AddFriendContainer extends Component {
                                 label="Zip Code"
                                 fullWidth
                                 onChange={this.handleChange}
-                                value={this.state.formControls.friend.value}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
+                                value={this.state.formControls.zip}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -237,8 +198,6 @@ class AddFriendContainer extends Component {
                                 value={this.state.selectedValue}
                                 onChange={this.handleChange}
                                 options={this.state.formControls.friend.occasions.options}
-                                touched={this.state.formControls.friend.occasions.touched}
-                                valid={this.state.formControls.friend.occasions.valid}
                             ></TestSelect>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -262,8 +221,6 @@ class AddFriendContainer extends Component {
                                 value={this.state.selectedValue}
                                 onChange={this.handleChange}
                                 options={this.state.formControls.friend.occasions.options}
-                                touched={this.state.formControls.friend.occasions.touched}
-                                valid={this.state.formControls.friend.occasions.valid}
                             /> 
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -287,8 +244,6 @@ class AddFriendContainer extends Component {
                                 value={this.state.selectedValue}
                                 onChange={this.handleChange}
                                 options={this.state.formControls.friend.occasions.options}
-                                touched={this.state.formControls.friend.occasions.touched}
-                                valid={this.state.formControls.friend.occasions.valid}
                             /> 
                         </Grid>
                         <Grid item xs={12} sm={6}>
