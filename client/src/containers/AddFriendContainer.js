@@ -47,7 +47,10 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         marginLeft: theme.spacing.unit,
     },
-})
+    input: {
+        display: "none",
+    },
+});
 
 class AddFriendContainer extends Component {
     constructor(props) {
@@ -301,10 +304,22 @@ class AddFriendContainer extends Component {
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
+                            <input  
+                                accept="image/*"
+                                className={classes.input}
+                                id="imgFileBtn"
+                                multiple
+                                type="file"
+                            />
+                            <label htmlFor="imgFileBtn">
+                                <Button component="span" className={classes.button}>
+                                    Upload image
+                                </Button>
+                            </label>
+                            {/* <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
                                 Upload a picture:
                                 <input name="img" type="file" ref={this.state.formControls.friend.img.fileInput} style={{ marginTop: 10 }} />
-                            </Typography> 
+                            </Typography>  */}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                              <Button 
