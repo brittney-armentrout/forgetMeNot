@@ -47,12 +47,12 @@ const styles = theme => ({
 class SimpleTabs extends Component {
     state = {
         value: 0,
-        user: ""
+        user: "",
     };
 
     componentDidMount = () => {
         this.setState({ user: this.props.location.state.user });
-        console.log(this.props.location.state.user);
+        
     }
 
     handleChange = (event, value) => {
@@ -87,7 +87,7 @@ class SimpleTabs extends Component {
                                         <AddGiftContainer />
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <AddFriendContainer />
+                                        <AddFriendContainer userID = {this.state.user}/>
                                  </TabContainer>}
 
             </div>

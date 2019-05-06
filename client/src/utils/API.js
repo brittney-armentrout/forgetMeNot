@@ -10,8 +10,8 @@ export default {
         return axios.get("/api/detail")
     },
     // Saves a book to the database
-    saveFriend: function(friendData) {
-        return axios.post("/api/friends", friendData);
+    saveFriend: function(userID, friendData) {
+        return axios.post(`/api/friends/${userID}`, friendData);
     },
     uploadImg: function(imgData) {
         return axios.post("/api/upload", imgData)

@@ -122,8 +122,17 @@ class AddFriendContainer extends Component {
             console.log(this.state.formControls[formElementId].value);
         }  
         console.log(formData);
-        // console.log(this.state.selectedDate);
+        console.log(this.state.selectedDate);
+        const userID = this.props.userID;
+        API.saveFriend(userID, formData)
+        .then((response) => {
+            console.log(`New Friend added! ${response}`)
+        })
     };
+
+    componentDidMount = () => {
+        
+    }
 
     handleChange = event => {
         const name = event.target.name;

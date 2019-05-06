@@ -86,8 +86,7 @@ class NewSignup extends Component {
             password2: this.state.password2
         })
         .then((result) => {
-            console.log("New User result: " + result.data._id);
-            this.props.history.push('/main')
+            this.props.history.push('/')
         })
         .catch((error) => {
             console.log(error.response.data);

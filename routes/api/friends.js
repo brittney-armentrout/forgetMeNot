@@ -8,9 +8,9 @@ router.route("/")
     console.log("hitting friends route");
     
     //route to add a new friend
-router.route("/")
+router.route("/:id")
     .post(friendsController.create);
-    console.log('Save friend route hit!')
+    console.log('Save friend route hit! Wooooo!')
 
 // //Matches with "api/friends/:id"
 // router 
