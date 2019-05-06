@@ -85,9 +85,12 @@ class NewLogin extends Component {
             password: this.state.password
         })
         .then((result) => {
-            const userID = result.data.userData.id;
+            const userID = result.data.userData._id;
             localStorage.setItem("jwtToken", result.data.token);
-            this.props.history.push("/main")
+            this.props.history.push({
+                pathname: '/main',
+                state: { user: userID }
+              })
         })
         .catch((error) => {
             this.setState({ errors: error.response.data });
