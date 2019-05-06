@@ -9,15 +9,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import CreateIcon from "@material-ui/icons/Create";
 
-
-axios.defaults.baseURL = "http://localhost:3001";
 
 const styles = theme => ({
     main: {
@@ -57,40 +54,43 @@ const styles = theme => ({
     },
 });
 
-
-class NewLogin extends Component {
+class NewSignup extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            name: "",
             email: "",
             password: "",
+            password2: "",
             errors: {}
         };
-    }
-
-    componentDidMount = () => {
-        if(this.state.errors) {
-        }
     }
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
-
+    
     onSubmit = e => {
         e.preventDefault();
-        console.log("Look ma, I pushed a button!")
-        axios.post("/api/users/login", {
+        const newUser = {
+            name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password2: this.state.password2
+        };
+        console.log(newUser);
+        axios.post('/api/users/register', {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            password2: this.state.password2
         })
         .then((result) => {
-            const userID = result.data.userData.id;
-            localStorage.setItem("jwtToken", result.data.token);
-            this.props.history.push("/main")
+            console.log("New User result: " + result.data._id);
+            this.props.history.push('/main')
         })
         .catch((error) => {
-            this.setState({ errors: error.response.data });
+            console.log(error.response.data);
         })
     };
 
@@ -101,57 +101,64 @@ class NewLogin extends Component {
         return (
             <main className={classes.main}>
                 <Paper className={classes.paper}>
-                    {/* <Typography component="p">
+                    <Typography component="p">
                         <Button href="/" className={classes.button} color="primary">
                             <KeyboardBackspaceIcon />
-                            Back to home
-                        </Button> */}
-                        {/* <Link to="/"><KeyboardBackspaceIcon />
-                            Back to home
-                        </Link> */}
-                    {/* </Typography> */}
-                    <Typography component="p">
-                        Don't have an account? 
-                        <Button href="/signup" className={classes.button} color="primary">
-                            Register <CreateIcon style={{ marginLeft: 5 }} />
+                            Back to login
                         </Button>
                     </Typography>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
+                        <CreateIcon />
                     </Avatar>
                     <Typography component="h1" variant="h4">
-                        Sign In
+                        Sign Up
                     </Typography>
                     <form className={classes.form} noValidate onSubmit={this.onSubmit}>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="email">Email Address</InputLabel>
+                            <InputLabel htmlFor="email">Name</InputLabel>
                             <Input 
                                 autoFocus
+                                id="name"
+                                name="name"
+                                type="text"
+                                onChange={this.onChange}
+                                value={this.state.name}
+                                error={errors.name}
+                            />
+                        </FormControl>
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="email">Email</InputLabel>
+                            <Input 
                                 id="email"
                                 name="email"
                                 type="email"
-                                autoComplete="email"
                                 onChange={this.onChange}
                                 value={this.state.email}
                                 error={errors.email}
                             />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
-                            <InputLabel htmlFor="password">Password</InputLabel>
+                            <InputLabel htmlFor="email">Password</InputLabel>
                             <Input 
                                 id="password"
                                 name="password"
                                 type="password"
-                                autoComplete="current-password"
                                 onChange={this.onChange}
                                 value={this.state.password}
                                 error={errors.password}
                             />
                         </FormControl>
-                        {/* <FormControlLabel   
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        /> */}
+                        <FormControl margin="normal" required fullWidth>
+                            <InputLabel htmlFor="email">Confirm Password</InputLabel>
+                            <Input 
+                                id="password2"
+                                name="password2"
+                                type="password"
+                                onChange={this.onChange}
+                                value={this.state.password2}
+                                error={errors.password2}
+                            />
+                        </FormControl>
                         <Button 
                             type="submit"
                             fullWidth
@@ -159,14 +166,13 @@ class NewLogin extends Component {
                             color="primary"
                             className={classes.submit}
                         >
-                            Sign in
+                            Sign Up
                         </Button>
                     </form>
                 </Paper>
             </main>
-        );
+        )
     }
-
 
 
 
@@ -174,8 +180,8 @@ class NewLogin extends Component {
 
 }
 
-NewLogin.propTypes = {
+NewSignup.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(NewLogin);
+export default withStyles(styles)(NewSignup);

@@ -4,16 +4,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Material UI:
 import Login from "./pages/OldLogin";
-import Signup from "./pages/Signup";
+import Signup from "./pages/OldSignup";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Appbar from "./components/Appbar/Appbar.js";
 import Footer from "./components/Footer/Footer.js";
-// import Grid from "@material-ui/core/Grid";
-import Test from "./pages/Test";
 import NewLogin from "./pages/NewLogin"
+import NewSignup from "./pages/NewSignup";
 
 //Colors:
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -57,10 +56,10 @@ function App() {
         <div>
           <Switch>
             <Route exact path="/" component={NewLogin} />
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signup" component={NewSignup} />
             <Route exact path="/main" component={Main} />
             <Route exact path="/detail" component={Detail} />
-            <Route exact path="/test" component={NewLogin} />
+            <Route exact path="/test" component={NewSignup} />
             {/* <Route exact path="/giftadd" component={GiftAdd} /> */}
             <Route component={NoMatch} />
           </Switch>
