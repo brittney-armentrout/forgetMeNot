@@ -18,7 +18,17 @@ module.exports = {
     create: function(req, res) {
         db.Friend
             .create(req.body) 
-            .then(dbModel => res.json(dbModel))
+            .then(dbFriend => db.User.findByIdAndUpdate({
+                _id: req.params.id
+            },
+            {
+                $push: {
+                    friends: dbFriend._id
+                }
+            },{
+                new:true
+            })
+            )
             .catch(err => res.status(422).json(err))
     },
     update: function(req, res) {
