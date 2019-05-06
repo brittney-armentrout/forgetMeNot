@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { render } from "react-dom";
 
 //Material UI:
-import Login from "./pages/Login";
+import Login from "./pages/OldLogin";
 import Signup from "./pages/Signup";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail";
@@ -13,7 +13,7 @@ import Appbar from "./components/Appbar/Appbar.js";
 import Footer from "./components/Footer/Footer.js";
 // import Grid from "@material-ui/core/Grid";
 import Test from "./pages/Test";
-import NewLogin from "./containers/NewLogin"
+import NewLogin from "./pages/NewLogin"
 
 //Colors:
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -56,7 +56,7 @@ function App() {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={NewLogin} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/main" component={Main} />
             <Route exact path="/detail" component={Detail} />

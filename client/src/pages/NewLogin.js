@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import CreateIcon from "@material-ui/icons/Create";
 
 
 axios.defaults.baseURL = "http://localhost:3001";
@@ -100,28 +101,39 @@ class NewLogin extends Component {
         return (
             <main className={classes.main}>
                 <Paper className={classes.paper}>
+                    {/* <Typography component="p">
+                        <Button href="/" className={classes.button} color="primary">
+                            <KeyboardBackspaceIcon />
+                            Back to home
+                        </Button> */}
+                        {/* <Link to="/"><KeyboardBackspaceIcon />
+                            Back to home
+                        </Link> */}
+                    {/* </Typography> */}
                     <Typography component="p">
-                        <Button className={classes.button} color="primary">
-                            Back to home
+                        Don't have an account? 
+                        <Button href="/signup" className={classes.button} color="primary">
+                            Register <CreateIcon style={{ marginLeft: 5 }} />
                         </Button>
-                        <Link to="/"><KeyboardBackspaceIcon />
-                            Back to home
-                        </Link>
                     </Typography>
                     <Avatar className={classes.avatar}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h4">
                         Sign in
                     </Typography>
-                    <form className={classes.form}>
+                    <form className={classes.form} noValidate onSubmit={this.onSubmit}>
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="email">Email Address</InputLabel>
                             <Input 
+                                autoFocus
                                 id="email"
                                 name="email"
+                                type="email"
                                 autoComplete="email"
-                                autoFocus
+                                onChange={this.onChange}
+                                value={this.state.email}
+                                error={errors.email}
                             />
                         </FormControl>
                         <FormControl margin="normal" required fullWidth>
@@ -129,7 +141,11 @@ class NewLogin extends Component {
                             <Input 
                                 id="password"
                                 name="password"
+                                type="password"
                                 autoComplete="current-password"
+                                onChange={this.onChange}
+                                value={this.state.password}
+                                error={errors.password}
                             />
                         </FormControl>
                         {/* <FormControlLabel   
