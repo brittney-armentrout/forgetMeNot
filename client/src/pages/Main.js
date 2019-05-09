@@ -50,10 +50,11 @@ class SimpleTabs extends Component {
         user: "",
     };
 
-    componentDidMount = () => {
-        this.setState({ user: this.props.location.state.user });
+    //causing errors - not mapping.  pulling from wrong place? nothing there?
+    // componentDidMount = () => {
+    //     this.setState({ user: this.props.location.state.user });
         
-    }
+    // }
 
     handleChange = (event, value) => {
         this.setState({ value });
