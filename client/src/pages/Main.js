@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Redirect } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -10,8 +10,8 @@ import MainOccasionsTable from "../components/OccasionsTable/MainOccasionsTable"
 import FriendGrid from "../components/FriendGrid/FriendGrid";
 import AddFriendContainer from "../containers/AddFriendContainer";
 import AddGiftContainer from "../containers/AddGiftContainer";
+import { Link } from "react-router-dom";
 
-// !! add in "Hi, {name}!"
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {
@@ -38,20 +38,19 @@ const styles = theme => ({
 });
 
 class SimpleTabs extends Component {
-    state = {
-        value: 0,
-        user: "",
-    };
-
-    // causing errors - not mapping.  pulling from wrong place? nothing there?
-    componentDidMount = () => {
-        this.setState({ user: this.props.location.state.user });
-        
-    }
+        state = {
+            value: 0,
+            user: "",
+        };
+    
 
     handleChange = (event, value) => {
         this.setState({ value });
     };
+
+    componentDidMount = () => {
+        this.setState({ user: this.props.location.state.user });
+    }
 
     render() {
         const { classes } = this.props;
@@ -73,7 +72,9 @@ class SimpleTabs extends Component {
                 </AppBar>
                     {value === 0 && <TabContainer> 
                                         <Typography component="title">Your Favorites</Typography>
-                                        <FriendGrid /> 
+                                        <Link to={"/detail"}>
+                                            <FriendGrid userID = {this.state.user}/> 
+                                        </Link>
                                         <Typography component="title">Upcoming Occasions</Typography>
                                         <MainOccasionsTable />        
                                     </TabContainer>}
@@ -88,6 +89,7 @@ class SimpleTabs extends Component {
         );
     }
 }
+
 
 SimpleTabs.propTypes = {
     classes: PropTypes.object.isRequired,

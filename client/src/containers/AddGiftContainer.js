@@ -74,6 +74,7 @@ class AddGiftContainer extends Component {
             formControls: {
                 gift: {
                     value: "",
+                    // key: "",
                     placeholder: "Gift",
                     valid: false,
                     touched: false,
@@ -126,7 +127,7 @@ class AddGiftContainer extends Component {
         console.log(formData);
         console.log(formData.friend);
         console.log(formData.gift);
-        console.log(formData.file);
+        // console.log(formData.file);
         // API.saveGift({     gift: formData.gift,     friend: formData.friend,     img:
         // formData.img }) api saveGift api saveImg
     }

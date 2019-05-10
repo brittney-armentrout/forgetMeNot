@@ -7,14 +7,8 @@ import { Tabs, Tab } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import GiftGridList from "../components/GiftGrid/GiftGridList";
 import OccasionsTable from "../components/OccasionsTable/OccasionsTable";
-import FriendGrid from "../components/FriendGrid/FriendGrid";
+import FriendsContainer from "../containers/FriendsContainer";
 
-// import PhoneIcon from "@material-ui/core/Phone";
-// import FavoriteIcon from "@material-ui/core/Favorite";
-// import PersonPinIcon from "@material-ui/core/PersonPin";
-
-
-// !!!  NEED TO CONVERT FRIEND DETAIL FROM GRID OF FRIENDS TO ONE FRIEND & THEIR INFO !!!
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {
@@ -43,11 +37,16 @@ const styles = theme => ({
 class SimpleTabs extends Component {
     state = {
         value: 0,
+        user: "",
     };
 
     handleChange = (event, value) => {
         this.setState({ value });
     };
+
+    // componentDidMount = () => {
+    //     this.setState({ user: this.props.location.state.user });
+    // }
 
     render() {
         const { classes } = this.props;
@@ -68,13 +67,13 @@ class SimpleTabs extends Component {
                     </Tabs>
                 </AppBar>
                     {value === 0 && <TabContainer>
-                                        <FriendGrid />
+                                        <FriendsContainer userID = {this.state.user}/>
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
-                                        <OccasionsTable />
+                                        <OccasionsTable userID = {this.state.user}/>
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <GiftGridList />
+                                        <GiftGridList userID = {this.state.user}/>
                                  </TabContainer>}
 
             
