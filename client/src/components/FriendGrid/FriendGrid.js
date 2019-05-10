@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Grid, GridList, GridListTile } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
-const gridFont = "'Roboto', sans-serif";
+// const gridFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
     root: {

@@ -5,18 +5,11 @@ import AppBar from "@material-ui/core/AppBar";
 import { Tabs, Tab } from "@material-ui/core";
 // import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import GiftGridList from "../components/GiftGrid/GiftGridList";
+// import GiftGridList from "../components/GiftGrid/GiftGridList";
 import MainOccasionsTable from "../components/OccasionsTable/MainOccasionsTable";
 import FriendGrid from "../components/FriendGrid/FriendGrid";
-import { Grid, GridList } from "@material-ui/core";
 import AddFriendContainer from "../containers/AddFriendContainer";
 import AddGiftContainer from "../containers/AddGiftContainer";
-import SimpleSelect from "../components/Select/SimpleSelect";
-
-// import PhoneIcon from "@material-ui/core/Phone";
-// import FavoriteIcon from "@material-ui/core/Favorite";
-// import PersonPinIcon from "@material-ui/core/PersonPin";
-
 
 // !! add in "Hi, {name}!"
 const displayFont = "'Fresca', sans-serif";
@@ -50,11 +43,11 @@ class SimpleTabs extends Component {
         user: "",
     };
 
-    //causing errors - not mapping.  pulling from wrong place? nothing there?
-    // componentDidMount = () => {
-    //     this.setState({ user: this.props.location.state.user });
+    // causing errors - not mapping.  pulling from wrong place? nothing there?
+    componentDidMount = () => {
+        this.setState({ user: this.props.location.state.user });
         
-    // }
+    }
 
     handleChange = (event, value) => {
         this.setState({ value });
@@ -85,7 +78,7 @@ class SimpleTabs extends Component {
                                         <MainOccasionsTable />        
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
-                                        <AddGiftContainer />
+                                        <AddGiftContainer userID = {this.state.user}/>
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
                                         <AddFriendContainer userID = {this.state.user}/>

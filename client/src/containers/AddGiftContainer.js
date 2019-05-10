@@ -3,8 +3,6 @@ import Button from "@material-ui/core/Button";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import TestSelect from "../components/FormTest/TestMaterialSelect";
-import TextInput from "../components/FormTest/TextInput";
 import InputLabel from '@material-ui/core/InputLabel';
 import validate from "../components/FormTest/Validate";
 import {withStyles} from "@material-ui/core/styles";
@@ -105,12 +103,18 @@ class AddGiftContainer extends Component {
     }
 
     componentDidMount() {
-        this.loadFriends()
+        this.loadFriends();
     };
 
     loadFriends = () => {
-        API.getFriends()
-            .then(res => this.setState({ friends: res.data }))
+        const userID = this.props.userID;
+        API.getFriends(userID)
+            .then(res => this.setState({
+                formControls: {
+                    ...this.state.formControls,
+                    friends: res.data.friends,
+                },
+            }))       
             .catch(err => console.log(err))
     }
 
@@ -181,6 +185,20 @@ class AddGiftContainer extends Component {
                         <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
                         Add New Gift
                     </Typography>
+                    <div>
+                        {this.state.formControls.friends.length ? (
+                            <ul>
+                                {this.state.formControls.friends.map(friend => {
+                                    return (
+                                    <p>{friend.name}</p>
+                                    );
+                                })}
+                            </ul>
+                        ) : (
+                            <h3>No Friends found in DB</h3>
+                        )
+                        }
+                    </div>
                     <Grid container spacing={24}>
                         <Grid item xs={12} sm={12}>
                             <TextField

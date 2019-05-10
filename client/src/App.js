@@ -3,14 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { render } from "react-dom";
 
 //Material UI:
-import Login from "./pages/OldLogin";
-import Signup from "./pages/OldSignup";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Appbar from "./components/Appbar/Appbar.js";
-import Footer from "./components/Footer/Footer.js";
 import NewLogin from "./pages/NewLogin"
 import NewSignup from "./pages/NewSignup";
 import AddGiftContainer from "./containers/AddGiftContainer";

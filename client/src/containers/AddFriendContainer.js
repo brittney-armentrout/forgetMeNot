@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import Input from "../components/Form/input";
+// import Input from "../components/Form/input";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 // import TestSelect from "../components/FormTest/TestMaterialSelect";
-import TextInput from "../components/FormTest/TextInput";
+// import TextInput from "../components/FormTest/TextInput";
 import validate from "../components/FormTest/Validate";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Typography from "@material-ui/core/Typography";
-import { FormControl, InputLabel } from "@material-ui/core";
+import { InputLabel } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import DatePicker from "../components/FormTest/Pickers";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
-const listFont = "'Roboto', sans-serif";
+// const listFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
     layout: {
@@ -61,8 +61,8 @@ class AddFriendContainer extends Component {
         this.state = {
             formIsValid: false,
             formControls: {
-                // friend: {
-                    name: { value: "",  },
+                friend: {
+                    name: { value: "" },
                         // valid: false,
                         // touched: false,
                         // validationRules: {
@@ -79,9 +79,9 @@ class AddFriendContainer extends Component {
                     // },
                     occasions: 
                         { value: "", date: "" },
-                            // placeholder: "Add an Occasion",
-                            // valid: false,
-                            // touched: false,
+                            placeholder: "Add an Occasion",
+                            valid: false,
+                            touched: false,
                             // validationRules: {
                             //     isRequired: false,
                             // },
@@ -105,7 +105,7 @@ class AddFriendContainer extends Component {
                         // },
                     
                     //consider adding Gifts as well
-                // },
+                 },
             },
         };
     };
@@ -116,7 +116,6 @@ class AddFriendContainer extends Component {
             formData[formElementId] = this.state.formControls[formElementId].value;
         }  
         console.log(formData);
-        console.log(this.state.selectedDate);
         const userID = this.props.userID;
         API.saveFriend(userID, formData)
         .then((response) => {
@@ -155,7 +154,7 @@ class AddFriendContainer extends Component {
         });
     };
 
-    handleSelectChange = (event, index, value) => {
+    handleSelectChange = value => {
         this.setState({ selectedValue: value })
     };
 
@@ -202,13 +201,15 @@ class AddFriendContainer extends Component {
                         <Grid item xs={12} sm={6}>
                             <InputLabel htmlFor="occasion">Occasion</InputLabel>
                             <Select
-                                value={this.state.occasion}
+                                value={this.selectedValue}
                                 onChange={this.handleChange}
+                                onChange={this.handleSelectChange}
                                 inputProps={{
                                     name: "occasion",
                                     id: "occasion",
                                 }}
                                 fullWidth
+                                // touched={this.state.formControls.occasions.touched}
                             >
                                 <MenuItem value="">
                                     <em>None</em>

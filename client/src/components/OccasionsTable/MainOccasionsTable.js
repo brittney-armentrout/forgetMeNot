@@ -1,15 +1,15 @@
 import React from "react";
-import classNames from "classnames";
+// import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+// import Toolbar from "@material-ui/core/Toolbar";
+// import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
+// import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import DeleteIcon from "@material-ui/icons/Delete";
 // import FilterListIcon from "@material-ui/icons/FilterList";
-import { lighten } from "@material-ui/core/styles/colorManipulator";
+// import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
 import { 
     Table, 
@@ -99,30 +99,30 @@ OccasionsTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired
 };
 
-const toolbarStyles = theme => ({
-    root: {
-        // marginTop: theme.spacing.unit * 8,
-    },
-    highlight:
-        theme.palette.type === "light"
-            ? {
-                color: theme.palette.secondary.main,
-                backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-            }
-        :   {
-                color: theme.palette.text.primary,
-                backgroundColor: theme.palette.secondary.dark
-            },
-    spacer: {
-        flex: "1 1 100%"
-    },
-    actions: {
-        color: theme.palette.text.secondary
-    },
-    title: {
-        flex: "0 0 auto"
-    }
-});
+// const toolbarStyles = theme => ({
+//     root: {
+//         // marginTop: theme.spacing.unit * 8,
+//     },
+//     highlight:
+//         theme.palette.type === "light"
+//             ? {
+//                 color: theme.palette.secondary.main,
+//                 backgroundColor: lighten(theme.palette.secondary.light, 0.85)
+//             }
+//         :   {
+//                 color: theme.palette.text.primary,
+//                 backgroundColor: theme.palette.secondary.dark
+//             },
+//     spacer: {
+//         flex: "1 1 100%"
+//     },
+//     actions: {
+//         color: theme.palette.text.secondary
+//     },
+//     title: {
+//         flex: "0 0 auto"
+//     }
+// });
 
 // let OccasionsTableToolbar = props => {
 //     const { numSelected, classes } = props;
