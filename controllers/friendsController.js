@@ -3,12 +3,19 @@ const db = require("../models");
 //Define controller methods for Friend
 module.exports = {
     findAll: function(req, res) {
-        db.User
-            .find(req.query)
-            .sort({ date: -1 })
+        db.User 
+            .findById(req.params.id)
+            .populate("friends")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
+    // findAll: function(req, res) {
+    //     db.User
+    //         .find(req.params.id)
+    //         .sort({ date: -1 })
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err))
+    // },
     findById: function(req, res) {
         db.Friend   
             .findById(req.query)

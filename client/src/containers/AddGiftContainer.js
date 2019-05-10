@@ -1,48 +1,68 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Button from "@material-ui/core/Button";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import TestSelect from "../components/FormTest/TestMaterialSelect";
-import TextInput from "../components/FormTest/TextInput";
 import InputLabel from '@material-ui/core/InputLabel';
 import validate from "../components/FormTest/Validate";
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import Typography from "@material-ui/core/Typography";
 import SaveIcon from '@material-ui/icons/Save';
-
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 
 const giftImg = require("../components/Logo/img/GiftLg.png");
 const listFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
-    root: {
-        width: "100%",
+    layout: {
+        width: "auto",
         marginTop: theme.spacing.unit * 3,
-        overflowX: "auto",
+        marginLeft: theme.spacing.unit * 2,
+        marginRight: theme.spacing.unit * 2,
+        [
+            theme
+                .breakpoints
+                .up(600 + theme.spacing.unit * 2 * 2)
+        ]: {
+            width: 600,
+            marginLeft: "auto",
+            marginRight: "auto"
+        },
         color: theme.palette.primary,
-        fontFamily: listFont,
-       
+        fontFamily: listFont
+    },
+    paper: {
+        marginTop: theme.spacing.unit * 3,
+        marginBottom: theme.spacing.unit * 3,
+        padding: theme.spacing.unit * 2,
+        [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)] : {
+            marginTop: theme.spacing.unit * 6,
+            marginBottom: theme.spacing.unit * 6,
+            padding: theme.spacing.unit * 3
+        },
     },
     image: {
         marginTop: theme.spacing.unit * 2,
-        maxHeight: 60,
+        maxHeight: 60
     },
     select: {
-        marginLeft: theme.spacing.unit * 5,
+        marginLeft: theme.spacing.unit * 5
     },
     button: {
-        margin: theme.spacing.unit,
-        justify: "center",
+        marginTop: theme.spacing.unit * 3,
+        marginLeft: theme.spacing.unit,
+        justify: "center"
     },
     rightIcon: {
-        marginLeft: theme.spacing.unit,
+        marginLeft: theme.spacing.unit
     },
     iconSmall: {
-        fontSize: 20,
-    },
+        fontSize: 20
+    }
 })
 
 class AddGiftContainer extends Component {
@@ -62,38 +82,39 @@ class AddGiftContainer extends Component {
                         isRequired: true
                     }
                 },
-                friend: {
-                    value: "",
-                    placeholder: "Choose Friend",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        isRequired: true,
-                    },
-                    options: [
-                        { value: "friend1", displayValue: "Friend1" },
-                        { value: "friend2", displayValue: "Friend2" }
-                    ]
-                },
+                friends: [],
+                    // value: "",
+                    // valid: false,
+                    // touched: false,
+                    // validationRules: {
+                    //     isRequired: true
+                    // },
+                
                 file: {
                     value: "",
                     valid: false,
                     touched: false,
                     validationRules: {
-                        isRequired: false,
+                        isRequired: false
                     }
-                },
+                }
             }
         }
     }
 
     componentDidMount() {
-        this.loadFriends()
+        this.loadFriends();
     };
 
     loadFriends = () => {
-        API.getFriends()
-            .then(res => this.setState({ options: res.data }))
+        const userID = this.props.userID;
+        API.getFriends(userID)
+            .then(res => this.setState({
+                formControls: {
+                    ...this.state.formControls,
+                    friends: res.data.friends,
+                },
+            }))       
             .catch(err => console.log(err))
     }
 
@@ -106,13 +127,8 @@ class AddGiftContainer extends Component {
         console.log(formData.friend);
         console.log(formData.gift);
         console.log(formData.file);
-        // API.saveGift({
-        //     gift: formData.gift,
-        //     friend: formData.friend,
-        //     img: formData.img
-        // })
-        //api saveGift
-        //api saveImg
+        // API.saveGift({     gift: formData.gift,     friend: formData.friend,     img:
+        // formData.img }) api saveGift api saveImg
     }
 
     handleChange = event => {
@@ -136,186 +152,132 @@ class AddGiftContainer extends Component {
             formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
         }
 
-        this.setState({
-                formControls: updatedControls,
-                FormIsValid: formIsValid
-        });
+        this.setState({formControls: updatedControls, FormIsValid: formIsValid});
     }
 
-    // handleSubmit(event) {
-    //     //send new gift data to DB
-    //     event.preventDefault();
-    //     console.log('Submit button hit!');
-    //     alert(
-    //         `Selected file - ${
-    //             this.fileInput.current.files[0].name
-    //         }`
-    //     );
-    //     API.saveGift({
-    //         gift: this.state.Gift.gift,
-    //         // address: this.state.Gift.address,
-    //         // // img: this.state.img,
-    //         // date: new Date(Date.now()),
-    //         // isFavorite: true,
-    //         //!! need to figure out how to enter and save an array here !!
-    //         // gifts: 
-    //         // occasions:
-    //     })
-    //     .then(this.handleFormClear(), console.log("new gift saved to DB"))
-    //     .catch(err => console.log(err));
-    // }
-
-    // handleFormClear() {
-    //     this.setState({
-    //         Gift: {
-    //             gift: "",
-    //             img: "",
-    //             isStar: ""
-    //         }
-    //     })
-    // }
-
-    // handleInput(event) {
-    //     let value = event.target.value;
-    //     let name = event.target.name;
-    //     this.setState ( prevState => {
-    //         return {
-    //             Gift : {
-    //                 ...prevState.Gift, [name]: value 
-    //             }
-    //             // Friends : [
-    //             //     ...prevState.Friends, [name]: value
-    //             // ]
-    //         }
-    //       }, () => console.log(this.state.Gift));     
-    // }
-
-    // handleInput(event) {
-    //     const name = event.target.name;
-    //     const value = event.target.value;
-
-    //     this.setState({
-    //         formControls: {
-    //             [name]: value
-    //         }
-    //     });
-    // }
+    // handleSubmit(event) {     //send new gift data to DB
+    // event.preventDefault();     console.log('Submit button hit!');     alert(
+    //     `Selected file - ${             this.fileInput.current.files[0].name
+    //    }`     );     API.saveGift({         gift: this.state.Gift.gift,
+    // // address: this.state.Gift.address,         // // img: this.state.img,
+    //   // date: new Date(Date.now()),         // isFavorite: true,         //!!
+    // need to figure out how to enter and save an array here !!         // gifts:
+    //       // occasions:     })     .then(this.handleFormClear(), console.log("new
+    // gift saved to DB"))     .catch(err => console.log(err)); } handleFormClear()
+    // {     this.setState({         Gift: {             gift: "",             img:
+    // "",             isStar: ""         }     }) } handleInput(event) {     let
+    // value = event.target.value;     let name = event.target.name;
+    // this.setState ( prevState => {         return {             Gift : {
+    //        ...prevState.Gift, [name]: value             }             // Friends
+    // : [             //     ...prevState.Friends, [name]: value             // ]
+    //       }       }, () => console.log(this.state.Gift)); } handleInput(event) {
+    //    const name = event.target.name;     const value = event.target.value;
+    // this.setState({         formControls: {             [name]: value         }
+    //   }); }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
-            <div>
-                <Grid 
-                    container
-                    spacing={0}
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                    style={{ minHeight: 500 }}
-                >
-                    <Grid item xs={3}>  
-                        <Paper style={{ paddingLeft: 25, paddingBottom: 25 }}>    
-                            <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
-                                <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
-                                Add New Gift   
-                            </Typography>
-                        
-                            <TextInput 
+            <main className={classes.layout}>
+                <Paper className={classes.paper}>
+                    <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
+                        <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
+                        Add New Gift
+                    </Typography>
+                    <div>
+                        {this.state.formControls.friends.length ? (
+                            <ul>
+                                {this.state.formControls.friends.map(friend => {
+                                    return (
+                                    <p>{friend.name}</p>
+                                    );
+                                })}
+                            </ul>
+                        ) : (
+                            <h3>No Friends found in DB</h3>
+                        )
+                        }
+                    </div>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12} sm={12}>
+                            <TextField
                                 label={this.state.formControls.gift.placeholder}
                                 type="text"
                                 name="gift"
+                                fullWidth
                                 value={this.state.formControls.gift.value}
                                 onChange={this.handleChange}
                                 touched={this.state.formControls.gift.touched}
                                 valid={this.state.formControls.gift.valid}
-                            />            
-                            <br />
-                            <TestSelect 
-                                name="friend"
-                                value={this.state.formControls.friend.value}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <InputLabel htmlFor="friend">Select Friend</InputLabel>
+                            <Select 
+                                value={this.state.friend}
                                 onChange={this.handleChange}
-                                options={this.state.formControls.friend.options}
-                                touched={this.state.formControls.friend.touched}
-                                valid={this.state.formControls.friend.valid}
-                            />                    
-                            <br />
-                            <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
+                                inputProps={{
+                                    name: "friend",
+                                    id: "friend",
+                                }}
+                                fullWidth
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                {this.state.formControls.friends.map(friend => {
+                                    return (
+                                        <MenuItem   
+                                            key = {friend.id}
+                                            name = {friend.name}
+                                            value={friend.name}    
+                                        >
+                                        </MenuItem>
+                                        
+                                    )
+                                })}
+                                </Select>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                            <input  
+                                accept="image/*"
+                                className={classes.input}
+                                id="imgFileBtn"
+                                multiple
+                                type="file"
+                            />
+                            <label htmlFor="imgFileBtn">
+                                <Button component="span" className={classes.button}>
+                                    Upload image
+                                </Button>
+                            </label>
+                            {/* <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
                                 Upload a picture:
-                                <input name="img" type="file" ref={this.fileInput} style={{ marginTop: 10 }} />
-                            </Typography>
-                            <br />
-                            <Button 
-                                variant="contained" 
+                                <input name="img" type="file" ref={this.state.formControls.friend.img.fileInput} style={{ marginTop: 10 }} />
+                            </Typography>  */}
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                variant="contained"
                                 size="small"
                                 color="primary"
                                 className={classes.button}
-                                onClick={this.formSubmitHandler}
-                            >
-                            Save
-                            <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)} />                        
-                          </Button>
-                        </Paper> 
-                     </Grid>
-                </Grid>  
-            </div>
-        )              
+                                onClick={this.formSubmitHandler}>
+                                Save
+                                <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)}/>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </main>
+        )
     };
 }
 
 AddGiftContainer.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AddGiftContainer);
-
-// export default AddGiftContainer;
-    
-            // <Grid 
-            //     container
-            //     spacing={24}
-            //     direction="row"
-            //     justify="center"
-            //     alignItems="center"
-            // >
-            // <Grid item xs={12} md={6}>
-            //     <Paper className={classes.root} style={{ minHeight: 400 }}>
-            //         <h1>New Gift
-            //             <img src={giftImg} className={classes.image} alt="Gift" style={{ height: 100 }} />
-            //         </h1>
-            //         <form onSubmit={this.handleSubmit}>
-            //             {/* Gift Input */}
-            //             <Input 
-            //                 value = {this.state.Gift.gift}
-            //                 name = {"gift"}
-            //                 type = {"text"}
-            //                 placeholder = {"Gift"}
-            //                 onChange = {this.handleInput}
-            //             />
-            //             {/* Select Friend */}
-            //             <label>
-            //                 Which friend should this gift go to?
-            //             <select value = {this.state.value} onChange={this.handleInput}>
-            //                 {this.state.friends.map(friend => {
-            //                     return (
-            //                         <option value={friend.name}>{friend.name}</option>
-            //                     )
-            //                 })}
-            //             </select>
-            //             </label>
-                       
-                        /* Submit */
-                        // <Button 
-                        //     action = {this.handleSubmit}  
-                        //     type = {"primary"}
-                        //     title = {"Submit"} 
-                        // />     
-            //         </form> 
-            //     </Paper>
-            // </Grid>
-            // </Grid>
-        // );
-    // }
-
-// }
 

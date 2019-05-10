@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const friendSchema = new Schema({
   name: { type: String, required: true },
-  address: { type: String, required: false },
+  address: { type: String },
   img: { data: Buffer, contentType: String},
   date: { type: Date, default: Date.now }, //need this?
   isFavorite: { type: Boolean, default: false },

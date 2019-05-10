@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default {
     //Will get favorites (not sure if this will work...)
-    getFriends: function() {
-        return axios.get("/api/friends")
+    getFriends: function(userID) {
+        return axios.get(`/api/friends/${userID}`)
     },
     //Gets friend detail
     getFriendDetail: function() {
