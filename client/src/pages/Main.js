@@ -37,7 +37,7 @@ const styles = theme => ({
     },
 });
 
-class SimpleTabs extends Component {
+class MainTabs extends Component {
         state = {
             value: 0,
             user: "",
@@ -50,7 +50,7 @@ class SimpleTabs extends Component {
 
     componentDidMount = () => {
         this.setState({ user: this.props.location.state.user });
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -72,9 +72,12 @@ class SimpleTabs extends Component {
                 </AppBar>
                     {value === 0 && <TabContainer> 
                                         <Typography component="title">Your Favorites</Typography>
-                                        <Link to={"/detail"}>
-                                            <FriendGrid userID = {this.state.user}/> 
-                                        </Link>
+                                            <Link to={{
+                                                pathname: "/detail",
+                                                state: { user: this.state.user }
+                                            }}>
+                                                <FriendGrid />
+                                            </Link>
                                         <Typography component="title">Upcoming Occasions</Typography>
                                         <MainOccasionsTable />        
                                     </TabContainer>}
@@ -91,8 +94,8 @@ class SimpleTabs extends Component {
 }
 
 
-SimpleTabs.propTypes = {
+MainTabs.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+export default withStyles(styles)(MainTabs);

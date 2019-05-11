@@ -34,7 +34,7 @@ const styles = theme => ({
     }
 });
 
-class SimpleTabs extends Component {
+class DetailTabs extends Component {
     state = {
         value: 0,
         user: "",
@@ -44,13 +44,16 @@ class SimpleTabs extends Component {
         this.setState({ value });
     };
 
-    // componentDidMount = () => {
-    //     this.setState({ user: this.props.location.state.user });
-    // }
+    componentWillMount = () => {
+        console.log(this.props.location.state.user);
+        this.setState({ user: this.props.location.state.user });
+        
+    }
 
     render() {
         const { classes } = this.props;
         const { value } = this.state;
+        console.log(this.state.user);
 
         return (
             <div className={classes.root}>
@@ -61,13 +64,13 @@ class SimpleTabs extends Component {
                         onChange={this.handleChange}
                         centered
                     >
-                        <Tab label="Friend Detail" />
+                        <Tab label="Friends" />
                         <Tab label="Occasions" />
                         <Tab label="Gift Ideas" />               
                     </Tabs>
                 </AppBar>
                     {value === 0 && <TabContainer>
-                                        <FriendsContainer userID = {this.state.user}/>
+                                        <FriendsContainer userID = {this.state.user} />
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
                                         <OccasionsTable userID = {this.state.user}/>
@@ -83,8 +86,8 @@ class SimpleTabs extends Component {
     }
 }
 
-SimpleTabs.propTypes = {
+DetailTabs.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+export default withStyles(styles)(DetailTabs);

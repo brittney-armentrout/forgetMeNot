@@ -64,9 +64,6 @@ function FriendGrid(props) {
                                 <img 
                                     src={tile.img} 
                                     alt={tile.title} 
-                                    // href={tile.href} 
-                                    onClick={tile.onClick}
-                                    hover
                                 />
                             </GridListTile>
                         ))}

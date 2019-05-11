@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from "../utils/API";
 import PropTypes from 'prop-types';
+import classNames from "classnames";
 import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -33,20 +34,22 @@ const styles = theme => ({
 
 class FriendsContainer extends Component {
     constructor(props) {
+        console.log(props);
         super(props);
-
-        this.state={
+        console.log(props);
+        this.state = {
             friends: [],
         }
     }
+   
 
-    componentDidMount() {
+    componentWillMount() {
+        console.log(this.props);
         this.loadFriends();
     };
 
     loadFriends = () => {
         const userID = this.props.userID;
-
         API.getFriends(userID)
             .then(res => this.setState({ friends: res.data.friends }))
             .catch(err => console.log(err))
@@ -63,11 +66,11 @@ class FriendsContainer extends Component {
                         return (
                             <ExpansionPanel>
                                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                                    <Typography className={classes.heading}>Placeholder</Typography>
+                                    <Typography className={classes.heading}>{friend.name}</Typography>
                                  </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <Typography>
-                                        test test test test
+                                        {friend.address}
                                     </Typography>
                                 </ExpansionPanelDetails>    
                             </ExpansionPanel>
@@ -83,10 +86,13 @@ class FriendsContainer extends Component {
         )
     }
 
-
-
-
 }
+
+FriendsContainer.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+  export default withStyles(styles)(FriendsContainer);
 
 // function SimpleExpansionPanel(props) {
 //   const { classes } = props;
@@ -123,8 +129,3 @@ class FriendsContainer extends Component {
 //   );
 // }
 
-FriendsContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(FriendsContainer);
