@@ -5,22 +5,23 @@ import { withStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
+import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
-// import FilterListIcon from "@material-ui/icons/FilterList";
+import Checkbox from "@material-ui/core/Checkbox";
+
 import { 
-    Table,
-    TableBody,
-    TableCell,
+    Table, 
+    TableBody, 
+    TableCell, 
     TableHead,
     TablePagination,
     TableRow,
-    TableSortLabel 
-}   from "@material-ui/core/Table";
+    TableSortLabel
+} from "@material-ui/core";
 
 let counter = 0;
 function createData(occasion, date) {
@@ -36,30 +37,30 @@ const columnData = [
 
 const listFont = "'Roboto', sans-serif";
 
-class FriendTableHead extends React.Component {
+class OccasionsTableHead extends React.Component {
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property)
     };
 
     render() {
         const {
-            // onSelectAllClick,
+            onSelectAllClick,
             order,
             orderBy,
-            // numSelected,
-            // rowCount
+            numSelected,
+            rowCount
         } = this.props;
 
         return (
             <TableHead>
                 <TableRow>
-                    {/* <TableCell padding="checkbox">
+                    <TableCell padding="checkbox">
                         <Checkbox
                             indeterminate={numSelected > 0 && numSelected < rowCount}
                             checked={numSelected === rowCount}
                             onChange={onSelectAllClick}
                         />
-                    </TableCell> */}
+                    </TableCell>
                     {columnData.map(column => {
                         return (
                             <TableCell  
@@ -91,7 +92,7 @@ class FriendTableHead extends React.Component {
     }
 }
 
-FriendTableHead.propTypes = {
+OccasionsTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
@@ -102,7 +103,7 @@ FriendTableHead.propTypes = {
 
 const toolbarStyles = theme => ({
     root: {
-        paddingRight: theme.spacing.unit
+        marginTop: theme.spacing.unit * 2,
     },
     highlight:
         theme.palette.type === "light"
@@ -125,7 +126,7 @@ const toolbarStyles = theme => ({
     }
 });
 
-let FriendTableToolbar = props => {
+let OccasionsTableToolbar = props => {
     const { numSelected, classes } = props;
 
     return (
@@ -140,9 +141,7 @@ let FriendTableToolbar = props => {
                     {numSelected} selected
                 </Typography>
             ) : (
-                <Typography variant="title" id="tableTitle">
-                {/* Gift Purchasing Tracker */}
-                </Typography>
+                <Typography></Typography>
             )}
         </div>
         <div className={classes.spacer} />
@@ -165,32 +164,33 @@ let FriendTableToolbar = props => {
     );
 };
 
-FriendTableToolbar.propTypes = {
+OccasionsTableToolbar.propTypes = {
     classes: PropTypes.object.isRequired,
     numSelected: PropTypes.number.isRequired
 };
 
-FriendTableToolbar = withStyles(toolbarStyles)(FriendTableToolbar);
+OccasionsTableToolbar = withStyles(toolbarStyles)(OccasionsTableToolbar);
 
 const styles = theme => ({
     root: {
         width: '100%',
-        marginTop: theme.spacing.unit * 3,
+        marginTop: theme.spacing.unit * 6,
         overflowX: 'auto',
     },
     table: {
-        minWidth: 700,
-        textAlign: 'center'
+        midWidth: 700,
+        textAlign: "center",
     },
     tableWrapper: {
         overflowX: "auto"
     }
 });
 
-class FriendOccasionTable extends React.Component {
+class OccasionsTable extends React.Component {
     constructor(props, context) {
         super(props, context);
-
+        //add in code to only do most recent ones
+        //this will become DB data
         this.state = {
             order: "asc",
             orderBy: "date",
@@ -273,12 +273,12 @@ class FriendOccasionTable extends React.Component {
                 justify="center"
                 alignItems="center"
             >
-                <Grid item xs={8}>
-                    <Paper className={classes.root}>
-                        <FriendTableToolbar numSelected={selected.length} />
+                <Grid item xs={12} md={6}>
+                    <Paper className={classes.root} style={{ height: 360 }}>
+                        <OccasionsTableToolbar numSelected={selected.length} />
                         <div className={classes.tableWrapper}>
                             <Table className={classes.table} aria-labelledby="tableTitle">
-                                <FriendTableHead 
+                                <OccasionsTableHead 
                                     numSelected={selected.length}
                                     order={order}
                                     orderBy={orderBy}
@@ -301,14 +301,14 @@ class FriendOccasionTable extends React.Component {
                                                     key={n.id}
                                                     selected={isSelected}
                                                 >
-                                                    <TableCell 
-                                                        component="th" 
-                                                        scope="row" 
-                                                        padding="20px"
-                                                        style={{ fontFamily: listFont }}
-                                                    >
-                                                    {n.occasion}
-                                                    </TableCell>
+                                                <TableCell 
+                                                    component="th" 
+                                                    scope="row" 
+                                                    style={{ fontFamily: listFont }}
+                                                >
+                                                    {n.friend}
+                                                </TableCell>
+                                                    <TableCell style={{ fontFamily: listFont }}>{n.occasion}</TableCell>
                                                     <TableCell number style={{ fontFamily: listFont }}>{n.date}</TableCell>
                                                     <TableCell padding="checkbox">
                                                         <Checkbox checked={isSelected} />
@@ -318,7 +318,7 @@ class FriendOccasionTable extends React.Component {
                                     })}
                                     {emptyRows > 0 && (
                                         <TableRow style={{ height: 49 * emptyRows }}>
-                                            <TableCell colSpan={6} />
+                                            <TableCell colSpan={12} />
                                         </TableRow>
                                     )}
                                 </TableBody>
@@ -345,8 +345,8 @@ class FriendOccasionTable extends React.Component {
     }
 }
 
-FriendOccasionTable.propTypes = {
-    classes: PropTypes.object.isRequired,
+OccasionsTable.propTypes = {
+    classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FriendOccasionTable);
+export default withStyles(styles)(OccasionsTable);

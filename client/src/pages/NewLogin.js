@@ -16,8 +16,8 @@ import { withStyles } from '@material-ui/core/styles';
 // import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import CreateIcon from "@material-ui/icons/Create";
 
-
-// axios.defaults.baseURL = "http://localhost:3001";
+//DEV only, comment out for deploy
+axios.defaults.baseURL = "http://localhost:3001";
 
 const styles = theme => ({
     main: {

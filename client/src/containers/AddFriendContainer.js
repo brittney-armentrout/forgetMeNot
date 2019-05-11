@@ -46,7 +46,7 @@ const styles = theme => ({
         justifyContent: "flex-end",
     },
     button: {
-        marginTop: theme.spacing.unit * 3,
+        marginTop: 0,
         marginLeft: theme.spacing.unit,
     },
     input: {
@@ -63,48 +63,15 @@ class AddFriendContainer extends Component {
             formControls: {
                 friend: {
                     name: { value: "" },
-                        // valid: false,
-                        // touched: false,
-                        // validationRules: {
-                        //     isRequired: true,
-                        // },
-                   
-                    // address: {
-                    //     value: "",
-                    //     valid: false,
-                    //     touched: false,
-                    //     validationRules: {
-                    //         isRequired: false,
-                    //     },
-                    // },
+    
                     occasions: 
                         { value: "", date: "" },
                             placeholder: "Add an Occasion",
                             valid: false,
                             touched: false,
-                            // validationRules: {
-                            //     isRequired: false,
-                            // },
-                            // options: [
-                            //     { value: "Birthday", displayValue: "Birthday" },
-                            //     { value: "Anniversary", displayValue: "Anniversary" },
-                            //     { value: "Graduation", displayValue: "Graduation" },
-                            //     { value: "Holiday", displayValue: "Holiday" },
-                            //     { value: "Other", displayValue: "Other" },
-                            // ]
-                        
-                    // dates: {
-                    //     value: "",
-                    //     selectedDate: "",
-                    // },
-                    img: { value: "", ref: "" },
-                        // valid: false,
-                        // touched: false,
-                        // validationRules: {
-                        //     isRequired: false,
-                        // },
                     
-                    //consider adding Gifts as well
+                    img: { value: "", ref: "" },
+
                  },
             },
         };
@@ -248,15 +215,11 @@ class AddFriendContainer extends Component {
                                     Upload image
                                 </Button>
                             </label>
-                            {/* <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
-                                Upload a picture:
-                                <input name="img" type="file" ref={this.state.formControls.friend.img.fileInput} style={{ marginTop: 10 }} />
-                            </Typography>  */}
                         </Grid>
                         <Grid item xs={12} sm={6}>
                              <Button 
                                 variant="contained" 
-                                size="large"
+                                size="small"
                                 color="primary"
                                 className={classes.button}
                                 onClick={this.formSubmitHandler}

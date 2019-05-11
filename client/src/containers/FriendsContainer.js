@@ -72,6 +72,7 @@ class FriendsContainer extends Component {
                                     <Typography>
                                         {friend.address}
                                     </Typography>
+                                   
                                 </ExpansionPanelDetails>    
                             </ExpansionPanel>
                         )
