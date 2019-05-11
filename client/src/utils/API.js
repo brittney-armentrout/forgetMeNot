@@ -18,7 +18,6 @@ export default {
         return axios.post("/api/upload", imgData)
     },
     saveGift: function(giftData) {
-        console.log('gift API Hit!')
         return axios.post("/api/gift", giftData);
     }
     

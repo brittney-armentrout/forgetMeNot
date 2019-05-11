@@ -51,7 +51,11 @@ class FriendsContainer extends Component {
     loadFriends = () => {
         const userID = this.props.userID;
         API.getFriends(userID)
-            .then(res => this.setState({ friends: res.data.friends }))
+            .then(res => {
+                console.log(res.data.friends);
+                this.setState({ friends: res.data.friends })
+            })
+            .then(API.getGifts)
             .catch(err => console.log(err))
     }
 
@@ -70,7 +74,7 @@ class FriendsContainer extends Component {
                                  </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <Typography>
-                                        {friend.address}
+                                        {friend.gifts[0].gift}
                                     </Typography>
                                 </ExpansionPanelDetails>    
                             </ExpansionPanel>

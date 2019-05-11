@@ -121,15 +121,12 @@ class AddGiftContainer extends Component {
 
     formSubmitHandler = () => {
         const formData = {};
+        const formData2 = {};
         for (let formElementId in this.state.formControls) {
             formData[formElementId] = this.state.formControls[formElementId].value;
         }
-        console.log(formData);
-        console.log(formData.friend);
-        console.log(formData.gift);
         
-        const userID = this.props.userID;
-        API.saveGift(userID, formData)
+        API.saveGift(formData)
             .then((response) => {
                 console.log(`New gift added! ${response}`)
             })
@@ -280,6 +277,7 @@ class AddGiftContainer extends Component {
                                     return (
                                         <MenuItem   
                                             value={friend.name} 
+                                            id={friend._id}
                                             // displayValue={friend.name} 
                                             displayValue={this.state.selectedValue}
                                             onChange={this.handleSelectChange}
