@@ -8,6 +8,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from "@material-ui/icons/Info";
 
+
 const gridFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
@@ -102,6 +103,7 @@ function GiftGridList(props) {
     const { classes } = props;
 
     return (
+        
         <div className={classes.root}>
             <GridList cellHeight={160} className={classes.gridList} cols={3}>
                 <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>

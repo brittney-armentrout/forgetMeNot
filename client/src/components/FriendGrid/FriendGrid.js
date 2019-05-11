@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Grid, GridList, GridListTile } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
+
 // const gridFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
@@ -24,7 +25,8 @@ const styles = theme => ({
 const tileData = [
     {
         img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
-        title: "Daisy"
+        title: "Daisy",
+        href: "/detail"
     },
     {
         img: "https://images.unsplash.com/photo-1541418950054-c12804e149d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
@@ -52,19 +54,24 @@ function FriendGrid(props) {
     const { classes } = props;
 
     return (
+        
         <div className={classes.root}>
             <Grid item xs={12} md={6}>
                 <Paper className={classes.root} elevation={10}>
                     <GridList className={classes.gridList} cols={3}>
                         {tileData.map(tile => (
                             <GridListTile key={tile.img} cols={tile.cols || 1}>
-                                <img src={tile.img} alt={tile.title} />
+                                <img 
+                                    src={tile.img} 
+                                    alt={tile.title} 
+                                />
                             </GridListTile>
                         ))}
                     </GridList>
                 </Paper>
             </Grid>
         </div>
+       
     );
 }
 

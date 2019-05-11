@@ -7,14 +7,8 @@ import { Tabs, Tab } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import GiftGridList from "../components/GiftGrid/GiftGridList";
 import OccasionsTable from "../components/OccasionsTable/OccasionsTable";
-import FriendGrid from "../components/FriendGrid/FriendGrid";
+import FriendsContainer from "../containers/FriendsContainer";
 
-// import PhoneIcon from "@material-ui/core/Phone";
-// import FavoriteIcon from "@material-ui/core/Favorite";
-// import PersonPinIcon from "@material-ui/core/PersonPin";
-
-
-// !!!  NEED TO CONVERT FRIEND DETAIL FROM GRID OF FRIENDS TO ONE FRIEND & THEIR INFO !!!
 const displayFont = "'Fresca', sans-serif";
 
 const TabContainer = (props) => {
@@ -40,18 +34,26 @@ const styles = theme => ({
     }
 });
 
-class SimpleTabs extends Component {
+class DetailTabs extends Component {
     state = {
         value: 0,
+        user: "",
     };
 
     handleChange = (event, value) => {
         this.setState({ value });
     };
 
+    componentWillMount = () => {
+        console.log(this.props.location.state.user);
+        this.setState({ user: this.props.location.state.user });
+        
+    }
+
     render() {
         const { classes } = this.props;
         const { value } = this.state;
+        console.log(this.state.user);
 
         return (
             <div className={classes.root}>
@@ -62,19 +64,19 @@ class SimpleTabs extends Component {
                         onChange={this.handleChange}
                         centered
                     >
-                        <Tab label="Friend Detail" />
+                        <Tab label="Friends" />
                         <Tab label="Occasions" />
                         <Tab label="Gift Ideas" />               
                     </Tabs>
                 </AppBar>
                     {value === 0 && <TabContainer>
-                                        <FriendGrid />
+                                        <FriendsContainer userID = {this.state.user} />
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
-                                        <OccasionsTable />
+                                        <OccasionsTable userID = {this.state.user}/>
                                     </TabContainer>}
                     {value === 2 && <TabContainer>
-                                        <GiftGridList />
+                                        <GiftGridList userID = {this.state.user}/>
                                  </TabContainer>}
 
             
@@ -84,8 +86,8 @@ class SimpleTabs extends Component {
     }
 }
 
-SimpleTabs.propTypes = {
+DetailTabs.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleTabs);
+export default withStyles(styles)(DetailTabs);

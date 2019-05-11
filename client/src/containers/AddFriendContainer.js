@@ -123,9 +123,9 @@ class AddFriendContainer extends Component {
         })
     };
 
-    componentDidMount = () => {
+    // componentDidMount = () => {
         
-    }
+    // }
 
     handleChange = event => {
         const name = event.target.name;
