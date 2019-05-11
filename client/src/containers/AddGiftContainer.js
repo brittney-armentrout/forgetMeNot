@@ -86,6 +86,7 @@ class AddGiftContainer extends Component {
                 friends: [],
                 friendSelect: {
                         value: "",
+                        id: "",
                         placeholder: "Select a friend",
                         valid: false,
                         touched: false,
@@ -124,17 +125,21 @@ class AddGiftContainer extends Component {
         const formData2 = {};
         for (let formElementId in this.state.formControls) {
             formData[formElementId] = this.state.formControls[formElementId].value;
+            console.log(formElementId)
         }
+
         
         API.saveGift(formData)
             .then((response) => {
                 console.log(`New gift added! ${response}`)
             })
+            .then(this.handleFormClear())
     };
 
     handleChange = event => {
         const name = event.target.name;
         const value = event.target.value;
+        const id = event.target.id;
 
         const updatedControls = {
             ...this.state.formControls
@@ -143,6 +148,7 @@ class AddGiftContainer extends Component {
             ...updatedControls[name]
         };
         updatedFormElement.value = value;
+        updatedFormElement.id = id;
         updatedFormElement.touched = true;
         updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
 
@@ -163,6 +169,32 @@ class AddGiftContainer extends Component {
         this.setState({ selectedValue: value })
     };
 
+    // handleFormClear() {     
+    //         this.setState({         
+    //             formIsValid: false,
+    //             formControls: {
+    //                 gift: {
+    //                     value: "",
+    //                     // key: "",
+    //                     placeholder: "Gift",
+    //                     valid: false,
+    //                     touched: false,
+    //                 },
+    //                 friendSelect: {
+    //                         value: "",
+    //                         id: "", 
+    //                         valid: false,
+    //                         touched: false, 
+    //                     },
+    //                 file: {
+    //                     value: "",
+    //                     valid: false,
+    //                     touched: false,                     
+    //                 }
+    //             }
+    //       }) 
+    // } 
+
     //  handleSubmit(event) {     
     //     //send new gift data to DB
     //     event.preventDefault();     
@@ -182,14 +214,7 @@ class AddGiftContainer extends Component {
     //         .catch(err => console.log(err)); 
     //     } 
         
-        // handleFormClear() {     
-        //     this.setState({         
-        //         Gift: {             
-        //             gift: "",             
-        //                 // img: "",            
-        //         }     
-        //     }) 
-        // } 
+        
         
         // handleInput(event) {     
         //     let value = event.target.value;     
@@ -229,20 +254,6 @@ class AddGiftContainer extends Component {
                         <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
                         Add New Gift
                     </Typography>
-                    <div>
-                        {this.state.formControls.friends.length ? (
-                            <ul>
-                                {this.state.formControls.friends.map(friend => {
-                                    return (
-                                    <p>{friend.name}</p>
-                                    );
-                                })}
-                            </ul>
-                        ) : (
-                            <h3>No Friends found in DB</h3>
-                        )
-                        }
-                    </div>
                     <Grid container spacing={24}>
                         <Grid item xs={12} sm={12}>
                             <TextField
@@ -260,13 +271,14 @@ class AddGiftContainer extends Component {
                             <InputLabel htmlFor="friendSelect">Select Friend</InputLabel>
                             <Select
                                 name="friendSelect"
+                                id={this.state.id}
                                 value={this.state.selectedValue}
                                 displayValue={this.state.selectedValue}
                                 onChange={this.handleSelectChange}
                                 onChange={this.handleChange}
                                 // inputProps={{
                                 //     name: "friend",
-                                //     id: "friend",
+                                //     id: this.state.friend.id,
                                 // }}
                                 fullWidth                
                             >
@@ -277,7 +289,7 @@ class AddGiftContainer extends Component {
                                     return (
                                         <MenuItem   
                                             value={friend.name} 
-                                            id={friend._id}
+
                                             // displayValue={friend.name} 
                                             displayValue={this.state.selectedValue}
                                             onChange={this.handleSelectChange}

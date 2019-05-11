@@ -1,29 +1,30 @@
-# Create React Express App
+![Elephant Logo](/client/src/img/Artboard5.png)
 
-## About This Boilerplate
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## Never Forget an Occasion Again & Store Gift Ideas Along the Way
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+***
 
-## Starting the app locally
+* Users register with a unique login
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+* Users login to begin adding Friends to their profile 
 
-```
-npm install
-```
+* Users can add occasions and gift ideas to each friend for future reference
 
-This should install node modules within the server and the client folder.
+* Upcoming saved occassions load upon login for extra an extra reminder
 
-After both installations complete, run the following command in your terminal:
+***
 
-```
-npm start
-```
+## Technology
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+* Node.js 
+* Express.js
+* MongoDB 
+* React.js
+* passport.js
+* Material-UI
+* MVC Design
 
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+### Navigate Here
+https://radiant-ridge-80748.herokuapp.com/
+***

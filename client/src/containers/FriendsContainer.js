@@ -76,6 +76,7 @@ class FriendsContainer extends Component {
                                     <Typography>
                                         {friend.gifts[0].gift}
                                     </Typography>
+                                   
                                 </ExpansionPanelDetails>    
                             </ExpansionPanel>
                         )
