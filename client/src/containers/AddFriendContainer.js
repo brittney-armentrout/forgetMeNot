@@ -123,9 +123,6 @@ class AddFriendContainer extends Component {
         })
     };
 
-    // componentDidMount = () => {
-        
-    // }
 
     handleChange = event => {
         const name = event.target.name;
@@ -164,7 +161,6 @@ class AddFriendContainer extends Component {
 
     render() {
         const { classes } = this.props;
-        // const { selectedDate } = this.state;
         
         return (
             <main className={classes.layout}>
