@@ -71,14 +71,25 @@ class MainTabs extends Component {
                     </Tabs>
                 </AppBar>
                     {value === 0 && <TabContainer> 
-                                        <Typography component="title">Your Favorites</Typography>
+                                        <Typography 
+                                            component="title" 
+                                            variant="h4"
+                                            style={{ marginLeft: 120 }}
+                                        >
+                                        Your Favorites
+                                        </Typography>
                                             <Link to={{
                                                 pathname: "/detail",
                                                 state: { user: this.state.user }
                                             }}>
                                                 <FriendGrid />
                                             </Link>
-                                        <Typography component="title">Upcoming Occasions</Typography>
+                                        <Typography 
+                                            component="title" 
+                                            variant="h4"
+                                            style={{ marginLeft: 120, marginTop: 20, marginBottom: 0 }}
+                                            >
+                                            Upcoming Occasions</Typography>
                                         <MainOccasionsTable />        
                                     </TabContainer>}
                     {value === 1 && <TabContainer>
