@@ -133,7 +133,7 @@ class AddGiftContainer extends Component {
             .then((response) => {
                 console.log(`New gift added! ${response}`)
             })
-            .then(this.handleFormClear())
+            // .then(this.handleFormClear())
     };
 
     handleChange = event => {

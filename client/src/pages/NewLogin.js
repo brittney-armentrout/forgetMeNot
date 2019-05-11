@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CreateIcon from "@material-ui/icons/Create";
 
 //DEV only, comment out for deploy
-axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
 
 const styles = theme => ({
     main: {

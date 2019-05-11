@@ -172,7 +172,6 @@ OccasionsTableHead.propTypes = {
 const styles = theme => ({
     root: {
         width: '100%',
-        marginTop: theme.spacing.unit * 8,
         overflowX: 'auto',
     },
     table: {
