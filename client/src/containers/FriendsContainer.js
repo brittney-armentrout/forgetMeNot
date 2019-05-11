@@ -74,7 +74,11 @@ class FriendsContainer extends Component {
                                  </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     <Typography>
-                                        {friend.gifts[0].gift}
+                                        {friend.gifts.map(gift => {
+                                            return(
+                                                <h4>{gift.gift}</h4>
+                                            )
+                                        })}
                                     </Typography>
                                    
                                 </ExpansionPanelDetails>    
