@@ -18,9 +18,21 @@ module.exports = {
     create: function(req, res) {
         console.log('Gift controller hit!')
         console.log(req.body);
+        const gift = req.body.gift;
+        const friendID = req.body.friendSelect;
         db.Gift
-            .create(req.body) 
-            .then(dbModel => res.json(dbModel))
+            .create({gift: gift}) 
+            .then(dbGift => db.Friend.findByIdAndUpdate({
+                _id: friendID
+            },
+            {
+                $push: {
+                    gifts: dbGift._id
+                }
+            },{
+                new:true
+            })
+            )
             .catch(err => res.status(422).json(err))
     },
     update: function(req, res) {
