@@ -86,7 +86,7 @@ class AddGiftContainer extends Component {
                 friends: [],
                 friendSelect: {
                         value: "",
-                        id: "",
+                        friendId: "",
                         placeholder: "Select a friend",
                         valid: false,
                         touched: false,
@@ -122,10 +122,8 @@ class AddGiftContainer extends Component {
 
     formSubmitHandler = () => {
         const formData = {};
-        const formData2 = {};
         for (let formElementId in this.state.formControls) {
             formData[formElementId] = this.state.formControls[formElementId].value;
-            console.log(formElementId)
         }
 
         
@@ -139,7 +137,7 @@ class AddGiftContainer extends Component {
     handleChange = event => {
         const name = event.target.name;
         const value = event.target.value;
-        const id = event.target.id;
+        console.log(event)
 
         const updatedControls = {
             ...this.state.formControls
@@ -148,7 +146,7 @@ class AddGiftContainer extends Component {
             ...updatedControls[name]
         };
         updatedFormElement.value = value;
-        updatedFormElement.id = id;
+        updatedFormElement.friendId = value;
         updatedFormElement.touched = true;
         updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
 
@@ -271,7 +269,6 @@ class AddGiftContainer extends Component {
                             <InputLabel htmlFor="friendSelect">Select Friend</InputLabel>
                             <Select
                                 name="friendSelect"
-                                id={this.state.id}
                                 value={this.state.selectedValue}
                                 displayValue={this.state.selectedValue}
                                 onChange={this.handleSelectChange}
@@ -286,14 +283,14 @@ class AddGiftContainer extends Component {
                                     <em>None</em>
                                 </MenuItem>
                                 {this.state.formControls.friends.map(friend => {
+                                    console.log("Friend ID:" + friend._id)
                                     return (
                                         <MenuItem   
-                                            value={friend.name} 
-
-                                            // displayValue={friend.name} 
+                                            value={friend._id}
+                                            // displayValue={friend.name}
                                             displayValue={this.state.selectedValue}
                                             onChange={this.handleSelectChange}
-                                            onChange={this.handleChange}  
+                                            onChange={this.handleChange}
                                         >
                                         {friend.name}
                                         </MenuItem>  
