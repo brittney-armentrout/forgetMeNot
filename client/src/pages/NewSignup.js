@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import CreateIcon from "@material-ui/icons/Create";
+import CustomizedSnackbars from "../components/Snackbar/snackbar";
 
 
 const styles = theme => ({
@@ -62,16 +63,30 @@ class NewSignup extends Component {
             email: "",
             password: "",
             password2: "",
-            errors: {}
+            errors: {},
+            errorMessage: [],
+            hasErrors: false
         };
     }
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
+
+    errorChecker = () => {
+        if(Object.keys(this.state.errors).length != 0){
+            this.setState( {hasErrors: true} )
+            console.log("You have errors!")
+            const allErrorMessages = Object.values(this.state.errors);
+            this.setState( {errorMessage: allErrorMessages[0]} )
+        } else {
+            console.log("No Errors!")
+        }
+    }
     
     onSubmit = e => {
         e.preventDefault();
+        this.setState( {hasErrors: false} );
         const newUser = {
             name: this.state.name,
             email: this.state.email,
@@ -90,6 +105,8 @@ class NewSignup extends Component {
         })
         .catch((error) => {
             console.log(error.response.data);
+            this.setState( {errors: error.response.data} );
+            this.errorChecker();
         })
     };
 
@@ -167,6 +184,9 @@ class NewSignup extends Component {
                         >
                             Sign Up
                         </Button>
+                        {this.state.hasErrors 
+                             ? <CustomizedSnackbars message={this.state.errorMessage}></CustomizedSnackbars> :
+                              console.log("No Errors!")}
                     </form>
                 </Paper>
             </main>
