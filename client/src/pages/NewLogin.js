@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 // import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import CreateIcon from "@material-ui/icons/Create";
+import CustomizedSnackbars from "../components/Snackbar/snackbar";
 
 //DEV only, comment out for deploy
 // axios.defaults.baseURL = "http://localhost:3001";
@@ -64,7 +65,9 @@ class NewLogin extends Component {
         this.state = {
             email: "",
             password: "",
-            errors: {}
+            errors: {},
+            errorMessage: [],
+            hasErrors: false
         };
     }
 
@@ -79,6 +82,7 @@ class NewLogin extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        this.setState( {hasErrors: false} );
         console.log("Look ma, I pushed a button!")
         axios.post("/api/users/login", {
             email: this.state.email,
@@ -93,8 +97,20 @@ class NewLogin extends Component {
               })
         })
         .catch((error) => {
-            this.setState({ errors: error.response.data });
+            console.log(error.response.data)
+            this.setState( {errors: error.response.data} );
+            this.errorChecker();
         })
+    };
+
+    errorChecker = () => {
+        if(Object.keys(this.state.errors).length != 0){
+            this.setState( {hasErrors: true} )
+            const allErrorMessages = Object.values(this.state.errors);
+            this.setState( {errorMessage: allErrorMessages[0]} )
+        } else {
+            console.log("No Errors!")
+        }
     };
 
     render() {
@@ -164,6 +180,9 @@ class NewLogin extends Component {
                         >
                             Sign in
                         </Button>
+                        {this.state.hasErrors 
+                             ? <CustomizedSnackbars message={this.state.errorMessage}></CustomizedSnackbars> :
+                              console.log("No Errors!")}
                     </form>
                 </Paper>
             </main>
