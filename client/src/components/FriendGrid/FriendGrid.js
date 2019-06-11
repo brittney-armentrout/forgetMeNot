@@ -13,7 +13,9 @@ const styles = theme => ({
         flexWrap: "wrap",
         justifyContent: "space-around",
         overflow: "hidden",
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.background.paper,
+        marginTop: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit * 2,
     },
     gridList: {
         width: "100%",
@@ -57,7 +59,7 @@ function FriendGrid(props) {
         
         <div className={classes.root}>
             <Grid item xs={12} md={6}>
-                <Paper className={classes.root} elevation={10}>
+                <Paper className={classes.root} elevation={7}>
                     <GridList className={classes.gridList} cols={3}>
                         {tileData.map(tile => (
                             <GridListTile key={tile.img} cols={tile.cols || 1}>

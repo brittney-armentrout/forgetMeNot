@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import clsx from 'clsx';
 import Button from "@material-ui/core/Button";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
@@ -50,12 +51,14 @@ const styles = theme => ({
         maxHeight: 60
     },
     select: {
-        marginLeft: theme.spacing.unit * 5
+        marginTop: theme.spacing.unit * 2,
     },
     button: {
         marginTop: theme.spacing.unit * 3,
-        marginLeft: theme.spacing.unit,
-        justify: "center"
+        marginLeft: theme.spacing.unit * 2,
+    },
+    input: {
+        display: "none",
     },
     rightIcon: {
         marginLeft: theme.spacing.unit
@@ -248,7 +251,7 @@ class AddGiftContainer extends Component {
         return (
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
-                    <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
+                    <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55, textAlign: "center" }}>
                         <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
                         Add New Gift
                     </Typography>
@@ -266,8 +269,8 @@ class AddGiftContainer extends Component {
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <InputLabel htmlFor="friendSelect">Select Friend</InputLabel>
-                            <Select
+                            <InputLabel htmlFor="friendSelect" className={classes.select}>Select Friend</InputLabel>
+                            <Select 
                                 name="friendSelect"
                                 value={this.state.selectedValue}
                                 displayValue={this.state.selectedValue}
@@ -299,23 +302,19 @@ class AddGiftContainer extends Component {
                                 </Select>
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                            {/* <input  
-                                accept="image/*"
-                                className={classes.input}
-                                id="imgFileBtn"
-                                multiple
-                                type="file"
-                            /> */}
-                            <label htmlFor="imgFileBtn">
-                                <Button component="span" className={classes.button}>
-                                    Upload image
-                                </Button>
-                            </label>
-                            {/* <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
-                                Upload a picture:
-                                <input name="img" type="file" ref={this.state.formControls.friend.img.fileInput} style={{ marginTop: 10 }} />
-                            </Typography>  */}
-                        </Grid>
+                                <input 
+                                    accept="image/*"
+                                    className={classes.input}
+                                    id="imgFileBtn"
+                                    multiple
+                                    type="file"
+                                />
+                                <label htmlFor="imgFileBtn">
+                                    <Button component="span" className={classes.button}>
+                                        Upload image
+                                    </Button>
+                                </label>
+                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Button
                                 variant="contained"

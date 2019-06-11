@@ -1,15 +1,8 @@
 import React from "react";
-// import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-// import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-// import DeleteIcon from "@material-ui/icons/Delete";
-// import FilterListIcon from "@material-ui/icons/FilterList";
-// import { lighten } from "@material-ui/core/styles/colorManipulator";
 import Grid from "@material-ui/core/Grid";
 import { 
     Table, 
@@ -85,7 +78,7 @@ class OccasionsTableHead extends React.Component {
                         );
                     }, this)}
                 </TableRow>
-            </TableHead>
+            </TableHead>      
         );  
     }
 }
@@ -200,7 +193,7 @@ class OccasionsTable extends React.Component {
                 createData("Liam", "Kindergarten Graduation", "05/25")
             ].sort((a, b) => (a.date < b.date ? -1 : 1)),
             page: 0,
-            rowsPerPage: 5
+            rowsPerPage: 4
         };
     }
 
@@ -273,7 +266,7 @@ class OccasionsTable extends React.Component {
                 alignItems="center"
             >
                 <Grid item xs={12} md={6}>
-                    <Paper className={classes.root} style={{ height: 360 }}>
+                    <Paper className={classes.root} elevation={7} style={{ height: 360 }}>
                         {/* <OccasionsTableToolbar numSelected={selected.length} /> */}
                         <div className={classes.tableWrapper}>
                             <Table className={classes.table} aria-labelledby="tableTitle">

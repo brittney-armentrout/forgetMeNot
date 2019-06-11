@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import clsx from 'clsx';
 import Button from "@material-ui/core/Button";
 // import Input from "../components/Form/input";
 import API from "../utils/API";
@@ -46,11 +47,16 @@ const styles = theme => ({
         justifyContent: "flex-end",
     },
     button: {
-        marginTop: 0,
-        marginLeft: theme.spacing.unit,
+        marginTop: theme.spacing.unit * 2,
     },
     input: {
         display: "none",
+    },
+    occasionSelect: {
+        marginTop: theme.spacing.unit * 2, 
+    },
+    dateSelect: {
+        marginTop: theme.spacing.unit * 2.8,
     },
 });
 
@@ -142,6 +148,7 @@ class AddFriendContainer extends Component {
                                 id="name"
                                 name="name"
                                 label="Friend Name"
+                                margin="normal"
                                 fullWidth
                                 onChange={this.handleChange}
                                 value={this.state.formControls.value}
@@ -155,6 +162,7 @@ class AddFriendContainer extends Component {
                                 name="address"
                                 label="Friend Address"
                                 fullWidth
+                                margin="normal"
                                 onChange={this.handleChange}
                                 // value={this.state.formControls.friend.address.value}
                                 // touched={this.state.formControls.friend.address.touched}
@@ -162,7 +170,7 @@ class AddFriendContainer extends Component {
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <InputLabel htmlFor="occasion">Occasion</InputLabel>
+                            <InputLabel htmlFor="occasion" className={classes.occasionSelect}>Occasion</InputLabel>
                             <Select
                                 value={this.selectedValue}
                                 onChange={this.handleChange}
@@ -172,6 +180,7 @@ class AddFriendContainer extends Component {
                                     id: "occasion",
                                 }}
                                 fullWidth
+                                margin="normal"
                                 // touched={this.state.formControls.occasions.touched}
                             >
                                 <MenuItem value="">
@@ -190,12 +199,14 @@ class AddFriendContainer extends Component {
                                 // touched={this.state.formControls.occasions.touched}
                              */}
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6} className={classes.dateSelect}>
                             <DatePicker 
                                 id="date"
                                 name="date"
                                 label="Occasion Date"
                                 type="date"
+                                fullWidth
+                                margin="normal"
                                 defaultValue=""
                                 value={this.state.selectedDate}
                                 onChange={this.handleDateChange}
