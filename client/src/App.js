@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import clsx from 'clsx';
 // import { render } from "react-dom";
 
 //Material UI:
@@ -12,7 +11,6 @@ import Appbar from "./components/Appbar/Appbar.js";
 import NewLogin from "./pages/NewLogin"
 import NewSignup from "./pages/NewSignup";
 import AddGiftContainer from "./containers/AddGiftContainer";
-import SimpleExpansionPanel from "./containers/FriendsContainer";
 import AddFriendContainer from "./containers/AddFriendContainer";
 
 //Colors:

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import clsx from 'clsx';
 import Button from "@material-ui/core/Button";
 // import Input from "../components/Form/input";
 import API from "../utils/API";
@@ -7,7 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 // import TestSelect from "../components/FormTest/TestMaterialSelect";
 // import TextInput from "../components/FormTest/TextInput";
-import validate from "../components/FormTest/Validate";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -16,8 +14,8 @@ import { InputLabel } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import DatePicker from "../components/FormTest/Pickers";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 // const listFont = "'Roboto', sans-serif";
 
@@ -68,73 +66,52 @@ class AddFriendContainer extends Component {
         super(props);
 
         this.state = {
-            formIsValid: false,
-            formControls: {
-                friend: {
-                    name: { value: "" },
-    
-                    occasions: 
-                        { value: "", date: "" },
-                            placeholder: "Add an Occasion",
-                            valid: false,
-                            touched: false,
-                    
-                    img: { value: "", ref: "" },
+                    name: "",
+                    occasion: "",
+                    date: "",                             
+                    img: "",
+        }
 
-                 },
-            },
-        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     };
-
-    formSubmitHandler = () => {
-        const formData = {};
-        for (let formElementId in this.state.formControls) {
-            formData[formElementId] = this.state.formControls[formElementId].value;
-        }  
-        console.log(formData);
-        const userID = this.props.userID;
-        API.saveFriend(userID, formData)
-        .then((response) => {
-            console.log(`New Friend added! ${response}`)
-        })
-    };
-
 
     handleChange = event => {
-        const name = event.target.name;
-        const value = event.target.value;
-
-        const updatedControls = {
-            ...this.state.formControls
-        };
-        const updatedFormElement = {
-            ...updatedControls[name]
-        };
-        updatedFormElement.value = value;
-        updatedFormElement.touched = true;
-        updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
-
-        updatedControls[name] = updatedFormElement;
-
-        let formIsValid = true;
-        for (let inputIdentifier in updatedControls) {
-            formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
-        };
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
         this.setState({
-            formControls: updatedControls,
-            FormIsValid: formIsValid
+            [name]: value
         });
     };
 
-    handleSelectChange = value => {
-        this.setState({ selectedValue: value })
-    };
+    handleClear = event => {
+        this.setState({
+            name: "", 
+            occasion: "", 
+            date: "", 
+            img: ""
+        })
+    }
 
-    handleDateChange = date => {
-        this.setState({ selectedDate: date })
-    };
-
+    handleFormSubmit = event => {
+        event.preventDefault();
+        const formData = {};      
+        for (let formElementId in this.state) {
+            formData[formElementId] = this.state[formElementId];
+        }
+        console.log(formData);
+        
+        const userID = this.props.userID;       
+        API.saveFriend(userID, formData)
+            .then((response) => {
+                console.log(`New Friend added! ${response}`)
+            })
+        
+        this.handleClear();
+    }
+  
     render() {
         const { classes } = this.props;
         
@@ -144,6 +121,7 @@ class AddFriendContainer extends Component {
                     <Typography component="h1" variant="h5" color="primary" align="center">
                         Add New Friend
                     </Typography> 
+                    <form onSubmit={this.handleFormSubmit}>
                     <Grid container spacing={24}>
                         <Grid item xs={12} sm={12}>
                             <TextField
@@ -154,9 +132,7 @@ class AddFriendContainer extends Component {
                                 margin="normal"
                                 fullWidth
                                 onChange={this.handleChange}
-                                value={this.state.formControls.value}
-                                touched={this.state.formControls.touched}
-                                valid={this.state.formControls.valid}
+                                value={this.state.value}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -167,18 +143,16 @@ class AddFriendContainer extends Component {
                                 fullWidth
                                 margin="normal"
                                 onChange={this.handleChange}
-                                // value={this.state.formControls.friend.address.value}
-                                // touched={this.state.formControls.friend.address.touched}
-                                // valid={this.state.formControls.friend.address.valid}
+                                value={this.state.value}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <InputLabel htmlFor="occasion" className={classes.occasionSelect}>Occasion</InputLabel>
                             <Select
-                                value={this.selectedValue}
-                                displayValue={this.displayValue}
+                                native
+                                name="occasion"
+                                value={this.state.value}
                                 onChange={this.handleChange}
-                                onChange={this.handleSelectChange}
                                 inputProps={{
                                     name: "occasion",
                                     id: "occasion",
@@ -186,21 +160,11 @@ class AddFriendContainer extends Component {
                                 fullWidth
                                 margin="normal"
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value="birthday" displayValue="Birthday">Birthday</MenuItem>
-                                <MenuItem value="anniversary">Anniversary</MenuItem>
-                                <MenuItem value="holiday">Holiday</MenuItem>
+                                <option value="" />
+                                <option value={"birthday"}>Birthday</option>
+                                <option value={"anniversary"}>Anniversary</option>
+                                <option value={"holiday"}>Holiday</option>
                             </Select>
-                         
-                                {/* // fullWidth
-                                // onChange={this.handleSelectChange}
-                                // value={this.state.selectedValue}
-                                // onChange={this.handleChange}
-                                // options={ value: "Birthday", displayValue: "Birthday" },
-                                // touched={this.state.formControls.occasions.touched}
-                             */}
                         </Grid>
                         <Grid item xs={12} sm={6} className={classes.dateSelect}>
                             <DatePicker 
@@ -210,8 +174,7 @@ class AddFriendContainer extends Component {
                                 type="date"
                                 margin="normal"
                                 defaultValue=""
-                                value={this.state.selectedDate}
-                                onChange={this.handleDateChange}
+                                value={this.state.value}
                                 onChange={this.handleChange}
                             />
                         </Grid>
@@ -235,13 +198,16 @@ class AddFriendContainer extends Component {
                                 size="small"
                                 color="primary"
                                 className={classes.saveBtn}
-                                onClick={this.formSubmitHandler}
+                                // onClick={this.handleFormSubmit}
+                                type="submit"
+                                value="Submit"
                             >
                             Save
                             <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)} />                        
                           </Button> 
                         </Grid>
                     </Grid>
+                    </form>
                 </Paper>
             </main>
 
@@ -268,24 +234,24 @@ class AddFriendContainer extends Component {
             //         </Grid>
             //         <Grid item xs={12} className={classes.formItems}>
             //                 <TextInput 
-            //                     label={this.state.formControls.friend.placeholder}
+            //                     label={this.state.friend.friend.placeholder}
             //                     type="text"
             //                     name="friend"
-            //                     value={this.state.formControls.friend.value}
+            //                     value={this.state.friend.friend.value}
             //                     onChange={this.handleChange}
-            //                     touched={this.state.formControls.friend.touched}
-            //                     valid={this.state.formControls.friend.valid}
+            //                     touched={this.state.friend.friend.touched}
+            //                     valid={this.state.friend.friend.valid}
             //                 /> 
             //         </Grid>
             //         <Grid item xs={6} className={classes.formItems}>
             //                 <TestSelect 
             //                     name="occasions"
             //                     label="Occasion"
-            //                     value={this.state.formControls.occasions.value}
+            //                     value={this.state.friend.occasions.value}
             //                     onChange={this.handleChange}
-            //                     options={this.state.formControls.occasions.options}
-            //                     touched={this.state.formControls.occasions.touched}
-            //                     valid={this.state.formControls.occasions.valid}
+            //                     options={this.state.friend.occasions.options}
+            //                     touched={this.state.friend.occasions.touched}
+            //                     valid={this.state.friend.occasions.valid}
             //                 /> 
             //         </Grid>
             //         <Grid item xs className={classes.formItems}>
@@ -300,11 +266,11 @@ class AddFriendContainer extends Component {
             //                  <TestSelect 
             //                     name="occasions"
             //                     label="Occasion"
-            //                     value={this.state.formControls.occasions.value}
+            //                     value={this.state.friend.occasions.value}
             //                     onChange={this.handleChange}
-            //                     options={this.state.formControls.occasions.options}
-            //                     touched={this.state.formControls.occasions.touched}
-            //                     valid={this.state.formControls.occasions.valid}
+            //                     options={this.state.friend.occasions.options}
+            //                     touched={this.state.friend.occasions.touched}
+            //                     valid={this.state.friend.occasions.valid}
             //                 /> 
             //         </Grid>
             //           <Grid item xs className={classes.formItems}>
@@ -319,11 +285,11 @@ class AddFriendContainer extends Component {
             //                  <TestSelect 
             //                     name="occasions"
             //                     label="Occasion"
-            //                     value={this.state.formControls.occasions.value}
+            //                     value={this.state.friend.occasions.value}
             //                     onChange={this.handleChange}
-            //                     options={this.state.formControls.occasions.options}
-            //                     touched={this.state.formControls.occasions.touched}
-            //                     valid={this.state.formControls.occasions.valid}
+            //                     options={this.state.friend.occasions.options}
+            //                     touched={this.state.friend.occasions.touched}
+            //                     valid={this.state.friend.occasions.valid}
             //                 /> 
             //         </Grid>
             //           <Grid item xs className={classes.formItems}>

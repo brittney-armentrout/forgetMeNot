@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import clsx from 'clsx';
 import Button from "@material-ui/core/Button";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
