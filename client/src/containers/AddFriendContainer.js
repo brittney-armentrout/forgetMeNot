@@ -71,6 +71,7 @@ class AddFriendContainer extends Component {
                 occasion: "",
                 date: "",                             
                 img: "",
+                address: "",
                 friendAdded: false
         }
 
@@ -93,7 +94,8 @@ class AddFriendContainer extends Component {
             name: "", 
             occasion: "", 
             date: "", 
-            img: ""
+            img: "",
+            address: ""
         })
     }
 
@@ -110,9 +112,10 @@ class AddFriendContainer extends Component {
         API.saveFriend(userID, formData)
             .then((response) => {
                 this.setState( {friendAdded: true} );
+                this.handleClear();
             })
         
-        this.handleClear();
+        
     }
   
     render() {
@@ -135,7 +138,7 @@ class AddFriendContainer extends Component {
                                 margin="normal"
                                 fullWidth
                                 onChange={this.handleChange}
-                                value={this.state.value}
+                                value={this.state.name}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -145,7 +148,7 @@ class AddFriendContainer extends Component {
                                 label="Friend Address"
                                 fullWidth
                                 margin="normal"
-                                value={this.state.value}
+                                value={this.state.address}
                                 onChange={this.handleChange}
                             />
                         </Grid>
@@ -154,7 +157,7 @@ class AddFriendContainer extends Component {
                             <Select
                                 native
                                 name="occasion"
-                                value={this.state.value}
+                                value={this.state.occasion}
                                 onChange={this.handleChange}
                                 inputProps={{
                                     name: "occasion",
@@ -177,7 +180,7 @@ class AddFriendContainer extends Component {
                                 type="date"
                                 margin="normal"
                                 defaultValue=""
-                                value={this.state.value}
+                                value={this.state.date}
                                 onChange={this.handleChange}
                             />
                         </Grid>
