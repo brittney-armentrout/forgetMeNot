@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-// import Input from "../components/Form/input";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-// import TestSelect from "../components/FormTest/TestMaterialSelect";
-// import TextInput from "../components/FormTest/TextInput";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -18,7 +15,6 @@ import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import CustomizedSnackbars from "../components/Snackbar/snackbar";
 
-// const listFont = "'Roboto', sans-serif";
 
 const styles = theme => ({
     layout: {
@@ -204,7 +200,6 @@ class AddFriendContainer extends Component {
                                 size="small"
                                 color="primary"
                                 className={classes.saveBtn}
-                                // onClick={this.handleFormSubmit}
                                 type="submit"
                                 value="Submit"
                             >
@@ -224,115 +219,6 @@ class AddFriendContainer extends Component {
     };
 
 };
-
-            // <div className={classes.root}>
-              
-            //     <Grid
-            //         container
-            //         spacing={0}
-            //         direction="row"
-            //         justify="center"
-            //         alignItems="center"
-            //         style={{ minHeight: 500 }}
-            //     >
-            //     {/* <Paper style={{ paddingLeft: 25, paddingBottom: 25 }}> */}
-            //         <Grid item xs={12}>
-            //                 <Typography variant="h3" color="primary" style={{ marginBottom: 30, fontSize: 55 }}>
-            //                     Add New Friend
-            //                 </Typography>  
-            //         </Grid>
-            //         <Grid item xs={12} className={classes.formItems}>
-            //                 <TextInput 
-            //                     label={this.state.friend.friend.placeholder}
-            //                     type="text"
-            //                     name="friend"
-            //                     value={this.state.friend.friend.value}
-            //                     onChange={this.handleChange}
-            //                     touched={this.state.friend.friend.touched}
-            //                     valid={this.state.friend.friend.valid}
-            //                 /> 
-            //         </Grid>
-            //         <Grid item xs={6} className={classes.formItems}>
-            //                 <TestSelect 
-            //                     name="occasions"
-            //                     label="Occasion"
-            //                     value={this.state.friend.occasions.value}
-            //                     onChange={this.handleChange}
-            //                     options={this.state.friend.occasions.options}
-            //                     touched={this.state.friend.occasions.touched}
-            //                     valid={this.state.friend.occasions.valid}
-            //                 /> 
-            //         </Grid>
-            //         <Grid item xs className={classes.formItems}>
-            //                 <DatePicker 
-            //                     id="date"
-            //                     label="Occasion Date"
-            //                     type="date"
-            //                     defaultValue=""
-            //                 />
-            //         </Grid>
-            //         <Grid item xs={6} className={classes.formItems}>
-            //                  <TestSelect 
-            //                     name="occasions"
-            //                     label="Occasion"
-            //                     value={this.state.friend.occasions.value}
-            //                     onChange={this.handleChange}
-            //                     options={this.state.friend.occasions.options}
-            //                     touched={this.state.friend.occasions.touched}
-            //                     valid={this.state.friend.occasions.valid}
-            //                 /> 
-            //         </Grid>
-            //           <Grid item xs className={classes.formItems}>
-            //                 <DatePicker 
-            //                     id="date"
-            //                     label="Occasion Date"
-            //                     type="date"
-            //                     defaultValue=""
-            //                 />
-            //         </Grid>
-            //         <Grid item xs={6} className={classes.formItems}>
-            //                  <TestSelect 
-            //                     name="occasions"
-            //                     label="Occasion"
-            //                     value={this.state.friend.occasions.value}
-            //                     onChange={this.handleChange}
-            //                     options={this.state.friend.occasions.options}
-            //                     touched={this.state.friend.occasions.touched}
-            //                     valid={this.state.friend.occasions.valid}
-            //                 /> 
-            //         </Grid>
-            //           <Grid item xs className={classes.formItems}>
-            //                 <DatePicker 
-            //                     id="date"
-            //                     label="Occasion Date"
-            //                     type="date"
-            //                     defaultValue=""
-            //                 />
-            //         </Grid>
-            //         <Grid item xs={12}>
-            //                 <Typography variant="subheading" color="inherit" style={{ marginTop: 20 }}>
-            //                     Upload a picture:
-            //                     <input name="img" type="file" ref={this.fileInput} style={{ marginTop: 10 }} />
-            //                 </Typography> 
-            //         </Grid>
-            //         <Grid item xs={12}>
-            //                 <Button 
-            //                     variant="contained" 
-            //                     size="small"
-            //                     color="primary"
-            //                     className={classes.button}
-            //                     onClick={this.formSubmitHandler}
-            //                 >
-            //                 Save
-            //                 <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)} />                        
-            //               </Button> 
-            //         </Grid>         
-            //             {/* </Paper> */}
-              
-            //     </Grid>
-          
-              
-            // </div>
 
 
 AddFriendContainer.propTypes = {
