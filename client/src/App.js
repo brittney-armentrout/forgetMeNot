@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import clsx from 'clsx';
 // import { render } from "react-dom";
 
 //Material UI:
@@ -12,6 +13,7 @@ import NewLogin from "./pages/NewLogin"
 import NewSignup from "./pages/NewSignup";
 import AddGiftContainer from "./containers/AddGiftContainer";
 import SimpleExpansionPanel from "./containers/FriendsContainer";
+import AddFriendContainer from "./containers/AddFriendContainer";
 
 //Colors:
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -58,7 +60,8 @@ function App() {
             <Route exact path="/signup" component={NewSignup} />
             <Route exact path="/main" component={Main} />
             <Route exact path="/detail" component={Detail} />
-            {/* <Route exact path="/test" component={SimpleExpansionPanel} /> */}
+            <Route exact path="/test" component={AddGiftContainer} />
+            <Route exact path="/testtwo" component={AddFriendContainer} />
             {/* <Route exact path="/giftadd" component={GiftAdd} /> */}
             <Route component={NoMatch} />
           </Switch>

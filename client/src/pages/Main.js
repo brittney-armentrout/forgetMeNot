@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import clsx from 'clsx';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -60,7 +61,7 @@ class MainTabs extends Component {
             <div className={classes.root}>
                 <AppBar position="static" className={classes.appBar}>
                     <Tabs 
-                        fullWidth={true}
+                        variant="fullWidth"
                         value={value} 
                         onChange={this.handleChange}
                         centered
@@ -76,7 +77,6 @@ class MainTabs extends Component {
                                             variant="h4"
                                             style={{ marginLeft: 120 }}
                                         >
-                                        Your Favorites
                                         </Typography>
                                             <Link to={{
                                                 pathname: "/detail",
@@ -89,7 +89,7 @@ class MainTabs extends Component {
                                             variant="h4"
                                             style={{ marginLeft: 120, marginTop: 20, marginBottom: 0 }}
                                             >
-                                            Upcoming Occasions</Typography>
+                                        </Typography>
                                         <MainOccasionsTable />        
                                     </TabContainer>}
                     {value === 1 && <TabContainer>

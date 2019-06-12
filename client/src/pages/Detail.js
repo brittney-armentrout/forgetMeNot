@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import clsx from 'clsx';
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -71,7 +72,7 @@ class DetailTabs extends Component {
                         </Typography>
                     </Link>
                     <Tabs 
-                        fullWidth={true}
+                        variant="fullWidth"
                         value={value} 
                         onChange={this.handleChange}
                         centered
