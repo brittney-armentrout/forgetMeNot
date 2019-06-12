@@ -16,8 +16,6 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     create: function(req, res) {
-        console.log('Gift controller hit!')
-        console.log(req.body);
         const gift = req.body.gift;
         const friendID = req.body.friendSelect;
         db.Gift
@@ -33,6 +31,7 @@ module.exports = {
                 new:true
             })
             )
+            .then(dbGift => res.json(dbGift))
             .catch(err => res.status(422).json(err))
     },
     update: function(req, res) {

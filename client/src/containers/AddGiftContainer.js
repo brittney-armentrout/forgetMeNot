@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import CustomizedSnackbars from "../components/Snackbar/snackbar";
 
 const giftImg = require("../components/Logo/img/GiftLg.png");
 const listFont = "'Roboto', sans-serif";
@@ -76,7 +77,8 @@ class AddGiftContainer extends Component {
             gift: "",
             friends: [],
             friendSelect: "",
-            giftImg: ""
+            giftImg: "",
+            giftAdded: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -116,7 +118,7 @@ class AddGiftContainer extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-
+        this.setState( {friendAdded: false} );
         const formData = {};
         for (let formElementId in this.state) {
             formData[formElementId] = this.state[formElementId];
@@ -126,128 +128,11 @@ class AddGiftContainer extends Component {
         const userID = this.props.userID;
         API.saveGift(formData)
             .then((response) => {
-                console.log(`New gift added! ${response}`)
+                this.setState( {giftAdded: true} );
+                this.handleClear();
             })
-            .then(this.handleClear())
     }
 
-    // formSubmitHandler = () => {
-    //     const formData = {};
-    //     for (let formElementId in this.state.formControls) {
-    //         formData[formElementId] = this.state.formControls[formElementId].value;
-    //     }
-
-        
-    //     API.saveGift(formData)
-    //         .then((response) => {
-    //             console.log(`New gift added! ${response}`)
-    //         })
-    //         // .then(this.handleFormClear())
-    // };
-
-    // handleChange = event => {
-    //     const name = event.target.name;
-    //     const value = event.target.value;
-    //     console.log(event)
-
-    //     const updatedControls = {
-    //         ...this.state.formControls
-    //     };
-    //     const updatedFormElement = {
-    //         ...updatedControls[name]
-    //     };
-    //     updatedFormElement.value = value;
-    //     updatedFormElement.friendId = value;
-    //     updatedFormElement.touched = true;
-    //     updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
-
-    //     updatedControls[name] = updatedFormElement;
-
-    //     let formIsValid = true;
-    //     for (let inputIdentifier in updatedControls) {
-    //         formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
-    //     }
-
-    //     this.setState({
-    //         formControls: updatedControls, 
-    //         FormIsValid: formIsValid
-    //     });
-    // }
-
-    // handleFormClear() {     
-    //         this.setState({         
-    //             formIsValid: false,
-    //             formControls: {
-    //                 gift: {
-    //                     value: "",
-    //                     // key: "",
-    //                     placeholder: "Gift",
-    //                     valid: false,
-    //                     touched: false,
-    //                 },
-    //                 friendSelect: {
-    //                         value: "",
-    //                         id: "", 
-    //                         valid: false,
-    //                         touched: false, 
-    //                     },
-    //                 file: {
-    //                     value: "",
-    //                     valid: false,
-    //                     touched: false,                     
-    //                 }
-    //             }
-    //       }) 
-    // } 
-
-    //  handleSubmit(event) {     
-    //     //send new gift data to DB
-    //     event.preventDefault();     
-    //     console.log('Submit button hit!');     
-    //     alert(
-    //         `Selected file - ${this.fileInput.current.files[0].name}`     
-    //     );     
-    //      API.saveGift({         
-    //         gift: this.state.Gift.gift,
-    //         //  address: this.state.Gift.address,         
-    //         // img: this.state.img,
-    //         // need to figure out how to enter and save an array here !!         
-    //         // gifts:
-    //        // occasions:     
-    //     })     
-    //         .then(this.handleFormClear(), console.log("new gift saved to DB"))     
-    //         .catch(err => console.log(err)); 
-    //     } 
-        
-        
-        
-        // handleInput(event) {     
-        //     let value = event.target.value;     
-        //     let name = event.target.name;
-        //      this.setState ( 
-        //          prevState => {         
-        //              return {             
-        //                  Gift : {
-        //                     ...prevState.Gift, 
-        //                     [name]: value             
-        //                 }             
-        //                 Friends: [                 
-        //                     ...prevState.Friends, 
-        //                     [name]: value            
-        //                 ]
-        //             }       
-        //         }, () => console.log(this.state.Gift)); 
-        //     } 
-        
-        // handleInput(event) {
-        //     const name = event.target.name;     
-        //     const value = event.target.value;
-        //      this.setState({         
-        //          formControls: {             
-        //              [name]: value         
-        //         }
-        //     }); 
-        // }
 
     render() {
         const { classes } = this.props;
@@ -288,7 +173,6 @@ class AddGiftContainer extends Component {
                             >
                                 <option value="" />
                                 {this.state.friends.map(friend => {
-                                    console.log("Friend ID:" + friend._id)
                                     return (
                                         <option   
                                             value={friend._id}
@@ -331,6 +215,9 @@ class AddGiftContainer extends Component {
                     </Grid>
                     </form>
                 </Paper>
+                {this.state.giftAdded 
+                             ? <CustomizedSnackbars variant= {"success"} message="Gift Added!"></CustomizedSnackbars> :
+                              console.log("")}
             </main>
         )
     };
