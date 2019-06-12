@@ -184,7 +184,7 @@ class NewSignup extends Component {
                             Sign Up
                         </Button>
                         {this.state.hasErrors 
-                             ? <CustomizedSnackbars message={this.state.errorMessage}></CustomizedSnackbars> :
+                             ? <CustomizedSnackbars variant= {"error"} message={this.state.errorMessage}></CustomizedSnackbars> :
                               console.log("No Errors!")}
                     </form>
                 </Paper>

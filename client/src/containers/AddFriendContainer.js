@@ -16,6 +16,7 @@ import DatePicker from "../components/FormTest/Pickers";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
+import CustomizedSnackbars from "../components/Snackbar/snackbar";
 
 // const listFont = "'Roboto', sans-serif";
 
@@ -70,6 +71,7 @@ class AddFriendContainer extends Component {
                 occasion: "",
                 date: "",                             
                 img: "",
+                friendAdded: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -97,6 +99,7 @@ class AddFriendContainer extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        this.setState( {friendAdded: false} );
         const formData = {};      
         for (let formElementId in this.state) {
             formData[formElementId] = this.state[formElementId];
@@ -106,7 +109,7 @@ class AddFriendContainer extends Component {
         const userID = this.props.userID;       
         API.saveFriend(userID, formData)
             .then((response) => {
-                console.log(`New Friend added! ${response}`)
+                this.setState( {friendAdded: true} );
             })
         
         this.handleClear();
@@ -209,6 +212,9 @@ class AddFriendContainer extends Component {
                     </Grid>
                     </form>
                 </Paper>
+                {this.state.friendAdded 
+                             ? <CustomizedSnackbars variant= {"success"} message="Friend Added!"></CustomizedSnackbars> :
+                              console.log("Something went wrong adding friend.")}
             </main>
 
         );
