@@ -315,7 +315,7 @@ class AddGiftContainer extends Component {
                                     </Button>
                                 </label>
                          </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} align="right">
                             <Button
                                 variant="contained"
                                 size="small"

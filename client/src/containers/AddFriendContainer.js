@@ -46,8 +46,11 @@ const styles = theme => ({
         display: "flex",
         justifyContent: "flex-end",
     },
-    button: {
+    saveBtn: {
         marginTop: theme.spacing.unit * 2,
+    },
+    uploadBtn: {
+        marginTop: theme.spacing.unit * 3,
     },
     input: {
         display: "none",
@@ -173,6 +176,7 @@ class AddFriendContainer extends Component {
                             <InputLabel htmlFor="occasion" className={classes.occasionSelect}>Occasion</InputLabel>
                             <Select
                                 value={this.selectedValue}
+                                displayValue={this.displayValue}
                                 onChange={this.handleChange}
                                 onChange={this.handleSelectChange}
                                 inputProps={{
@@ -181,12 +185,11 @@ class AddFriendContainer extends Component {
                                 }}
                                 fullWidth
                                 margin="normal"
-                                // touched={this.state.formControls.occasions.touched}
                             >
                                 <MenuItem value="">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value="birthday">Birthday</MenuItem>
+                                <MenuItem value="birthday" displayValue="Birthday">Birthday</MenuItem>
                                 <MenuItem value="anniversary">Anniversary</MenuItem>
                                 <MenuItem value="holiday">Holiday</MenuItem>
                             </Select>
@@ -205,7 +208,6 @@ class AddFriendContainer extends Component {
                                 name="date"
                                 label="Occasion Date"
                                 type="date"
-                                fullWidth
                                 margin="normal"
                                 defaultValue=""
                                 value={this.state.selectedDate}
@@ -213,7 +215,7 @@ class AddFriendContainer extends Component {
                                 onChange={this.handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12}>
                             <input  
                                 accept="image/*"
                                 className={classes.input}
@@ -222,17 +224,17 @@ class AddFriendContainer extends Component {
                                 type="file"
                             />
                             <label htmlFor="imgFileBtn">
-                                <Button component="span" className={classes.button}>
+                                <Button component="span" className={classes.uploadBtn}>
                                     Upload image
                                 </Button>
                             </label>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} align="right">
                              <Button 
                                 variant="contained" 
                                 size="small"
                                 color="primary"
-                                className={classes.button}
+                                className={classes.saveBtn}
                                 onClick={this.formSubmitHandler}
                             >
                             Save
