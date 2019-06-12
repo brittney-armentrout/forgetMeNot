@@ -66,10 +66,10 @@ class AddFriendContainer extends Component {
         super(props);
 
         this.state = {
-                    name: "",
-                    occasion: "",
-                    date: "",                             
-                    img: "",
+                name: "",
+                occasion: "",
+                date: "",                             
+                img: "",
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -142,8 +142,8 @@ class AddFriendContainer extends Component {
                                 label="Friend Address"
                                 fullWidth
                                 margin="normal"
-                                onChange={this.handleChange}
                                 value={this.state.value}
+                                onChange={this.handleChange}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
