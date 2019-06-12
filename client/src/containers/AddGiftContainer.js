@@ -112,7 +112,8 @@ class AddGiftContainer extends Component {
             gift: "",
             // friends: [],
             friendSelect: "",
-            giftImg: ""
+            giftImg: "",
+            giftAdded: false
         })
     }
 
@@ -153,7 +154,7 @@ class AddGiftContainer extends Component {
                                 name="gift"
                                 label="Gift"
                                 fullWidth
-                                value={this.state.value}
+                                value={this.state.gift}
                                 onChange={this.handleChange}
                             />
                         </Grid>
@@ -162,8 +163,8 @@ class AddGiftContainer extends Component {
                             <Select 
                                 native
                                 name="friendSelect"
-                                value={this.state.value}
-                                displayValue={this.state.value}
+                                value={this.state.friendSelect}
+                                displayValue={this.state.friendSelect}
                                 onChange={this.handleChange}
                                 inputProps={{
                                     name: "friendSelect",
