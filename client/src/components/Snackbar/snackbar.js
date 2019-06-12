@@ -88,6 +88,7 @@ export default function CustomizedSnackbars(props) {
   const classes = useStyles2();
   const [open, setOpen] = React.useState(true);
   const message = props.message;
+  const variant = props.variant;
 
   function handleClick() {
     setOpen(true);
@@ -117,7 +118,7 @@ export default function CustomizedSnackbars(props) {
       >
         <MySnackbarContentWrapper
           onClose={handleClose}
-          variant="error"
+          variant={variant}
           message={message}
         />
       </Snackbar>

@@ -30,7 +30,7 @@ module.exports = {
     },
     create: function(req, res) {
         db.Friend
-            .create(req.body) 
+            .create(req.body)
             .then(dbFriend => db.User.findByIdAndUpdate({
                 _id: req.params.id
             },
@@ -42,6 +42,7 @@ module.exports = {
                 new:true
             })
             )
+            .then(dbFriend => res.json(dbFriend))
             .catch(err => res.status(422).json(err))
     },
     update: function(req, res) {
