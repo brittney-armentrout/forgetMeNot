@@ -74,7 +74,7 @@ class NewSignup extends Component {
     };
 
     errorChecker = () => {
-        if(Object.keys(this.state.errors).length != 0){
+        if(Object.keys(this.state.errors).length !== 0){
             this.setState( {hasErrors: true} )
             const allErrorMessages = Object.values(this.state.errors);
             this.setState( {errorMessage: allErrorMessages[0]} )

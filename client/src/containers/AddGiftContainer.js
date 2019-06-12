@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import clsx from 'clsx';
 import Button from "@material-ui/core/Button";
 import API from "../utils/API";
 import Paper from "@material-ui/core/Paper";
@@ -14,6 +13,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 
 const giftImg = require("../components/Logo/img/GiftLg.png");
 const listFont = "'Roboto', sans-serif";
@@ -73,37 +73,14 @@ class AddGiftContainer extends Component {
         super(props);
 
         this.state = {
-            formIsValid: false,
-            formControls: {
-                gift: {
-                    value: "",
-                    // key: "",
-                    placeholder: "Gift",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        minLength: 3,
-                        isRequired: true
-                    }
-                },
-                friends: [],
-                friendSelect: {
-                        value: "",
-                        friendId: "",
-                        placeholder: "Select a friend",
-                        valid: false,
-                        touched: false,
-                    },
-                file: {
-                    value: "",
-                    valid: false,
-                    touched: false,
-                    validationRules: {
-                        isRequired: false
-                    }
-                }
-            }
+            gift: "",
+            friends: [],
+            friendSelect: "",
+            giftImg: ""
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -114,61 +91,88 @@ class AddGiftContainer extends Component {
         const userID = this.props.userID;
         console.log(userID)
         API.getFriends(userID)
-            .then(res => this.setState({
-                formControls: {
-                    ...this.state.formControls,
-                    friends: res.data.friends,
-                },
-            }))       
+            .then(res => this.setState({ friends: res.data.friends }))    
             .catch(err => console.log(err))
     }
 
-    formSubmitHandler = () => {
-        const formData = {};
-        for (let formElementId in this.state.formControls) {
-            formData[formElementId] = this.state.formControls[formElementId].value;
-        }
+    handleChange = event => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-        
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleClear = event => {
+        this.setState({
+            gift: "",
+            // friends: [],
+            friendSelect: "",
+            giftImg: ""
+        })
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+
+        const formData = {};
+        for (let formElementId in this.state) {
+            formData[formElementId] = this.state[formElementId];
+        }
+        console.log(formData);
+
+        const userID = this.props.userID;
         API.saveGift(formData)
             .then((response) => {
                 console.log(`New gift added! ${response}`)
             })
-            // .then(this.handleFormClear())
-    };
-
-    handleChange = event => {
-        const name = event.target.name;
-        const value = event.target.value;
-        console.log(event)
-
-        const updatedControls = {
-            ...this.state.formControls
-        };
-        const updatedFormElement = {
-            ...updatedControls[name]
-        };
-        updatedFormElement.value = value;
-        updatedFormElement.friendId = value;
-        updatedFormElement.touched = true;
-        updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
-
-        updatedControls[name] = updatedFormElement;
-
-        let formIsValid = true;
-        for (let inputIdentifier in updatedControls) {
-            formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
-        }
-
-        this.setState({
-            formControls: updatedControls, 
-            FormIsValid: formIsValid
-        });
+            .then(this.handleClear())
     }
 
-    handleSelectChange = value => {
-        this.setState({ selectedValue: value })
-    };
+    // formSubmitHandler = () => {
+    //     const formData = {};
+    //     for (let formElementId in this.state.formControls) {
+    //         formData[formElementId] = this.state.formControls[formElementId].value;
+    //     }
+
+        
+    //     API.saveGift(formData)
+    //         .then((response) => {
+    //             console.log(`New gift added! ${response}`)
+    //         })
+    //         // .then(this.handleFormClear())
+    // };
+
+    // handleChange = event => {
+    //     const name = event.target.name;
+    //     const value = event.target.value;
+    //     console.log(event)
+
+    //     const updatedControls = {
+    //         ...this.state.formControls
+    //     };
+    //     const updatedFormElement = {
+    //         ...updatedControls[name]
+    //     };
+    //     updatedFormElement.value = value;
+    //     updatedFormElement.friendId = value;
+    //     updatedFormElement.touched = true;
+    //     updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
+
+    //     updatedControls[name] = updatedFormElement;
+
+    //     let formIsValid = true;
+    //     for (let inputIdentifier in updatedControls) {
+    //         formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+    //     }
+
+    //     this.setState({
+    //         formControls: updatedControls, 
+    //         FormIsValid: formIsValid
+    //     });
+    // }
 
     // handleFormClear() {     
     //         this.setState({         
@@ -255,48 +259,44 @@ class AddGiftContainer extends Component {
                         <img className={classes.image} src={giftImg} alt="Gift Logo"></img>
                         Add New Gift
                     </Typography>
+                    <form onSubmit={this.handleFormSubmit}>
                     <Grid container spacing={24}>
                         <Grid item xs={12} sm={12}>
                             <TextField
-                                label={this.state.formControls.gift.placeholder}
-                                type="text"
+                                // type="text"
+                                id="gift"
                                 name="gift"
+                                label="Gift"
                                 fullWidth
-                                value={this.state.formControls.gift.value}
+                                value={this.state.value}
                                 onChange={this.handleChange}
-                                touched={this.state.formControls.gift.touched}
-                                valid={this.state.formControls.gift.valid}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
                             <InputLabel htmlFor="friendSelect" className={classes.select}>Select Friend</InputLabel>
                             <Select 
+                                native
                                 name="friendSelect"
-                                value={this.state.selectedValue}
-                                displayValue={this.state.selectedValue}
-                                onChange={this.handleSelectChange}
+                                value={this.state.value}
+                                displayValue={this.state.value}
                                 onChange={this.handleChange}
-                                // inputProps={{
-                                //     name: "friend",
-                                //     id: this.state.friend.id,
-                                // }}
+                                inputProps={{
+                                    name: "friendSelect",
+                                    id: "friendSelect"
+                                }}
                                 fullWidth                
                             >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {this.state.formControls.friends.map(friend => {
+                                <option value="" />
+                                {this.state.friends.map(friend => {
                                     console.log("Friend ID:" + friend._id)
                                     return (
-                                        <MenuItem   
+                                        <option   
                                             value={friend._id}
-                                            // displayValue={friend.name}
-                                            displayValue={this.state.selectedValue}
-                                            onChange={this.handleSelectChange}
+                                            displayValue={this.state.value}
                                             onChange={this.handleChange}
                                         >
                                         {friend.name}
-                                        </MenuItem>  
+                                        </option>  
                                     )
                                 })}
                                 </Select>
@@ -315,18 +315,21 @@ class AddGiftContainer extends Component {
                                     </Button>
                                 </label>
                          </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} align="right">
                             <Button
                                 variant="contained"
                                 size="small"
                                 color="primary"
                                 className={classes.button}
-                                onClick={this.formSubmitHandler}>
+                                type="submit"
+                                value="submit"
+                            >
                                 Save
                                 <SaveIcon className={classNames(classes.rightIcon, classes.iconSmall)}/>
                             </Button>
                         </Grid>
                     </Grid>
+                    </form>
                 </Paper>
             </main>
         )

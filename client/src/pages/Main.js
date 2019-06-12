@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import clsx from 'clsx';
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import { Tabs, Tab } from "@material-ui/core";
-// import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-// import GiftGridList from "../components/GiftGrid/GiftGridList";
 import MainOccasionsTable from "../components/OccasionsTable/MainOccasionsTable";
 import FriendGrid from "../components/FriendGrid/FriendGrid";
 import AddFriendContainer from "../containers/AddFriendContainer";
